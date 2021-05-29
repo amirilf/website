@@ -1,36 +1,10 @@
-$c-white:#fff;
-$c-dark:rgb(29, 29, 29);
-@mixin d-flex-center {
-    display: inline-flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-@mixin c-glass($opacity:.65 , $blur:15.0px) {
-    background: rgba( 255, 255, 255, $opacity );
-    backdrop-filter: blur( $blur );
-    -webkit-backdrop-filter: blur( 15.0px );
-    box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.075);
-    animation: navbar .5s;
-}
-body{
-    width: 100%;
-    height: 100vh;
-    background: url('../img/header2.jpg') center no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}
-main{
-    // background-color: $c-white;
-    @include c-glass(.90);
-}
 @font-face {
     font-family: FiraSans-M;
     src: url(../font/FiraSans-Medium.ttf); 
 }
 @font-face {
     font-family: FiraSans-E;
-    src: url(../font/FiraSans-ExtraLight.ttf);
+    src: url(../font/FiraSans-Light.ttf);
 }
 @font-face {
     font-family: FiraSans-MT;
@@ -44,8 +18,38 @@ main{
     font-family: FiraSans-T;
     src: url(../font/FiraSans-Thin.ttf);
 }
+*{
+    font-family: FiraSans-E;
+}
+.btn{
+    font-family: FiraSans-M;
+}
+body{
+    width: 100%;
+    background: url('../img/header2.jpg') center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+main{
+    // background-color: $c-white;
+    @include c-glass(.90);
+}
 @for $var from 1 to 7 {
     h#{$var}{
         font-family: FiraSans-MT;
     }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
 }
