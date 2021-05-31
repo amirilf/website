@@ -1,15 +1,8 @@
-footer{
-    @include c-glass(.85 , 50px);
-    color: $c-dark;
-}
 nav{
     top: 0;
     transition: top 0.3s ,box-shadow 0.3s;
     background-color: rgba(221, 221, 221, 0);
     z-index: 9999;
-    @media (max-width:991px) {
-        @include c-glass;
-    }
     .navbar-nav{
         .nav-link{
             position: relative;
@@ -20,7 +13,6 @@ nav{
                 position: absolute;
                 bottom: 0;
                 left: 0;
-                right: 0;
                 margin: auto;
                 background-color: $c-dark;
                 color: transparent;
@@ -31,33 +23,20 @@ nav{
             }
             &:hover{
                 &::after{
-                    width: 100%;
+                    width: 20%;
                 }
             }
         }
     }
-    @media only screen and (min-width: 960px) {
-        .navbar-nav {
-            .nav-link {
-                padding: 1em 0.7em;
-            }
-        }
-        .navbar-brand {
-            padding: 0 0.7em;
-        }
-    }
-    padding: 0 !important;
 }
 .card{
     .icons-card{
         font-size: 13px;
         color: rgb(92, 92, 92);
-        a{
-            color: rgb(170, 2, 2);
-            &:hover{
-                color: rgb(255, 0, 0);
-            }
-        }
+    }
+    .author-image{
+        width: 40px;
+        height: 40px;
     }
     @include shadow("md");
     border: none;
@@ -68,29 +47,6 @@ nav{
     a{
         vertical-align: text-top !important;
         display: inline-block;
-    }
-    @media (min-width:991px) {
-        .nav-img{
-            bottom:  -50px;
-        }
-        &:hover .nav-img{
-            bottom:  0px;
-        }
-    }
-    @media (max-width:991px) {
-        .img-card{
-            min-height: 300px !important;
-        }
-    }
-    @media (max-width:450px) {
-        .img-card{
-            min-height: 180px !important;
-        }
-    }
-}
-.swiper-slide{
-    .nav-img{
-        margin-top: 5px;
     }
 }
 .social-networks{
@@ -107,7 +63,6 @@ nav{
             position: relative;
             z-index:9;
         }
-
         @include d-flex-center;
         .back-icon{
             transition: top .2s;

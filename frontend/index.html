@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="fontawesome-free-5.15.3-web/css/all.css">
     <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/responsiv.css">
     <link rel="stylesheet" href="css/pages/index.css">
         <!-- reference css end-->
 </head>
@@ -31,7 +32,7 @@
                 <!-- logo nav -->
                 <a class="navbar-brand" href="#">Navbar</a>
                 <!-- logo nav end -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" onclick="btnNavbar()" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -51,25 +52,15 @@
         </nav>
         <!-- navbar end -->
         <div class="text-center">
-            <h1 class="display-4 mx-auto pb-5">
+            <h1 class="display-4 mx-auto pb-4">
                 Lorem ipsum dolor sit amet consectetur adipisicing.
             </h1>
             <p class="h2 text-white pb-5 ">
                 Lorem ipsum dolor sit amet consectetur, adipisicing elit. Id, maxime!
             </p>
-            <button class="btn btn-outline-light mx-2 rounded mb-5">
-                <span class="h5">
-                    sgin in
-                </span>
-            </button>
-            <button class="btn btn-light mx-2 rounded mb-5">
-                <span class="h5">
-                    sgin up
-                </span>
-            </button>
         </div>
         <button class="position-absolute btn-header" onclick="scrollBtn()">
-            <i class="fas fa-arrow-down"></i>
+            <i class="fas fa-angle-double-down"></i>
         </button>
     </header>
     <main class="py-5">
@@ -84,34 +75,27 @@
                         </h5>
                         <div class="card rounded my-4 overflow-hidden">
                             <div class="row g-0">
-                                <!-- data-src => style="background:url(data-src)" -->
-                                <div class="col-lg-5 col-xl-4 img-card" data-src="'../img/card.jpg'"></div>
-                                <!-- data-src end -->
-                                <div class="col-lg-7 col-xl-8 p-3">
-                                    <h5>
-                                        title
+                                <div class="col-lg-6 col-xl-5 p-3">
+                                    <div class="img-card h-100 rounded" data-src="'../img/card2.jpg'"></div>
+                                </div>
+                                <div class="col-lg-6 col-xl-7 p-3">
+                                    <h5 class="pb-3">
+                                        Lorem ipsum dolor sit amet
                                     </h5>
-                                    <p>
+                                    <p class="mb-3">
                                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad laborum, rerum possimus nam hic in quis fuga. Alias...
                                     </p>
-                                    <div>
-                                        <!-- bg-js-color => میره توی جی اس رنگ میگیره و به صورت رندوم :) -->
-                                        <a href="#" class="badge bg-js-color text-light text-decoration-none">
-                                        <!-- bg-js-color end -->
-                                            lorem2
-                                        </a>
-                                        <a href="#" class="badge bg-js-color text-light text-decoration-none">
-                                            Lorem, ipsum.
-                                        </a>
-                                        <a href="#" class="badge bg-js-color text-light text-decoration-none">
-                                            Lorem, ipsum dolor.
-                                        </a>
-                                    </div>
-                                    <div class="icons-card d-inline-block w-auto h-auto py-4 pb-md-0">
+                                    <a href="#" class="badge bg-info text-light text-decoration-none">
+                                        lorem2
+                                    </a>
+                                    <a href="#" class="badge bg-info text-light text-decoration-none">
+                                        Lorem, ipsum.
+                                    </a>
+                                    <a href="#" class="badge bg-info text-light text-decoration-none">
+                                        Lorem, ipsum dolor.
+                                    </a>
+                                    <div class="icons-card pt-2 mt-3">
                                         <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                            <a class="pe-3 text-decoration-none" href="#">
-                                                by alireza
-                                            </a>
                                             <i class="fas fa-calendar"></i>
                                             <p class="m-0 ps-1 pe-2">22/5/1993</p>
                                         </div>
@@ -128,9 +112,22 @@
                                             <p class="m-0 ps-1 pe-2">3</p>
                                         </div>
                                     </div>
-                                    <a href="#" class="btn btn-danger float-end">
-                                        see more
-                                    </a>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <a class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center" href="#">
+                                            <img src="img/card.jpg" class="author-image rounded-pill" alt="">
+                                            <div class="px-2">
+                                                <span>
+                                                    alireza momenei
+                                                </span>
+                                                <small class="d-block">
+                                                    Lorem ipsum dolor sit amet.
+                                                </small>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-dark d-block ms-auto mt-4">
+                                            see more
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -143,32 +140,27 @@
                         </h5>
                         <div class="card rounded my-4 overflow-hidden">
                             <div class="row g-0">
-                                <div class="col-lg-5 col-xl-4 img-card" data-src="'../img/card2.jpg'"></div>
-                                <div class="col-lg-7 col-xl-8 p-3">
-                                    <h5>
-                                        title
+                                <div class="col-lg-6 col-xl-5 p-3">
+                                    <div class="img-card h-100 rounded" data-src="'../img/card.jpg'"></div>
+                                </div>
+                                <div class="col-lg-6 col-xl-7 p-3">
+                                    <h5 class="pb-3">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, atque?
                                     </h5>
-                                    <p>
+                                    <p class="mb-3">
                                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ad laborum, rerum possimus nam hic in quis fuga. Alias...
                                     </p>
-                                    <div>
-                                        <!-- bg-js-color => میره توی جی اس رنگ میگیره و به صورت رندوم :) -->
-                                        <a href="#" class="badge bg-js-color text-light text-decoration-none">
-                                        <!-- bg-js-color end -->
-                                            lorem2
-                                        </a>
-                                        <a href="#" class="badge bg-js-color text-light text-decoration-none">
-                                            Lorem, ipsum.
-                                        </a>
-                                        <a href="#" class="badge bg-js-color text-light text-decoration-none">
-                                            Lorem, ipsum dolor.
-                                        </a>
-                                    </div>
-                                    <div class="icons-card d-inline-block w-auto h-auto py-4 pb-md-0">
+                                    <a href="#" class="badge bg-info text-light text-decoration-none">
+                                        lorem2
+                                    </a>
+                                    <a href="#" class="badge bg-info text-light text-decoration-none">
+                                        Lorem, ipsum.
+                                    </a>
+                                    <a href="#" class="badge bg-info text-light text-decoration-none">
+                                        Lorem, ipsum dolor.
+                                    </a>
+                                    <div class="icons-card pt-2 mt-3">
                                         <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                            <a class="pe-3 text-decoration-none" href="#">
-                                                by alireza
-                                            </a>
                                             <i class="fas fa-calendar"></i>
                                             <p class="m-0 ps-1 pe-2">22/5/1993</p>
                                         </div>
@@ -185,9 +177,22 @@
                                             <p class="m-0 ps-1 pe-2">3</p>
                                         </div>
                                     </div>
-                                    <a href="#" class="btn btn-danger float-end">
-                                        see more
-                                    </a>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <a class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center" href="#">
+                                            <img src="img/card.jpg" class="author-image rounded-pill" alt="">
+                                            <div class="px-2">
+                                                <span>
+                                                    alireza momenei
+                                                </span>
+                                                <small class="d-block">
+                                                    Lorem ipsum dolor sit amet.
+                                                </small>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="btn btn-outline-dark d-block ms-auto mt-4">
+                                            see more
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +202,7 @@
                 <!-- col Left end -->
                 <!-- col Right -->
                 <div class="col-md-4 col-lg-3">
-                    <div class="sidebar">
+                    <div class="sidebar mt-md-0 mt-4">
                         <div class="pb-4">
                             <h5 class="pb-2">about us</h5>
                             <p>
@@ -207,28 +212,28 @@
                         <div class="pb-4">
                             <h5 class=" pb-2">tags</h5>
                             <div>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     lorem2
                                 </a>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     Lorem, ipsum.
                                 </a>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     Lorem
                                 </a>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     Lorem, ipsum 
                                 </a>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     Lorem, ipsum dolor.dolor.
                                 </a>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     Lorem, ipsum 
                                 </a>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     Lorem, ipsum dolor.
                                 </a>
-                                <a href="#" class="badge bg-js-color text-light text-decoration-none">
+                                <a href="#" class="badge bg-info text-light text-decoration-none">
                                     Lorem, ipsum dolor.
                                 </a>
                             </div>
@@ -257,21 +262,15 @@
         </div>
     </main>
     <!-- Footer -->
-    <footer class="text-center">
-        <div class="container p-4 pb-0">
-            <section>
-            <p class="d-flex justify-content-center align-items-center">
-                <span class="me-3">Register for free</span>
-                <a href="#" class="btn btn-outline-dark btn-rounded">
-                Sign up!
-                </a>
-            </p>
-            </section>
-        </div>
+    <footer class="text-center bg-dark text-white">
         <div class="text-center p-3">
             This website was created by 
-            <a class=" px-1 text-dark" href="#">Alireza</a>and
-            <a class=" px-1 text-dark" href="#">Amir</a>
+            <a class=" px-1 text-white" href="#">Alireza</a>and
+            <a class=" px-1 text-white" href="#">Amir</a>
+            <div class="position-relative d-inline-block w-auto h-auto" id="like_footer">
+                <i class="far fa-heart"></i>
+                <i class="fas fa-heart position-absolute"></i>
+            </div>
         </div>
     </footer>
     <!-- Footer end --> 

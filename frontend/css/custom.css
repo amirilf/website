@@ -67,25 +67,11 @@ h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: #555; }
 
-footer {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(50px);
-  -webkit-backdrop-filter: blur(15px);
-  box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.075);
-  color: #1d1d1d; }
-
 nav {
   top: 0;
   transition: top 0.3s ,box-shadow 0.3s;
   background-color: rgba(221, 221, 221, 0);
-  z-index: 9999;
-  padding: 0 !important; }
-  @media (max-width: 991px) {
-    nav {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.075); } }
+  z-index: 9999; }
   nav .navbar-nav .nav-link {
     position: relative; }
     nav .navbar-nav .nav-link:hover {
@@ -94,7 +80,6 @@ nav {
       position: absolute;
       bottom: 0;
       left: 0;
-      right: 0;
       margin: auto;
       background-color: #1d1d1d;
       color: transparent;
@@ -103,12 +88,7 @@ nav {
       height: 3px;
       transition: all 0.5s; }
     nav .navbar-nav .nav-link:hover::after {
-      width: 100%; }
-  @media only screen and (min-width: 960px) {
-    nav .navbar-nav .nav-link {
-      padding: 1em 0.7em; }
-    nav .navbar-brand {
-      padding: 0 0.7em; } }
+      width: 20%; }
 
 .card {
   box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.175);
@@ -116,30 +96,15 @@ nav {
   .card .icons-card {
     font-size: 13px;
     color: #5c5c5c; }
-    .card .icons-card a {
-      color: #aa0202; }
-      .card .icons-card a:hover {
-        color: red; }
+  .card .author-image {
+    width: 40px;
+    height: 40px; }
   .card .img-card {
     min-height: 100px;
     background-size: cover !important; }
   .card a {
     vertical-align: text-top !important;
     display: inline-block; }
-  @media (min-width: 991px) {
-    .card .nav-img {
-      bottom: -50px; }
-    .card:hover .nav-img {
-      bottom: 0px; } }
-  @media (max-width: 991px) {
-    .card .img-card {
-      min-height: 300px !important; } }
-  @media (max-width: 450px) {
-    .card .img-card {
-      min-height: 180px !important; } }
-
-.swiper-slide .nav-img {
-  margin-top: 5px; }
 
 .social-networks a {
   margin: 0px 5px;
@@ -186,3 +151,18 @@ nav {
   .navbar-toggler:focus {
     box-shadow: none;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
+
+footer #like_footer i {
+  color: #dc3545; }
+  footer #like_footer i:nth-child(2) {
+    animation: likeFooter 2.5s infinite;
+    top: 2.5px;
+    left: 0; }
+
+@keyframes likeFooter {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: 0; } }

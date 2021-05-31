@@ -31,7 +31,6 @@ body{
     background-attachment: fixed;
 }
 main{
-    // background-color: $c-white;
     @include c-glass(.90);
 }
 @for $var from 1 to 7 {
