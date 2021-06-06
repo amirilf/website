@@ -79,15 +79,18 @@
                         <div id="append-form">
                             <!-- form message -->
                             <form id="form-comment" method="POST">
+                                {% csrf_token %}
                                 <div class="form-row row justify-content-center p-3">
                                     <div class="col-12">
                                         <div class="my-1">
-                                            <label for="title-message" class="form-label">title</label>
-                                            <input id="title-message" name="title-message" class="form-control form-control-sm" type="text" placeholder="Please enter a topic">
+                                            <label for="title-message" class="form-label">Name</label>
+                                            {{ comment_form.name }}
+                                            {% comment %} <input id="title-message" name="title-message" class="form-control form-control-sm" type="text" placeholder="Please enter a topic"> {% endcomment %}
                                         </div>
                                         <div class="my-1">
-                                            <label for="text-message" class="form-label">comment text</label>
-                                            <textarea name="text-message" id="text-message" cols="30" rows="5" class="form-control form-control-sm"></textarea>
+                                            <label for="text-message" class="form-label pt-2">Comment</label>
+                                            {{ comment_form.desc }}
+                                            {% comment %} <textarea name="text-message" id="text-message" cols="30" rows="5" class="form-control form-control-sm"></textarea> {% endcomment %}
                                         </div>
                                         <button name="submit-message" type="submit" class="btn btn-outline-dark btn-sm d-block mt-3 ms-auto">
                                             submit
@@ -98,107 +101,45 @@
                             <!-- form message end -->
                         </div>
 
+                        {% for comment in comments %}
 
 
-                        <div class="px-3">
-                            <div class="message p-3 pb-2 mb-2 rounded">
-                                <div class="d-flex align-items-center">
-                                    <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
-                                    <div class="ps-3">
-                                        <h6 class="my-1">
-                                            dd
-                                        </h6>
-                                        <p class="my-1">
-                                            Lorem ipsum dolor sit amet.
-                                        </p>
-                                    </div>
-                                </div>
-                                <p class=" pt-2 my-0">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione
-                                    perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates omnis animi.
-                                </p>
-                                <button class="d-block btn py-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                    <i class="fas fa-reply"></i>
-                                    replay
-                                </button>
-                                <div></div>
-
-                                <div class="message-reply">
-                                    <div class="message p-3 pb-2 mb-2 rounded">
-                                        <div class="d-flex align-items-center">
-                                            <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
-                                            <div class="ps-3">
-                                                <h6 class="my-1">
-                                                    dd
-                                                </h6>
-                                                <p class="my-1">
-                                                    Lorem ipsum dolor sit amet.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <p class=" pt-2 my-0">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione
-                                            perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates omnis animi.
-                                        </p>
-                                        <button class="d-block btn py-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                            <i class="fas fa-reply"></i>
-                                            replay
-                                        </button>
-                                        <div></div>
-
-                                        <div class="message-reply">
-                                            <div class="message p-3 pb-2 mb-2 rounded">
-                                                <div class="d-flex align-items-center">
-                                                    <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
-                                                    <div class="ps-3">
-                                                        <h6 class="my-1">
-                                                            dd
-                                                        </h6>
-                                                        <p class="my-1">
-                                                            Lorem ipsum dolor sit amet.
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                                <p class=" pt-2 my-0">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione
-                                                    perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates omnis animi.
-                                                </p>
-                                                <button class="d-block btn py-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                                <i class="fas fa-reply"></i>
-                                                replay
-                                            </button>
-                                                <div></div>
-                                                <div class="message-reply">
-                                                    <div class="message p-3 pb-2 mb-2 rounded">
-                                                        <div class="d-flex align-items-center">
-                                                            <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
-                                                            <div class="ps-3">
-                                                                <h6 class="my-1">
-                                                                    dd
-                                                                </h6>
-                                                                <p class="my-1">
-                                                                    <i class="fas fa-calendar">2021/12/2</i>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <p class=" pt-2 my-0">
-                                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione
-                                                            perspiciatis eligendi sequi voluptates omnis animi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam ipsam, harum quae veritatis ratione perspiciatis eligendi sequi voluptates
-                                                            omnis animi.
-                                                        </p>
-                                                        <button class="d-block btn py-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                                            <i class="fas fa-reply"></i>
-                                                            replay
-                                                        </button>
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            <div class="message-reply">
+                                <div class="message p-3 pb-2 mb-2 rounded">
+                                    <div class="d-flex align-items-center">
+                                        <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
+                                        <div class="ps-3">
+                                            <h6 class="my-1">
+                                                {{ comment.name }}
+                                            </h6>
+                                            <p class="my-1">
+                                                {{ comment.created }}
+                                            </p>
                                         </div>
                                     </div>
+                                    <p class=" pt-2 my-0">
+                                        {{ comment.desc|safe }}
+                                    </p>
+                                    <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                    <button class="d-block btn pb-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
+                                        <i class="fas fa-reply"></i>
+                                        replay
+                                    </button>
+                                    <div></div>
+
+                                    {% for comment in comment.replies.all %}
+                                        {% include 'partials/comment_loop.html' %}        
+                                    {% endfor %}
+
+                                    
                                 </div>
                             </div>
-                        </div>
+
+                        {% empty %}
+                            اولین نفری باشید که کامنت میگذارید 
+                            دا اینو تغییر بدی که خیلی خیته تخخخ
+                        {% endfor %}
+
                     </section>
                     <!-- message box end -->
                 </div>
