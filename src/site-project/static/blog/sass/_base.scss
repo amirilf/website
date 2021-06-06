@@ -1,0 +1,55 @@
+@font-face {
+    font-family: FiraSans-M;
+    src: url(../font/FiraSans-Medium.ttf); 
+}
+@font-face {
+    font-family: FiraSans-E;
+    src: url(../font/FiraSans-Light.ttf);
+}
+@font-face {
+    font-family: FiraSans-MT;
+    src: url(../font/FiraSans-MediumItalic.ttf);
+}
+@font-face {
+    font-family: FiraSans-ET;
+    src: url(../font/FiraSans-ExtraLightItalic.ttf);
+}
+@font-face {
+    font-family: FiraSans-T;
+    src: url(../font/FiraSans-Thin.ttf);
+}
+*{
+    font-family: FiraSans-E;
+}
+.btn{
+    font-family: FiraSans-M;
+}
+body{
+    width: 100%;
+    // background: url('../img/header2.jpg') center no-repeat;
+    background: no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+main{
+    @include c-glass(.90);
+}
+@for $var from 1 to 7 {
+    h#{$var}{
+        font-family: FiraSans-MT;
+    }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+}
+::-webkit-scrollbar-thumb {
+background: #888; 
+}
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
