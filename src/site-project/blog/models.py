@@ -117,6 +117,9 @@ class Article(models.Model):
     def __str__(self):
         return self.title_en
 
+    def get_absolute_url(self):
+        return f'/articles/{self.slug}'
+    
 
     objects = ArticleManager() # set managers for this class
 
@@ -132,6 +135,7 @@ class Article(models.Model):
 
 
 class Comment(models.Model):
+    # author    = models.ForeignKey(User,editable=False,null=True,on_delete=models.SET_NULL) # auto delete article on delete author
     article  = models.ForeignKey(Article,on_delete=models.CASCADE,related_name='comments')
     name     = CharField(max_length=50)
     desc     = RichTextField()
@@ -139,8 +143,9 @@ class Comment(models.Model):
     reply_to = models.ForeignKey('self',null=True,blank=True,on_delete=models.CASCADE,related_name='replies')
     status   = models.BooleanField(default=True) # comment status => true:publish , false:draft
     
+  
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created',)
     
     def __str__(self):
         if self.reply_to:

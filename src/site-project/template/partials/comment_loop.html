@@ -1,0 +1,27 @@
+<div class="message-reply">
+    <div class="message p-3 pb-2 mb-2 rounded">
+        <div class="d-flex align-items-center">
+            <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
+            <div class="ps-3">
+                <h6 class="my-1">
+                    {{ comment.name }}
+                </h6>
+                <p class="my-1">
+                    {{ comment.created }}
+                </p>
+            </div>
+        </div>
+        <p class=" pt-2 my-0">
+            {{ comment.desc|safe }}
+        </p>
+        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+        <button class="d-block btn pb-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
+        <i class="fas fa-reply"></i>
+        replay
+        </button>
+        <div></div>
+        {% for comment in comment.replies.all %} 
+            {% include 'partials/comment_loop.html' %} 
+        {% endfor %}
+    </div>
+</div>

@@ -1,4 +1,4 @@
-from django.http.response import Http404
+from django.http.response import Http404, HttpResponseRedirect
 from django.shortcuts import get_list_or_404, render,HttpResponse,get_object_or_404
 
 
@@ -7,8 +7,10 @@ from . import contents
 
 
 # category model
-from .models import Article, Category
+from .models import Article, Category, Comment
 
+# forms
+from .forms import CommentForm
 
 # views
 
@@ -47,12 +49,44 @@ def TagView(request,tag_slug):
 
 def ArticleView(request,article_slug):
     categories_query   = Category.objects.active()    # get all active categories
-    article_query = get_object_or_404(Article.objects,slug=article_slug,status=True)
+    article_query      = get_object_or_404(Article.objects,slug=article_slug,status=True)
+    comments_query     = article_query.comments.filter(status=True,reply_to=None)
+    
+    # add 1 view to article
     Article.objects.filter(slug=article_slug,status=True).update(views=article_query.views+1)
+    
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            
+            new_comment_form = comment_form.save(commit=False)
+            new_comment_form.article = article_query
+
+            try:
+                parent_id = int(request.POST.get('parent_id'))
+            except:
+                parent_id = None
+            
+            if parent_id:
+                # get parent comment
+                parent_comment = Comment.objects.get(id=parent_id)
+                # check if exist
+                if parent_comment: 
+                    # set parent comment
+                    new_comment_form.reply_to = parent_comment 
+
+            new_comment_form.save()
+            return HttpResponseRedirect(article_query.get_absolute_url())
+
+    else:
+        comment_form = CommentForm()
+
     context = {
         'categories':categories_query,
         'article':article_query,
+        'comments':comments_query,
         'site_setting':contents,
+        'comment_form':comment_form,
     }
     return render(request,'article.html',context)
 
