@@ -105,10 +105,6 @@
                                 {% csrf_token %}
                                 <div class="form-row row justify-content-center p-3">
                                     <div class="col-12">
-<<<<<<< HEAD
-                                        <div class="my-1">
-                                            <label for="title-message" class="form-label">Name</label> {{ comment_form.name }} {% comment %} <input id="title-message" name="title-message" class="form-control form-control-sm" type="text" placeholder="Please enter a topic">                                            {% endcomment %}
-=======
                                         <div class="my-1 align-items-end justify-content-between gy-3">
                                             <label for="title-message" class="form-label">Name</label>
                                             {{ comment_form.name }}
@@ -159,7 +155,6 @@
                                                 </div>
                                                 <div class="swiper-pagination"></div>
                                             </div>
->>>>>>> c6c23bf178fe2b597eb1ba5a98f02ae635b8f7b5
                                         </div>
                                         <input type="hidden" id="articel_input" name="articel_input">
                                         <div class="my-1">
@@ -177,7 +172,6 @@
                         {% for comment in comments %}
 
 
-<<<<<<< HEAD
                         <div class="message p-3 pb-2 m-3 rounded">
                             <div class="d-flex align-items-center">
                                 <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
@@ -199,82 +193,9 @@
                                         replay
                                     </button>
                             <div></div>
-=======
-                            <div class="px-3 py-1">
-                                <div class="message p-3 pb-2 mb-3 rounded position-relative">
-                                    <div class="d-flex align-items-center">
-                                        <img src="../media/img/download.jpeg" class="rounded-pill img-sm" alt="">
-                                        <div class="ps-3">
-                                            <h6 class="my-1">
-                                                {{ comment.name }}
-                                            </h6>
-                                            <p class="my-1">
-                                                {{ comment.created }}
-                                            </p>
-                                        </div>  
-                                    </div>
-                                    <p class=" pt-2 my-0 p-message">
-                                        {{ comment.desc|safe }}
-                                    </p>
-                                    <div class="Paragraph-cover position-absolute d-none">
-                                        <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
-                                            show more
-                                        </span>
-                                    </div>
-                                    <div>
-                                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                                    </div>
-                                    <button class="d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                        <i class="fas fa-reply"></i>
-                                        replay
-                                    </button>
-                                    <div></div>
-                                    <div class="message-replay"><!-- این تگ هم هیچ استالی نداره ... کلاس دادم که بفهمی این جا باید ریپ بزنی :) -->
-                                        <!-- این جا رو نوشتم که بفهمی از کجای تگ قرار ریپ بخوره  -->
-                                        <div class="message p-3 pb-2 my-3 rounded position-relative">
-                                            <div class="d-flex align-items-center">
-                                                <img src="../media/img/download.jpeg" class="rounded-pill img-sm" alt="">
-                                                <div class="ps-3">
-                                                    <h6 class="my-1">
-                                                        {{ comment.name }}
-                                                    </h6>
-                                                    <p class="my-1">
-                                                        {{ comment.created }}
-                                                    </p>
-                                                </div>  
-                                            </div>
-                                            <p class=" pt-2 my-0 p-message">
-                                                {{ comment.desc|safe }}
-                                            </p>
-                                            <div class="Paragraph-cover position-absolute d-none">
-                                                <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
-                                                    show more
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                                            </div>
-                                            <button class="d-block btn pb-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                                <i class="fas fa-reply"></i>
-                                                replay
-                                            </button>
-                                            <div></div>
-        
-                                            {% for comment in comment.replies.all %}
-                                                {% include 'partials/comment_loop.html' %}        
-                                            {% endfor %}
-        
-                                        </div>
-                                    </div>
->>>>>>> c6c23bf178fe2b597eb1ba5a98f02ae635b8f7b5
 
                             {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %} {% endfor %}
 
-<<<<<<< HEAD
-=======
-                                </div>
-                            </div>
->>>>>>> c6c23bf178fe2b597eb1ba5a98f02ae635b8f7b5
 
                         </div>
 
