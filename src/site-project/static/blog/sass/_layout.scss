@@ -6,7 +6,7 @@
     position: sticky !important;
     top: 100px !important;
 }
-.swiper-pagination{
+#most_visited .swiper-pagination{
     bottom: 0px !important;
 }
 .navbar-toggler{
@@ -14,6 +14,25 @@
     &:focus{
         box-shadow: none;
         @include shadow("sm");
+    }
+}
+.bg-opacity{
+    background: rgba(255, 255, 255, 0) !important;
+}
+.avatar-selected{
+    box-shadow: 0 0 10px 2px #00ec14;
+}
+.img-sm{
+    width: 50px;
+    height: 50px;
+}
+#input_search{
+    width: 100%;
+    max-width: 20rem;
+    button{
+        background: rgba(0, 0, 0, 0);
+        top: -2px;
+        right: 7px;
     }
 }
 footer{
