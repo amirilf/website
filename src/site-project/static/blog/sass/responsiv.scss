@@ -1,6 +1,6 @@
 @import "Variables";
 @import "mixin";
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 576px) {
     nav{
         .navbar-brand {
             padding: 0 0.7em;
@@ -32,3 +32,13 @@
         min-height: 200px !important;
     }
 }
+// @media (min-width: 1200px){
+//     .g-md-5, .gx-md-5 {
+//         --bs-gutter-x: 3rem !important;
+//     }
+// }
+// @media (max-width: 1265px){
+//     .g-md-5, .gx-md-5 {
+//         --bs-gutter-x: 1.5rem !important;
+//     }
+// }

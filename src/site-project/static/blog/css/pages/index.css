@@ -13,10 +13,24 @@ header {
   header .btn-header {
     border: none;
     background: none;
-    bottom: 30px; }
+    animation: btnHeader .9s infinite; }
     header .btn-header i {
       font-size: 20px;
       color: #fff; }
     header .btn-header:focus {
       border: none;
       outline: none; }
+
+.col-md-8, .col-lg-9 {
+  overflow: hidden; }
+
+.swiper-pagination {
+  bottom: -10px !important; }
+
+@keyframes btnHeader {
+  0% {
+    bottom: 40px; }
+  60% {
+    bottom: 30px; }
+  100% {
+    bottom: 40px; } }

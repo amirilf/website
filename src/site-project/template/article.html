@@ -19,7 +19,7 @@
 <body data-src="{{ article.thumbnail.url }}">
     <header class="thumbnail">
         <!-- navbar -->
-        <nav id="navbar" class="navbar navbar-expand-lg navbar-light position-fixed w-100">
+        <nav id="navbar" class="navbar navbar-expand-sm navbar-light position-fixed w-100">
             <div class="container">
                 <!-- logo nav -->
                 <a class="navbar-brand" href="/">Django Website</a>
@@ -47,9 +47,32 @@
             <h1 class="w-100">
                 {{ article.title_en }}
             </h1>
-            <p class="w-100">
-                for pub time , views and comment and readtime
-            </p>
+            <div class="w-auto px-4">
+                <div class="py-2 d-inline-block">
+                    <i class="fas fa-calendar"></i>
+                    <span class="ps-1 pe-3">
+                        22/5/1395
+                    </span>
+                </div>
+                <div class="py-2 d-inline-block">
+                    <i class="fas fa-eye"></i>
+                    <span class="ps-1 pe-3">
+                        100
+                    </span>
+                </div>
+                <div class="py-2 d-inline-block">
+                    <i class="fas fa-pen-nib"></i>
+                    <a class="ps-1 pe-3 text-dark text-decoration-none" href="#">
+                        alireza or amir :)
+                    </a>
+                </div>
+                <div class="py-2 d-inline-block">
+                    <i class="fas fa-clock"></i>
+                    <span class="ps-1 pe-3">
+                        100/s
+                    </span>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -61,7 +84,7 @@
                 <div class="col-md-8 col-lg-9">
                     <section>
                         <div class="row justify-content-center articel-header-img">
-                            <div class="col-sm-7 text-center">
+                            <div class="col-9 col-sm-7 text-center">
                                 <img src="{{ article.thumbnail.url }}" class="img-fluid rounded shadow-lg rellax" data-rellax-speed="2" alt="">
                             </div>
                         </div>
@@ -75,16 +98,70 @@
                     </section>
 
                     <!-- message box -->
-                    <section class="bg-white shadow rounded mt-5">
+                    <section class="bg-white shadow rounded mt-5 pt-3">
                         <div id="append-form">
                             <!-- form message -->
                             <form id="form-comment" method="POST">
                                 {% csrf_token %}
                                 <div class="form-row row justify-content-center p-3">
                                     <div class="col-12">
+<<<<<<< HEAD
                                         <div class="my-1">
                                             <label for="title-message" class="form-label">Name</label> {{ comment_form.name }} {% comment %} <input id="title-message" name="title-message" class="form-control form-control-sm" type="text" placeholder="Please enter a topic">                                            {% endcomment %}
+=======
+                                        <div class="my-1 align-items-end justify-content-between gy-3">
+                                            <label for="title-message" class="form-label">Name</label>
+                                            {{ comment_form.name }}
+                                            {% comment %} <input id="title-message" name="title-message" class="form-control form-control-sm d-inline-flex" type="text" placeholder="Please enter a topic"> {% endcomment %}
                                         </div>
+                                        <div class="w-100 pt-3 px-3">
+                                            <div class="mySwiper2 row overflow-hidden position-relative">
+                                                <div class="swiper-wrapper py-3 pb-4">
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="2" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="3" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="4" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="5" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
+                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                    </div>
+                                                </div>
+                                                <div class="swiper-pagination"></div>
+                                            </div>
+>>>>>>> c6c23bf178fe2b597eb1ba5a98f02ae635b8f7b5
+                                        </div>
+                                        <input type="hidden" id="articel_input" name="articel_input">
                                         <div class="my-1">
                                             <label for="text-message" class="form-label pt-2">Comment</label> {{ comment_form.desc }} {% comment %} <textarea name="text-message" id="text-message" cols="30" rows="5" class="form-control form-control-sm"></textarea>                                            {% endcomment %}
                                         </div>
@@ -100,6 +177,7 @@
                         {% for comment in comments %}
 
 
+<<<<<<< HEAD
                         <div class="message p-3 pb-2 m-3 rounded">
                             <div class="d-flex align-items-center">
                                 <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
@@ -121,9 +199,82 @@
                                         replay
                                     </button>
                             <div></div>
+=======
+                            <div class="px-3 py-1">
+                                <div class="message p-3 pb-2 mb-3 rounded position-relative">
+                                    <div class="d-flex align-items-center">
+                                        <img src="../media/img/download.jpeg" class="rounded-pill img-sm" alt="">
+                                        <div class="ps-3">
+                                            <h6 class="my-1">
+                                                {{ comment.name }}
+                                            </h6>
+                                            <p class="my-1">
+                                                {{ comment.created }}
+                                            </p>
+                                        </div>  
+                                    </div>
+                                    <p class=" pt-2 my-0 p-message">
+                                        {{ comment.desc|safe }}
+                                    </p>
+                                    <div class="Paragraph-cover position-absolute d-none">
+                                        <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
+                                            show more
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                    </div>
+                                    <button class="d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
+                                        <i class="fas fa-reply"></i>
+                                        replay
+                                    </button>
+                                    <div></div>
+                                    <div class="message-replay"><!-- این تگ هم هیچ استالی نداره ... کلاس دادم که بفهمی این جا باید ریپ بزنی :) -->
+                                        <!-- این جا رو نوشتم که بفهمی از کجای تگ قرار ریپ بخوره  -->
+                                        <div class="message p-3 pb-2 my-3 rounded position-relative">
+                                            <div class="d-flex align-items-center">
+                                                <img src="../media/img/download.jpeg" class="rounded-pill img-sm" alt="">
+                                                <div class="ps-3">
+                                                    <h6 class="my-1">
+                                                        {{ comment.name }}
+                                                    </h6>
+                                                    <p class="my-1">
+                                                        {{ comment.created }}
+                                                    </p>
+                                                </div>  
+                                            </div>
+                                            <p class=" pt-2 my-0 p-message">
+                                                {{ comment.desc|safe }}
+                                            </p>
+                                            <div class="Paragraph-cover position-absolute d-none">
+                                                <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
+                                                    show more
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <input type="hidden" name="parent_id" value="{{ comment.id }}">
+                                            </div>
+                                            <button class="d-block btn pb-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
+                                                <i class="fas fa-reply"></i>
+                                                replay
+                                            </button>
+                                            <div></div>
+        
+                                            {% for comment in comment.replies.all %}
+                                                {% include 'partials/comment_loop.html' %}        
+                                            {% endfor %}
+        
+                                        </div>
+                                    </div>
+>>>>>>> c6c23bf178fe2b597eb1ba5a98f02ae635b8f7b5
 
                             {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %} {% endfor %}
 
+<<<<<<< HEAD
+=======
+                                </div>
+                            </div>
+>>>>>>> c6c23bf178fe2b597eb1ba5a98f02ae635b8f7b5
 
                         </div>
 
@@ -149,25 +300,67 @@
                                 {% for category in categories %}
                                 <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
                                         {{ category.name_en }}
-                                    </a> {% endfor %}
+                                </a> {% endfor %}
                             </div>
                         </div>
                         <div class="pt-4">
                             <h5 class=" pb-2">Social Networks</h5>
                             <div class="social-networks">
-                                <a href="#" class="text-decoration-none position-relative">
-                                    <i class="fab fa-telegram-plane"></i>
-                                    <div class="back-icon"></div>
-                                </a>
-                                <a href="#" class="text-decoration-none position-relative">
-                                    <i class="fab fa-instagram"></i>
-                                    <div class="back-icon"></div>
-                                </a>
-                                <a href="#" class="text-decoration-none position-relative">
-                                    <i class="fab fa-github"></i>
-                                    <div class="back-icon"></div>
-                                </a>
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
+                                        <i class="fab fa-telegram-plane"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks">
+                                        <i class="fab fa-instagram"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks">
+                                        <i class="fab fa-github"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <div class="py-4">
+                            <h5 class=" pb-2">search</h5>
+                            <form class="position-relative d-inline-block" id="input_search">
+                                <input name="search" type="text" class="form-control pe-5 form-control-sm rounded-pill">
+                                <button name="sub_search" type="submit" class="position-absolute border-0">
+                                    <i class="fas fa-search py-2 px-0 text-dark"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -198,6 +391,7 @@
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/js/rellax.min.js' %}"></script>
     <script src="{% static 'blog/js/index.js' %}"></script>
+    <script>var rellax = new Rellax('.rellax');</script>
     <!-- end js refrences -->
 </body>
 

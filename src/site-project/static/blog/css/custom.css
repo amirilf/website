@@ -19,7 +19,8 @@
   src: url(../font/FiraSans-Thin.ttf); }
 
 * {
-  font-family: FiraSans-E; }
+  font-family: FiraSans-E;
+  word-wrap: break-word; }
 
 .btn {
   font-family: FiraSans-M; }
@@ -32,8 +33,9 @@ body {
 
 main {
   background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px) !important;
+  -webkit-backdrop-filter: blur(15px) !important;
+  -moz-backdrop-filter: blur(15px) !important;
   box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.075); }
 
 h1 {
@@ -108,34 +110,76 @@ nav {
     vertical-align: text-top !important;
     display: inline-block; }
 
-.social-networks a {
-  margin: 0px 5px;
-  width: 40px;
-  height: 40px;
-  font-size: 25PX;
-  border-radius: 100%;
-  color: #1d1d1d;
-  border: 3px solid #1d1d1d;
-  overflow: hidden;
-  display: inline-flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center; }
-  .social-networks a i {
+.social-networks {
+  cursor: default !important; }
+  .social-networks div {
+    display: inline-block;
     position: relative;
-    z-index: 9; }
-  .social-networks a .back-icon {
-    transition: top .2s;
-    width: 100%;
-    height: 100%;
-    background-color: #1d1d1d;
-    top: -40px;
-    position: absolute;
-    z-index: 8; }
-  .social-networks a:hover {
-    color: #fff; }
-    .social-networks a:hover .back-icon {
-      top: 0; }
+    z-index: 99; }
+    .social-networks div:hover .icon-social-networks {
+      color: #fff; }
+      .social-networks div:hover .icon-social-networks .back-icon {
+        top: 0; }
+    .social-networks div:hover .AvatarSocialNetworks {
+      display: block; }
+    .social-networks div .icon-social-networks {
+      cursor: pointer !important;
+      margin: 0px 5px;
+      width: 40px;
+      height: 40px;
+      font-size: 25PX;
+      border-radius: 100%;
+      color: #1d1d1d;
+      border: 3px solid #1d1d1d;
+      overflow: hidden;
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center; }
+      .social-networks div .icon-social-networks i {
+        position: relative;
+        z-index: 9; }
+      .social-networks div .icon-social-networks .back-icon {
+        transition: top .2s;
+        width: 100%;
+        height: 100%;
+        background-color: #1d1d1d;
+        top: -40px;
+        position: absolute;
+        z-index: 8; }
+    .social-networks div .AvatarSocialNetworks {
+      position: absolute;
+      top: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      width: auto;
+      margin-top: 35px;
+      padding-top: 20px; }
+      .social-networks div .AvatarSocialNetworks div {
+        display: flex;
+        padding: 10px;
+        width: 100%;
+        height: 100%;
+        background-color: #fff; }
+        .social-networks div .AvatarSocialNetworks div a {
+          height: auto;
+          width: auto; }
+          .social-networks div .AvatarSocialNetworks div a img {
+            margin: 0 5px; }
+            .social-networks div .AvatarSocialNetworks div a img:hover {
+              box-shadow: 0px 0px 10px 2px rgba(0, 19, 194, 0.637); }
+      .social-networks div .AvatarSocialNetworks::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 12px solid white;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%); }
 
 .scroll-navbar {
   background-color: #fff; }
@@ -145,7 +189,7 @@ nav {
   position: sticky !important;
   top: 100px !important; }
 
-.swiper-pagination {
+#most_visited .swiper-pagination {
   bottom: 0px !important; }
 
 .navbar-toggler {
@@ -153,6 +197,24 @@ nav {
   .navbar-toggler:focus {
     box-shadow: none;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
+
+.bg-opacity {
+  background: rgba(255, 255, 255, 0) !important; }
+
+.avatar-selected {
+  box-shadow: 0 0 10px 2px #00ec14; }
+
+.img-sm {
+  width: 50px;
+  height: 50px; }
+
+#input_search {
+  width: 100%;
+  max-width: 20rem; }
+  #input_search button {
+    background: rgba(0, 0, 0, 0);
+    top: -2px;
+    right: 7px; }
 
 footer #like_footer i {
   color: #dc3545; }

@@ -620,12 +620,12 @@ progress {
 }
 @media (min-width: 1200px) {
   .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1240px;
+    max-width: 1150px;
   }
 }
 @media (min-width: 1400px) {
   .container-xxl, .container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 1420px;
+    max-width: 1320px;
   }
 }
 .row {
@@ -3016,23 +3016,23 @@ textarea.form-control-lg {
 }
 
 .btn-info {
-  color: #000;
+  color: #fff;
   background-color: #6886ff;
   border-color: #6886ff;
 }
 .btn-info:hover {
-  color: #000;
+  color: rgb(255, 255, 255);
   background-color: #5174ff;
   border-color: #5174ff;
 }
 .btn-check:focus + .btn-info, .btn-info:focus {
-  color: #000;
+  color: #fff;
   background-color: #31d2f2;
   border-color: #25cff2;
   box-shadow: 0 0 0 0.25rem rgba(11, 172, 204, 0.5);
 }
 .btn-check:checked + .btn-info, .btn-check:active + .btn-info, .btn-info:active, .btn-info.active, .show > .btn-info.dropdown-toggle {
-  color: #000;
+  color: #fff;
   background-color: #3dd5f3;
   border-color: #25cff2;
 }
