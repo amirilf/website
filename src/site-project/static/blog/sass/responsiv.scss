@@ -1,0 +1,34 @@
+@import "Variables";
+@import "mixin";
+@media only screen and (min-width: 960px) {
+    nav{
+        .navbar-brand {
+            padding: 0 0.7em;
+        }
+        .nav-link{
+            &::after{
+                right: 0;
+            }
+            &:hover{
+                &::after{
+                    width: 100% !important;
+                }
+            }
+        }
+    }
+}
+@media (max-width:991px) {
+    nav{
+        background: $c-white;
+    }
+    .card {
+        .img-card{
+            min-height: 300px;
+        }
+    }
+}
+@media (max-width:450px) {
+    .img-card{
+        min-height: 200px !important;
+    }
+}

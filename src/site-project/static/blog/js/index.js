@@ -55,7 +55,9 @@ function btnNavbar(){
   controlBtnNavbar = !controlBtnNavbar;
 }
 
-var rellax = new Rellax('.rellax');
-if(document.querySelector("body").hasAttribute("data-src")){
-  document.querySelector("body").style.backgroundImage = `url(${document.querySelector("body").getAttribute("data-src")})`;
+if(queryS("body").hasAttribute("data-src")){
+  queryS("body").style.backgroundImage = `url(${queryS("body").getAttribute("data-src")})`;
 }
+
+
+var rellax = new Rellax('.rellax');
