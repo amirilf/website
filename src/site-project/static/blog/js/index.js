@@ -32,8 +32,8 @@ window.onscroll = function() {
     nav.classList.add("scroll-navbar");
   } else {
     nav.classList.remove("scroll-navbar");
-    nav.classList.remove('shadow');
   }
+    nav.classList.remove('shadow');
 };
 
 
@@ -71,7 +71,8 @@ function btnNavbar(){
 
 
 function avatarSelect(e){
-  getId("articel_input").value =  e.alt;
+  console.log(e);
+  getId("articel_input").value =  e.dataset.avatar;
   for(avatar of getClass("img-avatar")){
     avatar.classList.remove("avatar-selected");
   }
