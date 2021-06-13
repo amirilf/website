@@ -7,7 +7,7 @@ from . import contents
 
 
 # category model
-from .models import Article, Category, Comment
+from .models import Article, Category, Comment,Avatar
 
 # forms
 from .forms import CommentForm
@@ -51,7 +51,7 @@ def ArticleView(request,article_slug):
     categories_query   = Category.objects.active()    # get all active categories
     article_query      = get_object_or_404(Article.objects,slug=article_slug,status=True)
     comments_query     = article_query.comments.filter(status=True,reply_to=None)
-    
+    avatars_query      = Avatar.objects.all()
     # add 1 view to article
     Article.objects.filter(slug=article_slug,status=True).update(views=article_query.views+1)
     
@@ -74,6 +74,18 @@ def ArticleView(request,article_slug):
                 if parent_comment: 
                     # set parent comment
                     new_comment_form.reply_to = parent_comment 
+            try:
+                avatar_id = int(request.POST.get('articel_input'))
+            except:
+                avatar_id = None
+            
+            if avatar_id:
+                # get avatar object
+                avatar_obj = Avatar.objects.get(id=avatar_id)
+                # check if exist
+                if avatar_obj: 
+                    # set avatar for comment
+                    new_comment_form.avatar = avatar_obj
 
             new_comment_form.save()
             return HttpResponseRedirect(article_query.get_absolute_url())
@@ -87,6 +99,7 @@ def ArticleView(request,article_slug):
         'comments':comments_query,
         'site_setting':contents,
         'comment_form':comment_form,
+        'avatars': avatars_query,
     }
     return render(request,'article.html',context)
 

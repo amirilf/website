@@ -1,4 +1,5 @@
-{% load static %}
+{% load static %} {% load template_tags %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,35 +48,34 @@
             <h1 class="w-100">
                 {{ article.title_en }}
             </h1>
-            <div class="w-auto px-4">
+            <div class="w-auto px-0">
                 <div class="py-2 d-inline-block">
                     <i class="fas fa-calendar"></i>
-                    <span class="ps-1 pe-3">
-                        22/5/1395
+                    <span class="pe-2">
+                        {{ article.simple_created }}
                     </span>
                 </div>
                 <div class="py-2 d-inline-block">
                     <i class="fas fa-eye"></i>
-                    <span class="ps-1 pe-3">
-                        100
+                    <span class="pe-2">
+                        {{ article.views }}
                     </span>
                 </div>
                 <div class="py-2 d-inline-block">
-                    <i class="fas fa-pen-nib"></i>
-                    <a class="ps-1 pe-3 text-dark text-decoration-none" href="#">
-                        alireza or amir :)
+                    <i class="fas fa-user"></i>
+                    <a class="pe-2 text-dark text-decoration-none" href="/{{ article.author.username }}">
+                        {% author_first_name article.author %}
                     </a>
                 </div>
                 <div class="py-2 d-inline-block">
                     <i class="fas fa-clock"></i>
-                    <span class="ps-1 pe-3">
-                        100/s
+                    <span class="pe-2">
+                        {{ article.readtime }}min
                     </span>
                 </div>
             </div>
         </div>
     </header>
-
     <main class="py-5">
         <div class="container">
             <div class="row gx-md-5">
@@ -96,88 +96,69 @@
                             <!-- body Article end -->
                         </div>
                     </section>
-
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates perferendis cupiditate quisquam maxime est similique. Atque, pariatur et fuga magni omnis unde minima porro id consectetur assumenda quaerat blanditiis totam!
                     <!-- message box -->
-                    <section class="bg-white shadow rounded mt-5 pt-3">
+                    <section class="bg-white shadow rounded mt-5 pb-1">
                         <div id="append-form">
                             <!-- form message -->
                             <form id="form-comment" method="POST">
                                 {% csrf_token %}
                                 <div class="form-row row justify-content-center p-3">
                                     <div class="col-12">
-                                        <div class="my-1 align-items-end justify-content-between gy-3">
-                                            <label for="title-message" class="form-label">Name</label>
-                                            {{ comment_form.name }}
-                                            {% comment %} <input id="title-message" name="title-message" class="form-control form-control-sm d-inline-flex" type="text" placeholder="Please enter a topic"> {% endcomment %}
+
+                                        <!-- name section in form -->
+                                        <div class="my-2 align-items-end justify-content-between gy-3">
+                                            <label for="title-message" class="form-label">Name</label> {{ comment_form.name }}
                                         </div>
-                                        <div class="w-100 pt-3 px-3">
-                                            <div class="mySwiper2 row overflow-hidden position-relative">
-                                                <div class="swiper-wrapper py-3 pb-4">
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                        <!-- end name section -->
+
+                                        <!-- avatar section in form -->
+                                        <div class="my-2">
+                                            <label for="avatar-message" class="form-label pt-2">Avatar</label>
+                                            <div id="avatar-message" class="w-100 px-3 form-control form-control-sm">
+                                                <div class="mySwiper2 row overflow-hidden position-relative">
+                                                    <div class="swiper-wrapper pt-2 pb-4">
+                                                        {% for avatar in avatars %}
+                                                        <div class="col-2 col-xl-1 swiper-slide">
+                                                            <img src="{{ avatar.thumbnail.url }}" alt="avatar" data-avatar="{{ avatar.id }}" class="rounded-pill border border-secondary img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                        </div>
+                                                        {% endfor %}
                                                     </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="2" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="3" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="4" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="5" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
-                                                    <div class="col-3 col-xl-1 col-lg-2 swiper-slide">
-                                                        <img src="../media/img/download.jpeg" alt="1" class="rounded-pill img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
-                                                    </div>
+                                                    <div class="swiper-pagination"></div>
                                                 </div>
-                                                <div class="swiper-pagination"></div>
                                             </div>
+                                            <input type="hidden" id="articel_input" name="articel_input">
+                                            <!-- end avatar section -->
+
+                                            <!-- massage section in form -->
+                                            <div class="my-2">
+                                                <label for="text-message" class="form-label pt-2">Comment</label> {{ comment_form.desc }}
+                                            </div>
+                                            <!-- end message section -->
+
+
+                                            <!-- submit section in form -->
+                                            <button name="submit-message" type="submit" class="btn btn-outline-dark btn-sm d-block mt-3 ms-auto">
+                                                submit
+                                            </button>
+                                            <!-- end submit section -->
+
                                         </div>
-                                        <input type="hidden" id="articel_input" name="articel_input">
-                                        <div class="my-1">
-                                            <label for="text-message" class="form-label pt-2">Comment</label>
-                                            {{ comment_form.desc }}
-                                            {% comment %} <textarea name="text-message" id="text-message" cols="30" rows="5" class="form-control form-control-sm"></textarea> {% endcomment %}
-                                        </div>
-                                        <button name="submit-message" type="submit" class="btn btn-outline-dark btn-sm d-block mt-3 ms-auto">
-                                            submit
-                                        </button>
                                     </div>
-                                </div>
                             </form>
                             <!-- form message end -->
-                        </div>
+                            </div>
 
-                        {% for comment in comments %}
-
+                            {% for comment in comments %}
 
                             <div class="px-3 py-1">
-                                <div class="message p-3 pb-2 mb-3 rounded position-relative">
+                                <div class="message p-3 pb-0 mb-2 rounded position-relative">
                                     <div class="d-flex align-items-center">
-                                        <img src="../media/img/download.jpeg" class="rounded-pill img-sm" alt="">
+                                        {% if comment.avatar %}
+                                            <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
+                                        {% else %}
+                                            <img src="../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar">
+                                        {% endif %}
                                         <div class="ps-3">
                                             <h6 class="my-1">
                                                 {{ comment.name }}
@@ -185,7 +166,7 @@
                                             <p class="my-1">
                                                 {{ comment.created }}
                                             </p>
-                                        </div>  
+                                        </div>
                                     </div>
                                     <p class=" pt-2 my-0 p-message">
                                         {{ comment.desc|safe }}
@@ -193,153 +174,117 @@
                                     <div class="Paragraph-cover position-absolute d-none">
                                         <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
                                             show more
-                                        </span>
+                                    </span>
                                     </div>
                                     <div>
                                         <input type="hidden" name="parent_id" value="{{ comment.id }}">
                                     </div>
-                                    <button class="d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
+                                    <button class="pb-2 d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
                                         <i class="fas fa-reply"></i>
                                         replay
                                     </button>
                                     <div></div>
-                                    <div class="message-replay"><!-- این تگ هم هیچ استالی نداره ... کلاس دادم که بفهمی این جا باید ریپ بزنی :) -->
-                                        <!-- این جا رو نوشتم که بفهمی از کجای تگ قرار ریپ بخوره  -->
-                                        <div class="message p-3 pb-2 my-3 rounded position-relative">
-                                            <div class="d-flex align-items-center">
-                                                <img src="../media/img/download.jpeg" class="rounded-pill img-sm" alt="">
-                                                <div class="ps-3">
-                                                    <h6 class="my-1">
-                                                        {{ comment.name }}
-                                                    </h6>
-                                                    <p class="my-1">
-                                                        {{ comment.created }}
-                                                    </p>
-                                                </div>  
-                                            </div>
-                                            <p class=" pt-2 my-0 p-message">
-                                                {{ comment.desc|safe }}
-                                            </p>
-                                            <div class="Paragraph-cover position-absolute d-none">
-                                                <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
-                                                    show more
-                                                </span>
-                                            </div>
-                                            <div>
-                                                <input type="hidden" name="parent_id" value="{{ comment.id }}">
-                                            </div>
-                                            <button class="d-block btn pb-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                                <i class="fas fa-reply"></i>
-                                                replay
-                                            </button>
-                                            <div></div>
-        
-                                            {% for comment in comment.replies.all %}
-                                                {% include 'partials/comment_loop.html' %}        
-                                            {% endfor %}
-        
-                                        </div>
-                                    </div>
 
-                                    {% for comment in comment.replies.all %}
-                                        {% include 'partials/comment_loop.html' %}        
-                                    {% endfor %}
+                                    {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %} {% endfor %}
 
                                 </div>
                             </div>
 
-                        {% empty %}
-                            اولین نفری باشید که کامنت میگذارید 
-                            دا اینو تغییر بدی که خیلی خیته تخخخ
-                        {% endfor %}
+                            {% empty %}
+
+                            <div class="px-5 py-5 text-center">
+                                ...اولین نفری باشید که کامنت میگذارد
+                            </div>
+
+                            {% endfor %}
 
                     </section>
                     <!-- message box end -->
-                </div>
-                <!-- col Left end -->
+                    </div>
+                    <!-- col Left end -->
 
-                <!-- col Right -->
-                <div class="col-md-4 col-lg-3">
-                    <div class="sidebar mt-md-0 mt-4">
-                        <div class="py-4 pt-md-0">
-                            <h5 class="pb-2">About Us</h5>
-                            <p>
-                                {{ site_setting.about|safe }}
-                            </p>
-                        </div>
-                        <div class="pb-4">
-                            <h5 class=" pb-2">All Tags</h5>
-                            <div>
-                                {% for category in categories %}
-                                <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
+                    <!-- col Right -->
+                    <div class="col-md-4 col-lg-3">
+                        <div class="sidebar mt-md-0 mt-4">
+                            <div class="py-4 pt-md-0">
+                                <h5 class="pb-2">About Us</h5>
+                                <p>
+                                    {{ site_setting.about|safe }}
+                                </p>
+                            </div>
+                            <div class="pb-4">
+                                <h5 class=" pb-2">All Tags</h5>
+                                <div>
+                                    {% for category in categories %}
+                                    <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
                                         {{ category.name_en }}
                                 </a> {% endfor %}
-                            </div>
-                        </div>
-                        <div class="pt-4">
-                            <h5 class=" pb-2">Social Networks</h5>
-                            <div class="social-networks">
-                                <div>
-                                    <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
-                                        <i class="fab fa-telegram-plane"></i>
-                                        <span class="back-icon"></span>
-                                    </div>
-                                    <div class="AvatarSocialNetworks">
-                                        <div class=" rounded shadow">
-                                            <a href="#">
-                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div href="#" class=" position-relative icon-social-networks">
-                                        <i class="fab fa-instagram"></i>
-                                        <span class="back-icon"></span>
-                                    </div>
-                                    <div class="AvatarSocialNetworks">
-                                        <div class=" rounded shadow">
-                                            <a href="#">
-                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                            </a>
-                                            <a href="#">
-                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div href="#" class=" position-relative icon-social-networks">
-                                        <i class="fab fa-github"></i>
-                                        <span class="back-icon"></span>
-                                    </div>
-                                    <div class="AvatarSocialNetworks">
-                                        <div class=" rounded shadow">
-                                            <a href="#">
-                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                            </a>
-                                            <a href="#">
-                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="py-4">
-                            <h5 class=" pb-2">search</h5>
-                            <form class="position-relative d-inline-block" id="input_search">
-                                <input name="search" type="text" class="form-control pe-5 form-control-sm rounded-pill">
-                                <button name="sub_search" type="submit" class="position-absolute border-0">
+                            <div class="pt-4">
+                                <h5 class=" pb-2">Social Networks</h5>
+                                <div class="social-networks">
+                                    <div>
+                                        <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
+                                            <i class="fab fa-telegram-plane"></i>
+                                            <span class="back-icon"></span>
+                                        </div>
+                                        <div class="AvatarSocialNetworks">
+                                            <div class=" rounded shadow">
+                                                <a href="#">
+                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div href="#" class=" position-relative icon-social-networks">
+                                            <i class="fab fa-instagram"></i>
+                                            <span class="back-icon"></span>
+                                        </div>
+                                        <div class="AvatarSocialNetworks">
+                                            <div class=" rounded shadow">
+                                                <a href="#">
+                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div href="#" class=" position-relative icon-social-networks">
+                                            <i class="fab fa-github"></i>
+                                            <span class="back-icon"></span>
+                                        </div>
+                                        <div class="AvatarSocialNetworks">
+                                            <div class=" rounded shadow">
+                                                <a href="#">
+                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4">
+                                <h5 class=" pb-2">search</h5>
+                                <form class="position-relative d-inline-block" id="input_search">
+                                    <input name="search" type="text" class="form-control pe-5 form-control-sm rounded-pill">
+                                    <button name="sub_search" type="submit" class="position-absolute border-0">
                                     <i class="fas fa-search py-2 px-0 text-dark"></i>
                                 </button>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
+                    <!-- col Right end -->
                 </div>
-                <!-- col Right end -->
             </div>
-        </div>
     </main>
     <!-- end main -->
 
@@ -364,7 +309,9 @@
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/js/rellax.min.js' %}"></script>
     <script src="{% static 'blog/js/index.js' %}"></script>
-    <script>var rellax = new Rellax('.rellax');</script>
+    <script>
+        var rellax = new Rellax('.rellax');
+    </script>
     <!-- end js refrences -->
 </body>
 

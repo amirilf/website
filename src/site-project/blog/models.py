@@ -125,13 +125,17 @@ class Article(models.Model):
 
     # return yyyy/mm/dd hh:mm format of created field
     def simple_created(self):
-        return self.created.strftime("%Y/%m/%d %H:%M")
+        return self.created.strftime("%Y/%m/%d")
     simple_created.short_description = "created"
 
     # changes when article fields saves
     def save(self, *args, **kwargs):
         auto_slug(self,0)
         super(Article, self).save(*args, **kwargs)
+
+
+class Avatar(models.Model):
+    thumbnail  = models.ImageField(upload_to='avatars') # avatars images for comments
 
 
 class Comment(models.Model):
@@ -142,7 +146,7 @@ class Comment(models.Model):
     created  = models.DateTimeField(auto_now_add=True)
     reply_to = models.ForeignKey('self',null=True,blank=True,on_delete=models.CASCADE,related_name='replies')
     status   = models.BooleanField(default=True) # comment status => true:publish , false:draft
-    
+    avatar   = models.ForeignKey(Avatar,on_delete=models.SET_NULL,null=True)
   
     class Meta:
         ordering = ('-created',)
@@ -152,3 +156,5 @@ class Comment(models.Model):
             return f'Comment by {self.name} reply to {self.reply_to}'
         else:
             return f'Comment by {self.name}'
+
+

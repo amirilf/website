@@ -2,7 +2,7 @@ from django.contrib import admin
 
 
 # import models
-from .models import Category,Article,Comment,User
+from .models import Avatar, Category,Article,Comment,User
 
 # customize models
 class CategoryAdmin(admin.ModelAdmin):
@@ -27,3 +27,4 @@ admin.site.register(User)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Article,ArticleAdmin)
 admin.site.register(Comment)
+admin.site.register(Avatar)

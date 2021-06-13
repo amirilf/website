@@ -1,27 +1,38 @@
-<div class="message-reply">
-    <div class="message p-3 pb-2 mb-2 rounded">
-        <div class="d-flex align-items-center">
-            <img src="../media/img/download.jpeg" class="rounded-pill" alt="">
-            <div class="ps-3">
-                <h6 class="my-1">
-                    {{ comment.name }}
-                </h6>
-                <p class="my-1">
-                    {{ comment.created }}
-                </p>
-            </div>
+<div class="message p-3 pb-2 mb-3 rounded position-relative">
+    <div class="d-flex align-items-center">
+        {% if comment.avatar %}
+            <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
+        {% else %}
+            <img src="../../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar">
+        {% endif %}
+        
+        <div class="ps-3">
+            <h6 class="my-1">
+                {{ comment.name }}
+            </h6>
+            <p class="my-1">
+                {{ comment.created }}
+            </p>
         </div>
-        <p class=" pt-2 my-0">
-            {{ comment.desc|safe }}
-        </p>
-        <input type="hidden" name="parent_id" value="{{ comment.id }}">
-        <button class="d-block btn pb-3 ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-        <i class="fas fa-reply"></i>
-        replay
-        </button>
-        <div></div>
-        {% for comment in comment.replies.all %} 
-            {% include 'partials/comment_loop.html' %} 
-        {% endfor %}
     </div>
+    <p class=" pt-2 my-0 p-message">
+        {{ comment.desc|safe }}
+    </p>
+    <div class="Paragraph-cover position-absolute d-none">
+        <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
+                                            show more
+                                        </span>
+    </div>
+    <div>
+        <input type="hidden" name="parent_id" value="{{ comment.id }}">
+    </div>
+    <button class="d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
+                                        <i class="fas fa-reply"></i>
+                                        replay
+                                    </button>
+    <div></div>
+
+    {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %} {% endfor %}
+
+
 </div>
