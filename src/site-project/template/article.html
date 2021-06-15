@@ -96,7 +96,7 @@
                             <!-- body Article end -->
                         </div>
                     </section>
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptates perferendis cupiditate quisquam maxime est similique. Atque, pariatur et fuga magni omnis unde minima porro id consectetur assumenda quaerat blanditiis totam!
+
                     <!-- message box -->
                     <section class="bg-white shadow rounded mt-5 pb-1">
                         <div id="append-form">
@@ -114,7 +114,7 @@
 
                                         <!-- avatar section in form -->
                                         <div class="my-2">
-                                            <label for="avatar-message" class="form-label pt-2">Avatar</label>
+                                            <label for="avatar-message" class="form-label pt-2">Avatar*</label>
                                             <div id="avatar-message" class="w-100 px-3 form-control form-control-sm">
                                                 <div class="mySwiper2 row overflow-hidden position-relative">
                                                     <div class="swiper-wrapper pt-2 pb-4">
@@ -142,23 +142,21 @@
                                                 submit
                                             </button>
                                             <!-- end submit section -->
-
                                         </div>
                                     </div>
+                                </div>
                             </form>
                             <!-- form message end -->
-                            </div>
-
+                        </div>
+                        <div class="pt-2">
                             {% for comment in comments %}
 
                             <div class="px-3 py-1">
                                 <div class="message p-3 pb-0 mb-2 rounded position-relative">
                                     <div class="d-flex align-items-center">
                                         {% if comment.avatar %}
-                                            <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
-                                        {% else %}
-                                            <img src="../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar">
-                                        {% endif %}
+                                        <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar"> {% else %}
+                                        <img src="../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar"> {% endif %}
                                         <div class="ps-3">
                                             <h6 class="my-1">
                                                 {{ comment.name }}
@@ -173,118 +171,41 @@
                                     </p>
                                     <div class="Paragraph-cover position-absolute d-none">
                                         <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
-                                            show more
-                                    </span>
+                                                show more
+                                        </span>
                                     </div>
                                     <div>
                                         <input type="hidden" name="parent_id" value="{{ comment.id }}">
                                     </div>
                                     <button class="pb-2 d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                        <i class="fas fa-reply"></i>
-                                        replay
-                                    </button>
+                                            <i class="fas fa-reply"></i>
+                                            replay
+                                        </button>
                                     <div></div>
 
                                     {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %} {% endfor %}
 
                                 </div>
                             </div>
-
                             {% empty %}
 
                             <div class="px-5 py-5 text-center">
                                 ...اولین نفری باشید که کامنت میگذارد
                             </div>
-
                             {% endfor %}
+
+                        </div>
 
                     </section>
                     <!-- message box end -->
-                    </div>
-                    <!-- col Left end -->
-
-                    <!-- col Right -->
-                    <div class="col-md-4 col-lg-3">
-                        <div class="sidebar mt-md-0 mt-4">
-                            <div class="py-4 pt-md-0">
-                                <h5 class="pb-2">About Us</h5>
-                                <p>
-                                    {{ site_setting.about|safe }}
-                                </p>
-                            </div>
-                            <div class="pb-4">
-                                <h5 class=" pb-2">All Tags</h5>
-                                <div>
-                                    {% for category in categories %}
-                                    <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-                                        {{ category.name_en }}
-                                </a> {% endfor %}
-                                </div>
-                            </div>
-                            <div class="pt-4">
-                                <h5 class=" pb-2">Social Networks</h5>
-                                <div class="social-networks">
-                                    <div>
-                                        <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
-                                            <i class="fab fa-telegram-plane"></i>
-                                            <span class="back-icon"></span>
-                                        </div>
-                                        <div class="AvatarSocialNetworks">
-                                            <div class=" rounded shadow">
-                                                <a href="#">
-                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div href="#" class=" position-relative icon-social-networks">
-                                            <i class="fab fa-instagram"></i>
-                                            <span class="back-icon"></span>
-                                        </div>
-                                        <div class="AvatarSocialNetworks">
-                                            <div class=" rounded shadow">
-                                                <a href="#">
-                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div href="#" class=" position-relative icon-social-networks">
-                                            <i class="fab fa-github"></i>
-                                            <span class="back-icon"></span>
-                                        </div>
-                                        <div class="AvatarSocialNetworks">
-                                            <div class=" rounded shadow">
-                                                <a href="#">
-                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                                </a>
-                                                <a href="#">
-                                                    <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="py-4">
-                                <h5 class=" pb-2">search</h5>
-                                <form class="position-relative d-inline-block" id="input_search">
-                                    <input name="search" type="text" class="form-control pe-5 form-control-sm rounded-pill">
-                                    <button name="sub_search" type="submit" class="position-absolute border-0">
-                                    <i class="fas fa-search py-2 px-0 text-dark"></i>
-                                </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- col Right end -->
                 </div>
+                <!-- col Left end -->
+
+                <!-- col Right -->
+                {% include 'partials/col-4.html' %}
+                <!-- col Right end -->
             </div>
+        </div>
     </main>
     <!-- end main -->
 

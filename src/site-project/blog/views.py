@@ -1,6 +1,5 @@
 from django.http.response import Http404, HttpResponseRedirect
-from django.shortcuts import get_list_or_404, render,HttpResponse,get_object_or_404
-
+from django.shortcuts import get_list_or_404, render,HttpResponse,get_object_or_404,redirect
 
 # website dynamic data
 from . import contents

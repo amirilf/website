@@ -23,7 +23,7 @@ urlpatterns = [
 ]
 
 
-# load media in debug mode
+# show media files in debug mode
 from .settings import DEBUG
 if DEBUG == True :
 	from django.conf import settings

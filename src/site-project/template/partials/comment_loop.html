@@ -1,11 +1,10 @@
 <div class="message p-3 pb-2 mb-3 rounded position-relative">
     <div class="d-flex align-items-center">
         {% if comment.avatar %}
-            <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
+        <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
         {% else %}
-            <img src="../../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar">
+        <img src="../../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar">
         {% endif %}
-        
         <div class="ps-3">
             <h6 class="my-1">
                 {{ comment.name }}

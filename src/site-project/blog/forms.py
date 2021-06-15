@@ -14,7 +14,7 @@ class CommentForm(forms.ModelForm):
                 'name':'title-message',
                 'class':'form-control form-control-sm',
                 'type':"text", 
-                'placeholder': "Please enter a topic",
+                'placeholder': "Write your name",
             }
         )
     )
@@ -27,6 +27,7 @@ class CommentForm(forms.ModelForm):
                 'cols':30,
                 'rows':5,
                 'class':"form-control form-control-sm",
+                'placeholder': "Write your comment",
             }
         )
     )

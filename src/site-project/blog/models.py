@@ -1,6 +1,5 @@
 from ckeditor.fields import RichTextField
 from django.db import models
-from django.db.models.base import Model
 from django.db.models.fields import BooleanField, CharField, DateTimeField, SlugField
 
 # user model , django default
@@ -147,6 +146,7 @@ class Comment(models.Model):
     reply_to = models.ForeignKey('self',null=True,blank=True,on_delete=models.CASCADE,related_name='replies')
     status   = models.BooleanField(default=True) # comment status => true:publish , false:draft
     avatar   = models.ForeignKey(Avatar,on_delete=models.SET_NULL,null=True)
+    is_admin = models.BooleanField(default=False)
   
     class Meta:
         ordering = ('-created',)
