@@ -1,1 +1,238 @@
-Tags Page
+{% load static %} {% load template_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>article|{{ article.title_en }}</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pages/tags.css' %}">
+</head>
+
+<body data-src="../media/img/header.jpg">
+    <header class="thumbnail">
+        <!-- navbar -->
+        <nav id="navbar" class="navbar navbar-expand-sm navbar-light position-fixed w-100">
+            <div class="container">
+                <!-- logo nav -->
+                <a class="navbar-brand" href="/">Django Website</a>
+                <!-- logo nav end -->
+                <button class="navbar-toggler" onclick="btnNavbar()" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/articles">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tags">Tags</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/creators">Creators</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- navbar end -->
+        <div class="text-center header-img">
+            <h1 class="w-100">
+                tags
+            </h1>
+            <h4>
+                you are see the all tags this page
+            </h4>
+        </div>
+    </header>
+    <main class="py-5">
+        <div class="container">
+            <div class="row gx-md-5">
+
+                <!-- col Left -->
+                <div class="col-md-8 col-lg-9">
+                    <div class="row gy-2 ">
+                        <div class="col-12 col-sm-auto">
+                            <a href="" class="text-decoration-none tag">
+                                <div class="m-1 d-flex nowrap rounded p-2 shadow align-items-center">
+                                    <div class="img-tag rounded" data-src="../media/img/header.jpg"></div>
+                                    <div class="ps-2 text-dark">
+                                        <h5 class="m-0">
+                                            Lorem, ipsum
+                                        </h5>
+                                        <p class="w-100 m-0">
+                                            <i class="fas fa-tags"></i>
+                                            50
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-auto">
+                            <a href="" class="text-decoration-none tag">
+                                <div class="m-1 d-flex nowrap rounded p-2 shadow align-items-center">
+                                    <div data-src="../media/img/header.jpg" class="img-tag rounded"></div>
+                                    <div class="ps-2 text-dark">
+                                        <h5 class="m-0">
+                                            Loremips
+                                        </h5>
+                                        <p class="w-100 m-0">
+                                            <i class="fas fa-tags"></i>
+                                            50
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-auto">
+                            <a href="" class="text-decoration-none tag">
+                                <div class="m-1 d-flex nowrap rounded p-2 shadow align-items-center">
+                                    <div data-src="../media/img/header.jpg" class="img-tag rounded"></div>
+                                    <div class="ps-2 text-dark">
+                                        <h5 class="m-0">
+                                            Lorem
+                                        </h5>
+                                        <p class="w-100 m-0">
+                                            <i class="fas fa-tags"></i>
+                                            50
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 col-sm-auto">
+                            <a href="" class="text-decoration-none tag">
+                                <div class="m-1 d-flex nowrap rounded p-2 shadow align-items-center">
+                                    <div data-src="../media/img/header.jpg" class="img-tag rounded"></div>
+                                    <div class="ps-2 text-dark">
+                                        <h5 class="m-0">
+                                            Loremipsumlorem
+                                        </h5>
+                                        <p class="w-100 m-0">
+                                            <i class="fas fa-tags"></i>
+                                            50
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- col Left end -->
+
+                <!-- col Right -->
+                <div class="col-md-4 col-lg-3">
+                    <div class="sidebar mt-md-0 mt-4">
+                        <div class="py-4 pt-md-0">
+                            <h5 class=" pb-2">search</h5>
+                            <form class="position-relative d-inline-block" id="input_search" action="/search">
+                                <input name="q" type="text" placeholder="Search in website..." class="form-control pe-5 form-control-sm rounded-pill">
+                                <button type="submit" class="position-absolute border-0">
+                                    <i class="fas fa-search py-2 px-0 text-dark"></i>
+                                </button>
+                            </form>
+
+                        </div>
+
+                        <div class="py-4">
+                            <h5 class=" pb-2">Social Networks</h5>
+                            <div class="social-networks">
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
+                                        <i class="fab fa-telegram-plane"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks">
+                                        <i class="fab fa-instagram"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks">
+                                        <i class="fab fa-github"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="py-4">
+                            <h5 class="pb-2">About Us</h5>
+                            <p>
+                                {{ site_setting.about|safe }}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- col Right end -->
+            </div>
+        </div>
+    </main>
+    <!-- end main -->
+
+    <!-- Footer -->
+    <footer class="text-center bg-dark text-white" style='cursor: default;'>
+        <!-- add class curosr default in the future -->
+        <div class="text-center p-3">
+            Created with
+            <div class="position-relative d-inline-block w-auto h-auto" id="like_footer">
+                <i class="far fa-heart"></i>
+                <i class="fas fa-heart position-absolute"></i>
+            </div>
+            by
+            <a class=" px-1 text-white" href="/alireza">Alireza</a> and
+            <a class=" px-1 text-white" href="/amir">Amir</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+    <!-- js refrences -->
+    <script src="{% static 'blog/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/rellax.min.js' %}"></script>
+    <script src="{% static 'blog/js/index.js' %}"></script>
+    <script>
+        var rellax = new Rellax('.rellax');
+    </script>
+    <!-- end js refrences -->
+</body>
+
+</html>

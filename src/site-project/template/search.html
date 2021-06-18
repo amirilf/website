@@ -1,1 +1,238 @@
-Search Page
+{% load static %} {% load template_tags %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>article|{{ article.title_en }}</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pages/search.css' %}">
+</head>
+
+<body data-src="../media/img/header.jpg">
+    <header class="thumbnail">
+        <!-- navbar -->
+        <nav id="navbar" class="navbar navbar-expand-sm navbar-light position-fixed w-100">
+            <div class="container">
+                <!-- logo nav -->
+                <a class="navbar-brand" href="/">Django Website</a>
+                <!-- logo nav end -->
+                <button class="navbar-toggler" onclick="btnNavbar()" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/articles">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/tags">Tags</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/creators">Creators</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- navbar end -->
+        <!-- search form -->
+        <div class="bg-white pt-0 pt-sm-5">
+            <form name="search_form" class="pt-5" action="" method="GET">
+                <div class="py-5 form-row mx-auto px-3">
+                    <label for="searchInput" class="form-label">Enter your search text</label>
+                    <div class="d-flex">
+                        <input type="text" class="form-control" id="searchInput" name="searchInput">
+                        <button type="submit" class="btn btn-info ms-2" name="searchBtn">
+                            search
+                        </button>
+                    </div>
+                    <div id="emailHelp" class="form-text">Input text could not be blank</div>
+                </div>
+            </form>
+        </div>
+        <!-- search form end -->
+
+    </header>
+    <main class="py-5 bg-light">
+        <div class="container">
+            <div class="row gx-md-5">
+
+                <!-- col Left -->
+                <div class="col-md-8 col-lg-9">
+                    <!-- last articles -->
+                    <section>
+                        <h5 class="text-center">
+                            last articles
+                        </h5>
+                        {% for article in latest_articles %}
+                        <div class="card rounded my-4 overflow-hidden">
+                            <div class="row g-0">
+                                <div class="col-lg-6 col-xl-5 p-3">
+                                    <div class="img-card h-100 rounded" data-src="'{{ article.thumbnail.url }}'"></div>
+                                </div>
+                                <div class="col-lg-6 col-xl-7 p-3">
+                                    <h5 class="pb-3">
+                                        {{ article.title_en }}
+                                    </h5>
+                                    <p class="mb-3">
+                                        {{ article.desc_en|safe|truncatechars:100 }}
+                                    </p>
+                                    {% for category in article.category.active %}
+                                    <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
+                                            {{ category.name_en }}
+                                        </a> {% endfor %}
+                                    <div class="icons-card pt-2 mt-3">
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-calendar"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.simple_created }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-eye"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.views }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-clock"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.readtime }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-comment"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.comments.all|length }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <a href="/{{ article.author.username }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
+                                            <img src="{{ article.author.thumbnail.url }}" class="author-image rounded-pill" alt="">
+                                            <div class="px-2">
+                                                <span>
+                                                        {% author_full_name article.author %}
+                                                    </span>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'blog:article' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
+                                                see more
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                    <!-- last articles end -->
+                </div>
+                <!-- col Left end -->
+
+                <!-- col Right -->
+                <div class="col-md-4 col-lg-3">
+                    <div class="sidebar mt-md-0 mt-4">
+                        <div class="py-4">
+                            <h5 class=" pb-2">All Tags</h5>
+                            <div>
+                                {% for category in categories %}
+                                <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
+                                    {{ category.name_en }}
+                                </a> {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="py-4">
+                            <h5 class=" pb-2">Social Networks</h5>
+                            <div class="social-networks">
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
+                                        <i class="fab fa-telegram-plane"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks">
+                                        <i class="fab fa-instagram"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div href="#" class=" position-relative icon-social-networks">
+                                        <i class="fab fa-github"></i>
+                                        <span class="back-icon"></span>
+                                    </div>
+                                    <div class="AvatarSocialNetworks">
+                                        <div class=" rounded shadow">
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                            <a href="#">
+                                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="py-4">
+                            <h5 class="pb-2">About Us</h5>
+                            <p>
+                                {{ site_setting.about|safe }}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- col Right end -->
+            </div>
+        </div>
+    </main>
+    <!-- end main -->
+
+    <!-- Footer -->
+    <footer class="text-center bg-dark text-white" style='cursor: default;'>
+        <!-- add class curosr default in the future -->
+        <div class="text-center p-3">
+            Created with
+            <div class="position-relative d-inline-block w-auto h-auto" id="like_footer">
+                <i class="far fa-heart"></i>
+                <i class="fas fa-heart position-absolute"></i>
+            </div>
+            by
+            <a class=" px-1 text-white" href="/alireza">Alireza</a> and
+            <a class=" px-1 text-white" href="/amir">Amir</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+    <!-- js refrences -->
+    <script src="{% static 'blog/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/rellax.min.js' %}"></script>
+    <script src="{% static 'blog/js/index.js' %}"></script>
+    <script>
+        var rellax = new Rellax('.rellax');
+    </script>
+    <!-- end js refrences -->
+</body>
+
+</html>

@@ -17,7 +17,12 @@
     <link rel="stylesheet" href="{% static 'blog/css/pages/articels.css' %}">
 </head>
 
-<body data-src="{{ article.thumbnail.url }}">
+<body>
+    <div id="bg">
+        <div id="bgItem" data-src="{{ article.thumbnail.url }}">
+
+        </div>
+    </div>
     <header class="thumbnail">
         <!-- navbar -->
         <nav id="navbar" class="navbar navbar-expand-sm navbar-light position-fixed w-100">

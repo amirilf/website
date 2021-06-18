@@ -8,6 +8,7 @@ var prevScrollpos = window.pageYOffset;
 var append_Form = getId("append-form");
 var formComment = getId("form-comment");
 var imgCard = getClass("img-card");
+var imgTag = getClass("img-tag");
 var controlBtnNavbar = true;
 var Append_Form = false;
 var appendPlace;
@@ -32,8 +33,8 @@ window.onscroll = function() {
         nav.classList.add("scroll-navbar");
     } else {
         nav.classList.remove("scroll-navbar");
+        nav.classList.remove('shadow');
     }
-    nav.classList.remove('shadow');
 };
 
 
@@ -64,6 +65,9 @@ for (img of imgCard) {
     img.style.background = `url(${img.getAttribute("data-src")}) center no-repeat`;
 }
 
+for (img of imgTag) {
+    img.style.background = `url(${img.getAttribute("data-src")}) center no-repeat`;
+}
 
 function btnNavbar() {
     controlBtnNavbar = !controlBtnNavbar;
@@ -114,7 +118,9 @@ function showMoreMessage(e) {
         e.parentElement.classList.remove("bg-opacity");
     }
 }
-
+if (getId("bgItem") != null) {
+    getId("bgItem").style.backgroundImage = `url(${getId("bgItem").getAttribute("data-src")})`;
+}
 
 if (queryS("body").hasAttribute("data-src")) {
     queryS("body").style.backgroundImage = `url(${queryS("body").getAttribute("data-src")})`;
