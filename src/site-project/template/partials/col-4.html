@@ -1,84 +1,65 @@
+{% load template_tags %}
+
 <!-- col Right -->
 <div class="col-md-4 col-lg-3">
     <div class="sidebar mt-md-0 mt-4">
-        <div class="py-4 pt-md-0">
-            <h5 class=" pb-2">search</h5>
-            <form class="position-relative d-inline-block" id="input_search" action="/search">
-                <input name="q" type="text" placeholder="Search in website..." class="form-control pe-5 form-control-sm rounded-pill">
-                <button type="submit" class="position-absolute border-0">
-                                    <i class="fas fa-search py-2 px-0 text-dark"></i>
-                                </button>
-            </form>
 
-        </div>
-        <div class="py-4">
-            <h5 class=" pb-2">All Tags</h5>
-            <div>
-                {% for category in categories %}
-                <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-                                        {{ category.name_en }}
-                                </a> {% endfor %}
-            </div>
-        </div>
+        {% if page == 'search' %}
 
-        <div class="py-4">
-            <h5 class=" pb-2">Social Networks</h5>
-            <div class="social-networks">
+            <div class="py-4 pt-md-0">
+                <h5 class="pb-2">Last Tags</h5>
                 <div>
-                    <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
-                        <i class="fab fa-telegram-plane"></i>
-                        <span class="back-icon"></span>
-                    </div>
-                    <div class="AvatarSocialNetworks">
-                        <div class=" rounded shadow">
-                            <a href="#">
-                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div href="#" class=" position-relative icon-social-networks">
-                        <i class="fab fa-instagram"></i>
-                        <span class="back-icon"></span>
-                    </div>
-                    <div class="AvatarSocialNetworks">
-                        <div class=" rounded shadow">
-                            <a href="#">
-                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                            </a>
-                            <a href="#">
-                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div>
-                    <div href="#" class=" position-relative icon-social-networks">
-                        <i class="fab fa-github"></i>
-                        <span class="back-icon"></span>
-                    </div>
-                    <div class="AvatarSocialNetworks">
-                        <div class=" rounded shadow">
-                            <a href="#">
-                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                            </a>
-                            <a href="#">
-                                <img src="../media/img/download.jpeg" alt="" class="img-sm rounded-pill">
-                            </a>
-                        </div>
-                    </div>
+                    {% col_4_tags %}
                 </div>
             </div>
-        </div>
 
+        {% elif page == 'tags' %}
+
+            <div class="py-4 pt-md-0">
+                <h5 class=" pb-2">Search</h5>
+                <form class="position-relative d-inline-block" id="input_search" action="/search">
+                    <input name="q" type="text" placeholder="Search in website..." class="form-control pe-5 form-control-sm rounded-pill">
+                    <button type="submit" class="position-absolute border-0">
+                        <i class="fas fa-search py-2 px-0 text-dark"></i>
+                    </button>
+                </form>
+            </div>
+
+        {% else %}
+
+            <div class="py-4 pt-md-0">
+                <h5 class=" pb-2">Search</h5>
+                <form class="position-relative d-inline-block" id="input_search" action="/search">
+                    <input name="q" type="text" placeholder="Search in website..." class="form-control pe-5 form-control-sm rounded-pill">
+                    <button type="submit" class="position-absolute border-0">
+                        <i class="fas fa-search py-2 px-0 text-dark"></i>
+                    </button>
+                </form>
+            </div>
+
+            <div class="py-4">
+                <h5 class=" pb-2">Last Tags</h5>
+                <div>
+                    {% col_4_tags %}
+                </div>
+            </div>
+
+        {% endif %}
+
+        
         <div class="py-4">
             <h5 class="pb-2">About Us</h5>
             <p>
-                {{ site_setting.about|safe }}
+                {% col_4_about %}
             </p>
-
         </div>
+
+        <div class="pb-4">
+            <h5 class=" pb-2">Social Networks</h5>
+            {% col_4_social %}
+        </div>
+
+
     </div>
 </div>
 <!-- col Right end -->

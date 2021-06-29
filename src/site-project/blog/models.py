@@ -46,6 +46,7 @@ class CategoryManager(models.Manager):
 	def active(self):
 		return self.filter(status=True)
 
+
 class ArticleManager(models.Manager):
 	def active(self):
 		return self.filter(status=True)
@@ -60,6 +61,9 @@ class ArticleManager(models.Manager):
 
 class User(AbstractUser):
     thumbnail  = models.ImageField(upload_to='creators',default='creators/default.png')
+    telegram   = models.URLField(null=True,blank=True)
+    instagram  = models.URLField(null=True,blank=True)
+    github     = models.URLField(null=True,blank=True)
 
 
 
@@ -69,6 +73,7 @@ class Category(models.Model):
     slug    = SlugField(editable=False) #auto created in auto_slug_category function
     created = DateTimeField(auto_now_add=True) # auto complete created time
     status  = BooleanField(default=True) # category status => true:publish , false:draft
+    thumbnail  = models.ImageField(upload_to='categories',null=True) # article thumbnail in post card and main page
 
     class Meta:
         verbose_name_plural = 'Categories'

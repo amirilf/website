@@ -1,1 +1,100 @@
-Tags Page
+{% load static %} {% load template_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>article|{{ article.title_en }}</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pages/tags.css' %}">
+</head>
+
+<body data-src="../media/img/header.jpg">
+    <header class="thumbnail">
+    
+        <!-- navbar -->
+        {% include 'partials/navbar.html' %}
+        <!-- navbar end -->
+
+        <div class="text-center header-img">
+            <h1 class="w-100">
+                tags
+            </h1>
+            <h4>
+                you are see the all tags this page
+            </h4>
+        </div>
+    </header>
+    <main class="py-5">
+        <div class="container">
+            <div class="row gx-md-5">
+
+                <!-- col Left -->
+                <div class="col-md-8 col-lg-9">
+                    <div class="row gy-2 ">
+                        {% for category in categories %}
+                            <div class="col-12 col-sm-auto">
+                                <a href="{% url 'blog:tag' category.slug %}" class="text-decoration-none tag">
+                                    <div class="m-1 d-flex nowrap rounded p-2 shadow align-items-center">
+                                        <div class="img-tag rounded" data-src="{{ category.thumbnail.url }}"></div>
+                                        <div class="ps-2 text-dark">
+                                            <h5 class="m-0">
+                                                {{ category.name_en }}
+                                            </h5>
+                                            <p class="w-100 m-0">
+                                                <i class="fas fa-tags"></i>
+                                                {{ category.articles.active|length }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- col Left end -->
+
+                <!-- col Right -->
+                {% include 'partials/col-4.html' %}
+                <!-- col Right end -->
+            </div>
+        </div>
+    </main>
+    <!-- end main -->
+
+    <!-- Footer -->
+    <footer class="text-center bg-dark text-white" style='cursor: default;'>
+        <!-- add class curosr default in the future -->
+        <div class="text-center p-3">
+            Created with
+            <div class="position-relative d-inline-block w-auto h-auto" id="like_footer">
+                <i class="far fa-heart"></i>
+                <i class="fas fa-heart position-absolute"></i>
+            </div>
+            by
+            <a class=" px-1 text-white" href="/alireza">Alireza</a> and
+            <a class=" px-1 text-white" href="/amir">Amir</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+    <!-- js refrences -->
+    <script src="{% static 'blog/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/rellax.min.js' %}"></script>
+    <script src="{% static 'blog/js/index.js' %}"></script>
+    <script>
+        var rellax = new Rellax('.rellax');
+    </script>
+    <!-- end js refrences -->
+</body>
+
+</html>

@@ -1,1 +1,139 @@
-Articles Page
+{% load static %} {% load template_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>article|{{ article.title_en }}</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pages/tags.css' %}">
+</head>
+
+<body data-src="../media/img/header.jpg">
+    <header class="thumbnail">
+
+        <!-- navbar -->
+        {% include 'partials/navbar.html' %}
+        <!-- navbar end -->
+
+        <div class="text-center header-img">
+            <h1 class="w-100">
+                articles
+            </h1>
+            <h4>
+                you are see the all articles this page
+            </h4>
+        </div>
+    </header>
+    <main class="py-5">
+        <div class="container">
+            <div class="row gx-md-5">
+
+                <!-- col Left -->
+                <div class="col-md-8 col-lg-9">
+                    <!-- last articles -->
+                    <section>
+                        <h5 class="text-center">
+                            all articles
+                        </h5>
+                        {% for article in articles %}
+                        <div class="card rounded my-4 overflow-hidden">
+                            <div class="row g-0">
+                                <div class="col-lg-6 col-xl-5 p-3">
+                                    <div class="img-card h-100 rounded" data-src="'{{ article.thumbnail.url }}'"></div>
+                                </div>
+                                <div class="col-lg-6 col-xl-7 p-3">
+                                    <h5 class="pb-3">
+                                        {{ article.title_en }}
+                                    </h5>
+                                    <p class="mb-3">
+                                        {{ article.desc_en|safe|truncatechars:100 }}
+                                    </p>
+                                    {% for category in article.category.active %}
+                                    <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
+                                            {{ category.name_en }}
+                                        </a> {% endfor %}
+                                    <div class="icons-card pt-2 mt-3">
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-calendar"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.simple_created }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-eye"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.views }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-clock"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.readtime }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-comment"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.comments.all|length }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <a href="/{{ article.author.username }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
+                                            <img src="{{ article.author.thumbnail.url }}" class="author-image rounded-pill" alt="">
+                                            <div class="px-2">
+                                                <span>
+                                                        {% author_full_name article.author %}
+                                                    </span>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'blog:article' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
+                                                see more
+                                            </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </section>
+                    <!-- last articles end -->
+                </div>
+                <!-- col Left end -->
+
+                <!-- col Right -->
+                {% include 'partials/col-4.html' %}
+                <!-- col Right end -->
+            </div>
+        </div>
+    </main>
+    <!-- end main -->
+
+    <!-- Footer -->
+    <footer class="text-center bg-dark text-white" style='cursor: default;'>
+        <!-- add class curosr default in the future -->
+        <div class="text-center p-3">
+            Created with
+            <div class="position-relative d-inline-block w-auto h-auto" id="like_footer">
+                <i class="far fa-heart"></i>
+                <i class="fas fa-heart position-absolute"></i>
+            </div>
+            by
+            <a class=" px-1 text-white" href="/alireza">Alireza</a> and
+            <a class=" px-1 text-white" href="/amir">Amir</a>
+        </div>
+    </footer>
+    <!-- Footer -->
+
+    <!-- js refrences -->
+    <script src="{% static 'blog/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'blog/js/rellax.min.js' %}"></script>
+    <script src="{% static 'blog/js/index.js' %}"></script>
+    <script>
+        var rellax = new Rellax('.rellax');
+    </script>
+    <!-- end js refrences -->
+</body>
+
+</html>

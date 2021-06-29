@@ -1,12 +1,18 @@
-body {
-  width: 100%;
-  background: center no-repeat;
-  background-size: cover;
-  background-attachment: fixed; }
+body #bg {
+  position: fixed;
+  z-index: -1;
+  filter: blur(50px); }
+  body #bg #bgItem {
+    background: center no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100vw;
+    height: 100vh; }
 
 header {
   height: 70vh;
-  width: 100%; }
+  width: 100%;
+  overflow: hidden; }
   header .header-img {
     display: inline-flex;
     flex-wrap: wrap;
@@ -15,9 +21,9 @@ header {
     width: 100%;
     height: 100%;
     background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(50px) !important;
-    -webkit-backdrop-filter: blur(15px) !important;
-    -moz-backdrop-filter: blur(15px) !important;
+    backdrop-filter: blur(0px) !important;
+    -webkit-backdrop-filter: blur(0px) !important;
+    -moz-backdrop-filter: blur(0px) !important;
     box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.075); }
 
 main .row .col-12 img {
@@ -51,7 +57,7 @@ main .row .col-12 img {
   position: absolute;
   top: 50px;
   left: 50%;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
   transform: translateX(-50%);
   width: 210px;
   z-index: 999;

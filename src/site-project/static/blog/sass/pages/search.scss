@@ -1,0 +1,12 @@
+@import "../Variables";
+@import "../mixin";
+header{
+    nav{
+        @include shadow("md");
+    }
+    form{
+        .form-row{
+            max-width: 50rem;
+        }
+    }
+}

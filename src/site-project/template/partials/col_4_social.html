@@ -1,0 +1,53 @@
+<div class="social-networks">
+    <div>
+        <div href="#" class=" position-relative icon-social-networks" onclick="funcSocialNetworks(event)">
+            <i class="fab fa-telegram-plane"></i>
+            <span class="back-icon"></span>
+        </div>
+        <div class="AvatarSocialNetworks">
+            <div class=" rounded shadow">
+            {% for creator in creators %}
+                {% if creator.telegram %}
+                    <a href="{{ creator.telegram }}">
+                        <img src="{{ creator.thumbnail.url }}" alt="" class="img-sm rounded-pill">
+                    </a>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div>
+        <div href="#" class=" position-relative icon-social-networks">
+            <i class="fab fa-instagram"></i>
+            <span class="back-icon"></span>
+        </div>
+        <div class="AvatarSocialNetworks">
+            <div class=" rounded shadow">
+                {% for creator in creators %}
+                    {% if creator.instagram %}
+                        <a href="{{ creator.instagram }}">
+                            <img src="{{ creator.thumbnail.url }}" alt="" class="img-sm rounded-pill">
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div>
+        <div href="#" class=" position-relative icon-social-networks">
+            <i class="fab fa-github"></i>
+            <span class="back-icon"></span>
+        </div>
+        <div class="AvatarSocialNetworks">
+            <div class=" rounded shadow">
+                {% for creator in creators %}
+                    {% if creator.github %}
+                        <a href="{{ creator.github }}">
+                            <img src="{{ creator.thumbnail.url }}" alt="" class="img-sm rounded-pill">
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>

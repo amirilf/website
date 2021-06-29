@@ -2,14 +2,23 @@
 @import "../mixin";
 
 body{
-    width: 100%;
-    background: center no-repeat ;
-    background-size: cover;
-    background-attachment: fixed;
+    #bg{
+        position: fixed;
+        z-index: -1;
+        filter: blur(50px);
+        #bgItem{
+            background: center no-repeat ;
+            background-size: cover;
+            background-attachment: fixed;
+            width: 100vw;
+            height: 100vh;
+        }
+    }
 }
 header{
     height: 70vh;
     width: 100%;
+    overflow: hidden;
     .header-img{
         display: inline-flex;
         flex-wrap: wrap;
@@ -17,7 +26,7 @@ header{
         justify-content: center;
         width: 100%;
         height: 100%;
-        @include c-glass(.3 , 50px);
+        @include c-glass(.3 , 0px);
     }
 }
 main{
