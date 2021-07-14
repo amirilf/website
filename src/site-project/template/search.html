@@ -45,11 +45,11 @@
 
                 <!-- col Left -->
                 <div class="col-md-8 col-lg-9">
-                    <!-- last articles -->
+                    <!-- Articles found -->
                     <section>
                         {% if search %}
                             <h5 class="text-center">
-                                Search results
+                                Article Search Results
                             </h5>
 
                             {% for article in results_articles %}
@@ -93,13 +93,13 @@
                                                     <img src="{{ article.author.thumbnail.url }}" class="author-image rounded-pill" alt="">
                                                     <div class="px-2">
                                                         <span>
-                                                                    {% author_full_name article.author %}
-                                                                </span>
+                                                            {% author_full_name article.author %}
+                                                        </span>
                                                     </div>
                                                 </a>
                                                 <a href="{% url 'blog:article' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
-                                                            see more
-                                                        </a>
+                                                    see more
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                 <div class="container">
                                     <div class="row m-5">
                                         <div class="text-center">
-                                            There are no result
+                                            There are no result <span class="h4">😩</span>
                                         </div>
                                     </div>
                                 </div>
@@ -121,13 +121,50 @@
                                 <div class="container">
                                     <div class="row">
                                         <div class="text-center">
-                                            Please first search something ^
+                                            Please first search something <span class="h4">🧐</span>
                                         </div>
                                     </div>
                                 </div>
                         {% endif %}
                     </section>
-                    <!-- last articles end -->
+                    <!--  Articles found end -->
+                    <section>
+                        {% if search %}
+                            <h5 class="text-center">
+                                Tags Search Results
+                            </h5>
+                            <div class="row gy-2 ">
+                                {% for category in categories %}
+                                    <div class="col-12 col-sm-auto">
+                                        <a href="{% url 'blog:tag' category.slug %}" class="text-decoration-none tag">
+                                            <div class="m-1 d-flex nowrap rounded p-2 shadow align-items-center">
+                                                <div class="img-tag rounded" data-src="{{ category.thumbnail.url }}"></div>
+                                                <div class="ps-2 text-dark">
+                                                    <h5 class="m-0">
+                                                        {{ category.name_en }}
+                                                    </h5>
+                                                    <p class="w-100 m-0">
+                                                        <i class="fas fa-tags"></i>
+                                                        {{ category.articles.active|length }}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                {% empty %}
+
+                                    <!-- if user search something and there are no result about that -->
+                                    <div class="container">
+                                        <div class="row m-5">
+                                            <div class="text-center">
+                                                There are no result <span class="h4">😩</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>    
+                        {% endif %}           
+                    </section>
                 </div>
                 <!-- col Left end -->
 
@@ -158,11 +195,7 @@
     <!-- js refrences -->
     <script src="{% static 'blog/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'blog/js/rellax.min.js' %}"></script>
     <script src="{% static 'blog/js/index.js' %}"></script>
-    <script>
-        var rellax = new Rellax('.rellax');
-    </script>
     <!-- end js refrences -->
 </body>
 

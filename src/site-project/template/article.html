@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/css/pages/articels.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pages/articel.css' %}">
 </head>
 
 <body>
@@ -137,7 +137,7 @@
                             {% for comment in comments %}
 
                             <div class="px-3 py-1">
-                                <div class="message p-3 pb-0 mb-2 rounded position-relative">
+                                <div class="message p-3 pb-0 mb-2 rounded ">
                                     <div class="d-flex align-items-center">
                                         {% if comment.avatar %}
                                         <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar"> {% else %}
@@ -151,13 +151,15 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <p class=" pt-2 my-0 p-message">
-                                        {{ comment.desc|safe }}
-                                    </p>
-                                    <div class="Paragraph-cover position-absolute d-none">
-                                        <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
-                                                show more
-                                        </span>
+                                    <div class=" pt-2 my-0 p-message overflow-hidden position-relative">
+                                        <p>
+                                            {{ comment.desc|safe }}
+                                        </p>
+                                        <div class="Paragraph-cover d-none rounded-bottom">
+                                            <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
+                                                    show more
+                                            </span>
+                                        </div>
                                     </div>
                                     <div>
                                         <input type="hidden" name="parent_id" value="{{ comment.id }}">
@@ -175,7 +177,7 @@
                             {% empty %}
 
                             <div class="px-5 py-5 text-center">
-                                ...اولین نفری باشید که کامنت میگذارد
+                                Be the first to comment
                             </div>
                             {% endfor %}
 
