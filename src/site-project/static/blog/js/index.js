@@ -98,9 +98,10 @@ function funcSocialNetworks(e) {
 
 
 for (message of getClass("p-message")) {
+    console.log(message.innerText)
     if (message.innerText.length > 100) {
-        message.nextElementSibling.classList.remove("d-none");
-        message.parentElement.style.maxHeight = "200px"
+        message.lastElementChild.classList.remove("d-none");
+        message.style.maxHeight = "200px"
         message.parentElement.classList.add("pb-4");
     }
 }
@@ -108,14 +109,16 @@ for (message of getClass("p-message")) {
 function showMoreMessage(e) {
     if (e.innerText == "show more") {
         e.innerText = "show less";
-        e.parentElement.style.width = "auto";
         e.parentElement.classList.add("bg-opacity");
         e.parentElement.parentElement.style.maxHeight = "100%";
+        e.parentElement.style.position = "relative"
+        e.style.marginRight = "5px"; 
     } else {
         e.innerText = "show more";
-        e.parentElement.style.width = "100%"
         e.parentElement.parentElement.style.maxHeight = "200px";
+        e.parentElement.style.position = "absolute"
         e.parentElement.classList.remove("bg-opacity");
+        e.style.marginRight = "10px"; 
     }
 }
 if (getId("bgItem") != null) {
