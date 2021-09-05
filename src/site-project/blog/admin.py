@@ -12,7 +12,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 class ArticleAdmin(admin.ModelAdmin):
 
-    list_display = ('author','simple_created','slug','title_en','views','status')
+    list_display = ('author','simple_created','slug','short_slug','title_en','views','status')
     search_fields = ('desc_en','desc_fa','title_en','title_fa','body_en','body_fa')
     ordering = ['-created']
 

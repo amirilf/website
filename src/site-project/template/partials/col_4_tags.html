@@ -1,12 +1,17 @@
-{% if fix %} {% for category in col_4_tags %}
-<a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
+{% if fix %}
+    {% for category in col_4_tags %}
+        <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
             {{ category.name_en }}
         </a> {% endfor %} {% else %} {% for category in col_4_tags %}
-<a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
+        
+        <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
             {{ category.name_en }}
-        </a> {% endfor %}
-<br>
-<div class="text-end">
-    >> <a href="/tags" class="text-decoration-none text-info"><b>see all</b></a>
-</div>
+        </a> 
+    {% endfor %}
+    
+    <br>
+
+    <div class="text-end">
+        >> <a href="/tags" class="text-decoration-none text-info"><b>see all</b></a>
+    </div>
 {% endif %}

@@ -1,9 +1,8 @@
 from django.http.response import Http404, HttpResponseRedirect
-from django.shortcuts import get_list_or_404, render,HttpResponse,get_object_or_404,redirect
+from django.shortcuts import get_list_or_404, redirect, render,HttpResponse,get_object_or_404
 
 # website dynamic data
 from . import contents
-
 
 # category model
 from .models import Article, Category, Comment,Avatar
@@ -14,6 +13,7 @@ from .forms import CommentForm
 # views
 
 
+#======== home
 def Home(request):
     articles_query     = Article.objects.active()     # get all active articles
     articles_latest    = articles_query.order_by('-created')[:3]  # get 3 latest articles
@@ -26,7 +26,7 @@ def Home(request):
     return render(request,'home.html',context)
 
 
-
+#======== tags
 def TagsView(request):
     categories_query   = Category.objects.active()   # get all active categories
     categories_query   = [category for category in categories_query if len(category.articles.active()) > 0] #check if length is bigger than 0 and tag already used before
@@ -36,19 +36,18 @@ def TagsView(request):
     }
     return render(request,'tags.html',context)
 
-
-
 def TagView(request,tag_slug):
     try:
-        the_query = Category.objects.get(slug=tag_slug,status=True)
+        the_query = Category.objects.filter(slug=tag_slug,articles__isnull=False)[0]
         context = {
             'tag':the_query
-        }
+            }
         return render(request,'tag.html',context)
     except:
         raise Http404()
 
 
+#======== articles
 def ArticleView(request,article_slug):
     article_query      = get_object_or_404(Article.objects,slug=article_slug,status=True)
     comments_query     = article_query.comments.filter(status=True,reply_to=None)
@@ -103,7 +102,6 @@ def ArticleView(request,article_slug):
     }
     return render(request,'article.html',context)
 
-
 def ArticlesView(request):
     articles_query = get_list_or_404(Article.objects.active())
     context = {
@@ -113,6 +111,7 @@ def ArticlesView(request):
     return render(request,'articles.html',context)
 
 
+#======== search
 def SearchView(request):
     try:
         search_query = request.GET['q']
@@ -126,6 +125,21 @@ def SearchView(request):
     return render(request,'search.html',context)
 
 
+#======== short slugs
+def ShortSlugView(request,short_slug_url):
+    article_query = get_object_or_404(Article.objects,status=True,short_slug=short_slug_url)
+    article_url   = article_query.slug
+    return redirect(f'/articles/{article_url}')
+
+#======== authors
+def AlirezaView(request):
+    return render(request,'alireza.html')
+
+def AmirView(request):
+    return render(request,'amir.html')
+
+
+#======== logout
 from django.contrib.auth import logout
 def logout_(request):
     logout(request)
