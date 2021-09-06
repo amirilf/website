@@ -19,6 +19,9 @@
 .bg-opacity{
     background: rgba(255, 255, 255, 0) !important;
 }
+.align-center-position{
+    @include align-center-position;
+}
 .avatar-selected{
     box-shadow: 0 0 10px 2px #00ec14;
 }

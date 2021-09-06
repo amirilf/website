@@ -1,0 +1,12 @@
+{
+  "name": "null",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -o static/blog/css static/blog/sass -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "description": ""
+}

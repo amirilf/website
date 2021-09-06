@@ -201,6 +201,10 @@ nav {
 .bg-opacity {
   background: rgba(255, 255, 255, 0) !important; }
 
+.align-center-position {
+  top: 50%;
+  transform: translateY(-50%); }
+
 .avatar-selected {
   box-shadow: 0 0 10px 2px #00ec14; }
 

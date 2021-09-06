@@ -7,6 +7,7 @@ var header = queryS("header");
 var prevScrollpos = window.pageYOffset;
 var append_Form = getId("append-form");
 var formComment = getId("form-comment");
+var shortLinkInput = getId("shortLink")
 var imgCard = getClass("img-card");
 var imgTag = getClass("img-tag");
 var controlBtnNavbar = true;
@@ -95,32 +96,40 @@ function funcSocialNetworks(e) {
     }
 }
 
+/////////// showMore ////////////
 
+// for (message of getClass("p-message")) {
+//     console.log(message.innerText)
+//     if (message.innerText.length > 100) {
+//         message.lastElementChild.classList.remove("d-none");
+//         message.style.maxHeight = "200px"
+//         message.parentElement.classList.add("pb-4");
+//     }
+// }
 
-for (message of getClass("p-message")) {
-    console.log(message.innerText)
-    if (message.innerText.length > 100) {
-        message.lastElementChild.classList.remove("d-none");
-        message.style.maxHeight = "200px"
-        message.parentElement.classList.add("pb-4");
-    }
+// function showMoreMessage(e) {
+//     if (e.innerText == "show more") {
+//         e.innerText = "show less";
+//         e.parentElement.classList.add("bg-opacity");
+//         e.parentElement.parentElement.style.maxHeight = "100%";
+//         e.parentElement.style.position = "relative"
+//         e.style.marginRight = "5px"; 
+//     } else {
+//         e.innerText = "show more";
+//         e.parentElement.parentElement.style.maxHeight = "200px";
+//         e.parentElement.style.position = "absolute"
+//         e.parentElement.classList.remove("bg-opacity");
+//         e.style.marginRight = "10px"; 
+//     }
+// }
+
+function copyTxtInput(){
+    shortLinkInput.select();
+    shortLinkInput.setSelectionRange(0,99999);
+    navigator.clipboard.writeText(shortLinkInput.value);
+    alert("Copied the text: " + shortLinkInput.value);
 }
 
-function showMoreMessage(e) {
-    if (e.innerText == "show more") {
-        e.innerText = "show less";
-        e.parentElement.classList.add("bg-opacity");
-        e.parentElement.parentElement.style.maxHeight = "100%";
-        e.parentElement.style.position = "relative"
-        e.style.marginRight = "5px"; 
-    } else {
-        e.innerText = "show more";
-        e.parentElement.parentElement.style.maxHeight = "200px";
-        e.parentElement.style.position = "absolute"
-        e.parentElement.classList.remove("bg-opacity");
-        e.style.marginRight = "10px"; 
-    }
-}
 if (getId("bgItem") != null) {
     getId("bgItem").style.backgroundImage = `url(${getId("bgItem").getAttribute("data-src")})`;
 }
