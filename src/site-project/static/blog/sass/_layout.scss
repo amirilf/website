@@ -16,8 +16,27 @@
         @include shadow("sm");
     }
 }
+.bg-dark-all{
+    background: rgb(49, 49, 49);
+}
+.text-dark-all{
+    color: rgb(49, 49, 49);
+}
+.bg-dark{
+    @include c-glass-dark(.92);
+}
+.text-white-all{
+    color: rgb(255, 255, 255);
+}
 .bg-opacity{
     background: rgba(255, 255, 255, 0) !important;
+}
+.bg-gray{
+    background-color: #2a2b2e;
+}
+.font-weight-normal{
+    font-family: FiraSans-M;
+    font-style: normal !important;
 }
 .align-center-position{
     @include align-center-position;
@@ -28,6 +47,9 @@
 .img-sm{
     width: 50px;
     height: 50px;
+}
+#lightSwitch {
+    transform: scale(1.8);
 }
 #input_search{
     width: 100%;

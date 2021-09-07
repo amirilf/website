@@ -12,7 +12,7 @@ class CommentForm(forms.ModelForm):
             attrs={
                 'id':'title-message',
                 'name':'title-message',
-                'class':'form-control form-control-sm',
+                'class':'form-control form-control-sm sm bg-light',
                 'type':"text", 
                 'placeholder': "Write your name",
             }
@@ -26,7 +26,7 @@ class CommentForm(forms.ModelForm):
                 'id':"text-message",
                 'cols':30,
                 'rows':5,
-                'class':"form-control form-control-sm",
+                'class':"form-control form-control-sm bg-light",
                 'placeholder': "Write your comment",
             }
         )

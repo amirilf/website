@@ -20,6 +20,9 @@
 @media (max-width:991px) {
     nav{
         background: $c-white;
+        a{
+            color: $c-dark !important;
+        }
     }
     .card {
         .img-card{
