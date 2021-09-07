@@ -81,15 +81,11 @@
                                     <h5>
                                         tags
                                     </h5>
-                                    <a href="/tags/NnE" class="badge bg-dark text-light text-decoration-none">
-                                        iphone
-                                    </a>
-                                    <a href="/tags/NnE" class="badge bg-dark text-light text-decoration-none">
-                                        iphone
-                                    </a>
-                                    <a href="/tags/NnE" class="badge bg-dark text-light text-decoration-none">
-                                        iphone
-                                    </a>
+                                    {% for tag in article.category.active %}
+                                        <a href="{% url 'blog:tag' tag.slug %}" class="badge bg-dark text-light text-decoration-none">
+                                            {{ tag.name_en }}
+                                        </a>                                    
+                                    {% endfor %}
                                 </div>
                                 <div class="border-top pt-4 mt-4">
                                     <h5>
@@ -99,7 +95,7 @@
                                         <button class="position-absolute pe-3 end-0 align-center-position btn" onclick="copyTxtInput()">
                                             <i class="far fa-copy"></i>
                                         </button>
-                                        <input type="text" class="form-control w-auto pe-5" id="shortLink" value="http://127.0.0.1:8000/articles/network_learn" disabled>
+                                        <input type="text" class="form-control w-auto pe-5" id="shortLink" value="{{site_setting.site_domain}}/{{article.short_slug}}" disabled>
                                     </div>
                                 </div>
                             </div>
