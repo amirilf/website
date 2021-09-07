@@ -74,10 +74,11 @@
                             </div>
                         </div>
                         <div class="row pt-5">
+                            
                             <!-- body Article -->
                             <div class="col-12">
                                 {{ article.body_en|safe }}
-                                <div class="border-top pt-4 mt-4">
+                                <div class=" pt-4 mt-4">
                                     <h5>
                                         tags
                                     </h5>
@@ -91,7 +92,7 @@
                                         iphone
                                     </a>
                                 </div>
-                                <div class="border-top pt-4 mt-4">
+                                <div class=" pt-4 mt-4">
                                     <h5>
                                         short link
                                     </h5>
@@ -108,7 +109,7 @@
                     </section>
 
                     <!-- message box -->
-                    <section class="bg-white shadow rounded mt-5 pb-1">
+                    <section class="message-box shadow rounded mt-5 pb-1">
                         <div id="append-form">
                             <!-- form message -->
                             <form id="form-comment" method="POST">
@@ -125,7 +126,7 @@
                                         <!-- avatar section in form -->
                                         <div class="my-2">
                                             <label for="avatar-message" class="form-label pt-2">Avatar*</label>
-                                            <div id="avatar-message" class="w-100 px-3 form-control form-control-sm">
+                                            <div id="avatar-message" class="w-100 px-3 form-control bg-light form-control-sm">
                                                 <div class="mySwiper2 row overflow-hidden position-relative">
                                                     <div class="swiper-wrapper pt-2 pb-4">
                                                         {% for avatar in avatars %}
@@ -190,7 +191,7 @@
                                         <input type="hidden" name="parent_id" value="{{ comment.id }}">
                                     </div>
                                     <button class="pb-2 d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                            <i class="fas fa-reply"></i>
+                                            <i class="fas fa-reply text-info"></i>
                                             replay
                                         </button>
                                     <div></div>

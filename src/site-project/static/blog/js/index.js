@@ -2,28 +2,22 @@ var getId = (Id) => document.getElementById(Id);
 var getClass = (Class) => document.getElementsByClassName(Class);
 var queryS = (selector) => document.querySelector(selector);
 
+
+
+
 var nav = queryS("nav");
-var header = queryS("header");
 var prevScrollpos = window.pageYOffset;
-var append_Form = getId("append-form");
-var formComment = getId("form-comment");
-var shortLinkInput = getId("shortLink")
-var imgCard = getClass("img-card");
-var imgTag = getClass("img-tag");
 var controlBtnNavbar = true;
-var Append_Form = false;
-var appendPlace;
-var inputHidden;
-var SocialNetworks = false;
-
-
-
-window.onscroll = function() {
+window.onscroll = ()=> {
     var currentScrollPos = window.pageYOffset;
     if (controlBtnNavbar) {
         if (prevScrollpos > currentScrollPos) {
             nav.style.top = "0";
+            for(s of nav.lastElementChild.getElementsByTagName("a")){
+                s.classList.add("text-dark")
+            }
             nav.classList.add('shadow');
+            console.log(4);
         } else {
             nav.style.top = "-60px";
             nav.classList.remove('shadow');
@@ -33,19 +27,24 @@ window.onscroll = function() {
     if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
         nav.classList.add("scroll-navbar");
     } else {
+        for(s of nav.lastElementChild.getElementsByTagName("a")){
+            s.classList.remove("text-dark")
+        }
         nav.classList.remove("scroll-navbar");
         nav.classList.remove('shadow');
     }
 };
 
-
-function scrollBtn() {
-    let currScroll = document.documentElement.scrollTop;
-    document.documentElement.scrollTop = header.scrollHeight;
-}
+var header = queryS("header");
+const scrollBtn =()=>document.documentElement.scrollTop = header.scrollHeight;
 
 
-function appendForm(e) {
+var append_Form = getId("append-form");
+var Append_Form = false;
+var formComment = getId("form-comment");
+var appendPlace;
+var inputHidden;
+const appendForm =(e)=> {
     if (e.nextElementSibling.innerHTML) {
         Append_Form = false;
         e.previousElementSibling.append(e.nextElementSibling.firstElementChild.lastElementChild);
@@ -62,20 +61,22 @@ function appendForm(e) {
     }
 }
 
+
+var imgCard = getClass("img-card");
 for (img of imgCard) {
     img.style.background = `url(${img.getAttribute("data-src")}) center no-repeat`;
 }
-
+var imgTag = getClass("img-tag");
 for (img of imgTag) {
     img.style.background = `url(${img.getAttribute("data-src")}) center no-repeat`;
 }
 
-function btnNavbar() {
+const btnNavbar = () => {
     controlBtnNavbar = !controlBtnNavbar;
 }
 
 
-function avatarSelect(e) {
+const avatarSelect = (e) => {
     console.log(e);
     getId("articel_input").value = e.dataset.avatar;
     for (avatar of getClass("img-avatar")) {
@@ -86,8 +87,8 @@ function avatarSelect(e) {
 
 
 
-
-function funcSocialNetworks(e) {
+var SocialNetworks = false;
+const funcSocialNetworks = (e) => {
     console.log(SocialNetworks);
     if (SocialNetworks) {
         SocialNetworks = !SocialNetworks;
@@ -123,7 +124,181 @@ function funcSocialNetworks(e) {
 //     }
 // }
 
-function copyTxtInput(){
+/**
+ *  Light Switch @version v0.1.2
+ *  @author han109k
+ */
+
+(function () {
+    let lightSwitch = document.getElementById("lightSwitch");
+    if (lightSwitch) {
+        darkMode();
+        lightSwitch.addEventListener("change", () => {
+        lightMode();
+        });
+
+
+    function darkMode() {
+        let isSelected =
+            localStorage.getItem("lightSwitch") !== null &&
+            localStorage.getItem("lightSwitch") === "dark";
+  
+        if (isSelected) {
+            // document.querySelectorAll(".bg-light").forEach((element) => {
+            //     element.className = element.className.replace(/-light/g, "-dark");
+            // });
+            
+          document.querySelector("main").classList.add("bg-dark");
+          if(document.querySelector("#avatar-message")){
+            document.querySelector("#avatar-message").classList.replace("bg-light", "bg-dark");
+          }
+          if(document.querySelector(".message-box")){
+            document.querySelector(".message-box").classList.add("bg-gray");
+          }
+        if(document.querySelectorAll(".card")){
+            document.querySelectorAll(".card").forEach(element => {
+                element.classList.add("bg-gray");
+            });
+        }
+  
+        if (document.querySelector("main").classList.contains("text-dark")) {
+            document.querySelector("main").classList.replace("text-dark", "text-light");
+            for(i of document.getElementsByTagName("i")){
+                if(i.classList.contains("text-dark")){
+                    i.classList.replace("text-dark","text-light");
+                }
+            }
+            for(input of document.getElementsByTagName("input")){
+                if(input.classList.contains("bg-light")){
+                    input.classList.add("bg-dark");
+                    input.classList.add("text-white");
+                }
+            }
+            for(textarea of document.getElementsByTagName("textarea")){
+                if(textarea.classList.contains("bg-light")){
+                    textarea.classList.add("bg-dark");
+                    textarea.classList.add("text-white");
+                }
+            }
+            for(a of document.getElementsByTagName("a")){
+                if(a.classList.contains("text-dark") && !a.classList.contains("badge") && !a.classList.contains("btn") && !a.classList.contains("nav-link")){
+                    a.classList.replace("text-dark","text-light");
+                }else if(a.classList.contains("badge")){
+                    a.classList.replace("bg-dark","bg-light");
+                    a.classList.replace("text-light","text-dark");
+                }
+            }
+            for(btn of document.getElementsByClassName("btn")){
+                if(btn.classList.contains("btn-outline-dark")){
+                    btn.classList.replace("btn-outline-dark","btn-outline-light");
+                }
+            }
+        } else {
+        
+            for(a of document.getElementsByTagName("a")){
+                if(a.classList.contains("text-dark") && !a.classList.contains("badge") && !a.classList.contains("btn")){
+                    a.classList.replace("text-dark","text-light");
+                }else if(a.classList.contains("badge")){
+                    a.classList.replace("text-light","text-dark");
+                    a.classList.replace("bg-dark","bg-light");
+                }
+            }
+            for(textarea of document.getElementsByTagName("textarea")){
+                if(textarea.classList.contains("bg-light")){
+                    textarea.classList.add("bg-dark");
+                    textarea.classList.add("text-white");
+                }
+            }
+            for(input of document.getElementsByTagName("input")){
+                if(input.classList.contains("bg-light")){
+                    input.classList.replace("bg-light","bg-dark");
+                    input.classList.add("text-white");
+                }
+            }
+            for(i of document.getElementsByTagName("i")){
+                if(i.classList.contains("text-dark")){
+                    i.classList.replace("text-dark","text-light");
+                }
+            }
+            for(btn of document.getElementsByClassName("btn")){
+                if(btn.classList.contains("btn-outline-dark")){
+                    btn.classList.replace("btn-outline-dark","btn-outline-light");
+                }
+            }
+            document.querySelector("main").classList.add("text-light");
+          }
+          
+          // set light switch input to true
+          lightSwitch.checked = true;
+        }
+      }
+  
+      /**
+       * @function lightmode
+       * @summary: check whether the switch is on (checked) or not.
+       * If the switch is on then set 'lightSwitch' local storage key and call @function darkmode
+       * If the switch is off then it is light mode so, switch the theme and
+       *  remove 'lightSwitch' key from local storage
+       */
+      function lightMode() {
+        if (lightSwitch.checked) {
+          localStorage.setItem("lightSwitch", "dark");
+          darkMode();
+        } else {
+            for(btn of document.getElementsByClassName("btn")){
+                if(btn.classList.contains("btn-outline-light")){
+                    btn.classList.replace("btn-outline-light","btn-outline-dark");
+                }
+            }
+            for(i of document.getElementsByTagName("i")){
+                if(i.classList.contains("text-light")){
+                    i.classList.replace("text-light","text-dark");
+                }
+            }
+
+            for(textarea of document.getElementsByTagName("textarea")){
+                if(textarea.classList.contains("bg-dark")){
+                    textarea.classList.replace("bg-dark" , "bg-light");
+                    textarea.classList.replace("text-light" , "text-dark");
+                }
+            }
+            for(input of document.getElementsByTagName("input")){
+                if(input.classList.contains("bg-dark")){
+                    input.classList.replace("bg-dark","bg-light");
+                    input.classList.replace("text-light" , "text-dark");
+                }
+            }
+        //   document.querySelectorAll(".bg-dark").forEach((element) => {
+        //     element.className = element.className.replace(/-dark/g, "-light");
+        //   });
+            document.querySelector("main").classList.remove("bg-dark");
+            if(document.querySelector(".message-box")){
+                document.querySelector(".message-box").classList.remove("bg-gray");
+            }
+            document.querySelectorAll(".card").forEach(element => {
+                element.classList.remove("bg-gray");
+            });
+            for(a of document.getElementsByTagName("a")){
+                if(a.classList.contains("text-light")){
+                    a.classList.replace("text-light","text-dark");
+                }else if(a.classList.contains("badge")){
+                    a.classList.replace("bg-light","bg-dark");
+                    a.classList.replace("text-dark","text-light");
+                }
+            }
+            document.querySelector("main").classList.replace("text-light", "text-dark");
+            if(document.querySelector("#avatar-message")){
+                document.querySelector("#avatar-message").classList.replace("bg-dark", "bg-light");
+            }
+            localStorage.removeItem("lightSwitch");
+        }
+      }
+    }
+  })();
+
+
+var shortLinkInput = getId("shortLink")
+const copyTxtInput =()=>{
     shortLinkInput.select();
     shortLinkInput.setSelectionRange(0,99999);
     navigator.clipboard.writeText(shortLinkInput.value);

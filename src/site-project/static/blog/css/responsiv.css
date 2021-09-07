@@ -9,6 +9,8 @@
 @media (max-width: 991px) {
   nav {
     background: #fff; }
+    nav a {
+      color: #1d1d1d !important; }
   .card .img-card {
     min-height: 300px; } }
 
