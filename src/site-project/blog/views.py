@@ -1,6 +1,6 @@
 from django.http.response import Http404, HttpResponseRedirect
 from django.shortcuts import get_list_or_404, redirect, render,HttpResponse,get_object_or_404
-
+from django.db.models import Q
 # website dynamic data
 from . import contents
 
@@ -115,12 +115,17 @@ def ArticlesView(request):
 def SearchView(request):
     try:
         search_query = request.GET['q']
-        # here find results in models
+        article_results = Article.objects.active().filter( Q(title_en__icontains = search_query) | Q(desc_en__icontains = search_query) )
+        category_results = Category.objects.active().filter(name_en__icontains=search_query)
     except:
         search_query = ''
+        article_results = []
+        category_results = []
     context = {
         'search':search_query,
         'page':'search',
+        'articles':article_results,
+        'categories':category_results,               
     }
     return render(request,'search.html',context)
 
