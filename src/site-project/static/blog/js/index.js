@@ -206,13 +206,13 @@ const funcSocialNetworks = (e) => {
             for(textarea of document.getElementsByTagName("textarea")){
                 if(textarea.classList.contains("bg-light")){
                     textarea.classList.add("bg-dark");
-                    textarea.classList.add("text-white");
+                    textarea.classList.add("text-light");
                 }
             }
             for(input of document.getElementsByTagName("input")){
                 if(input.classList.contains("bg-light")){
                     input.classList.replace("bg-light","bg-dark");
-                    input.classList.add("text-white");
+                    input.classList.add("text-light");
                 }
             }
             for(i of document.getElementsByTagName("i")){

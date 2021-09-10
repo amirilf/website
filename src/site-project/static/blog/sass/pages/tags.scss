@@ -29,7 +29,7 @@ main {
             -o-transition: all .3s ease-in-out;
             -webkit-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
-            background: linear-gradient(45deg ,  rgb(255, 255, 255) 70% , #6886ff5e 100%);
+            background: linear-gradient(45deg ,  rgba(255, 255, 255, 0) 70% , #6886ff5e 100%);
             background-size: 200% 100%;
             &:hover{
                 @include shadow("lg");

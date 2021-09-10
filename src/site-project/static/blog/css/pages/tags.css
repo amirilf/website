@@ -20,7 +20,7 @@ main .tag .d-flex {
   -o-transition: all .3s ease-in-out;
   -webkit-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
-  background: linear-gradient(45deg, white 70%, #6886ff5e 100%);
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0) 70%, #6886ff5e 100%);
   background-size: 200% 100%; }
   main .tag .d-flex i {
     font-size: 10px; }
