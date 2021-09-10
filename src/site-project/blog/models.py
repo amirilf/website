@@ -143,7 +143,7 @@ class Avatar(models.Model):
 
 
 class Comment(models.Model):
-    # author    = models.ForeignKey(User,editable=False,null=True,on_delete=models.SET_NULL) # auto delete article on delete author
+    admin    = models.ForeignKey(User,editable=False,default=None,null=True,on_delete=models.SET_NULL)
     article  = models.ForeignKey(Article,on_delete=models.CASCADE,related_name='comments')
     name     = CharField(max_length=50)
     desc     = RichTextField()
@@ -151,7 +151,6 @@ class Comment(models.Model):
     reply_to = models.ForeignKey('self',null=True,blank=True,on_delete=models.CASCADE,related_name='replies')
     status   = models.BooleanField(default=True) # comment status => true:publish , false:draft
     avatar   = models.ForeignKey(Avatar,on_delete=models.SET_NULL,null=True)
-    is_admin = models.BooleanField(default=False)
   
     class Meta:
         ordering = ('-created',)

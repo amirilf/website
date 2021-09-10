@@ -1,7 +1,6 @@
 # form model
 # from ckeditor import fields
 from django import forms
-from django.forms import widgets
 
 # models
 from .models import Comment

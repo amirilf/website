@@ -60,6 +60,7 @@
                 </div>
             </div>
         </div>
+
     </header>
     <main class="py-5">
         <div class="container">
@@ -161,17 +162,37 @@
                             <div class="px-3 py-1">
                                 <div class="message p-3 pb-0 mb-2 rounded ">
                                     <div class="d-flex align-items-center">
-                                        {% if comment.avatar %}
-                                        <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar"> {% else %}
-                                        <img src="../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar"> {% endif %}
-                                        <div class="ps-3">
-                                            <h6 class="my-1">
-                                                {{ comment.name }}
-                                            </h6>
-                                            <p class="my-1">
-                                                {{ comment.created }}
-                                            </p>
-                                        </div>
+                                        
+                                        {% if comment.admin %}
+                                            <img src="{{ comment.admin.thumbnail.url }}" class="rounded-pill img-sm border border-3 border-secondary" alt="avatar">
+                                           
+                                            <div class="ps-3">
+                                                <h6 class="my-1">
+                                                    {{ comment.admin.get_full_name }} (admin)
+                                                </h6>
+                                                <p class="my-1">
+                                                    {{ comment.created }}
+                                                </p>
+                                            </div>
+
+                                        {% else %}
+                                            {% if comment.avatar %}
+                                                <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
+                                            {% else %}
+                                                <img src="../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar">
+                                            {% endif %}
+
+                                            <div class="ps-3">
+                                                <h6 class="my-1">
+                                                    {{ comment.name }}
+                                                </h6>
+                                                <p class="my-1">
+                                                    {{ comment.created }}
+                                                </p>
+                                            </div>
+
+                                        {% endif %}
+
                                     </div>
                                     <div class=" pt-2 my-0 p-message overflow-hidden position-relative">
                                         <p>

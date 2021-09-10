@@ -5,7 +5,7 @@ from django.db.models import Q
 from . import contents
 
 # category model
-from .models import Article, Category, Comment,Avatar
+from .models import Article, Category, Comment,Avatar,User
 
 # forms
 from .forms import CommentForm
@@ -52,6 +52,7 @@ def ArticleView(request,article_slug):
     article_query      = get_object_or_404(Article.objects,slug=article_slug,status=True)
     comments_query     = article_query.comments.filter(status=True,reply_to=None)
     avatars_query      = Avatar.objects.all()
+    
     # add 1 view to article
     Article.objects.filter(slug=article_slug,status=True).update(views=article_query.views+1)
     
@@ -87,6 +88,9 @@ def ArticleView(request,article_slug):
                     # set avatar for comment
                     new_comment_form.avatar = avatar_obj
 
+            if request.user.is_authenticated: # if user was admin
+                new_comment_form.admin = User.objects.get(username=request.user.username)
+            
             new_comment_form.save()
             return HttpResponseRedirect(article_query.get_absolute_url())
 
