@@ -32,9 +32,5 @@ main #profile-master {
     width: 100%;
     max-width: 20rem; }
 
-main .icon-social-networks {
-  cursor: default; }
-  main .icon-social-networks a {
-    color: #1d1d1d; }
-    main .icon-social-networks a i {
-      font-size: 1.7rem; }
+main .icon-social-networks a i {
+  font-size: 30px !important; }

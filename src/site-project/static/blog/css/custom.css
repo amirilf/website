@@ -100,7 +100,7 @@ nav {
   .card .icons-card {
     font-size: 13px;
     color: #5c5c5c; }
-  .card .author-image {
+  .card .img-sm {
     width: 40px;
     height: 40px; }
   .card .img-card {
@@ -109,77 +109,6 @@ nav {
   .card a {
     vertical-align: text-top !important;
     display: inline-block; }
-
-.social-networks {
-  cursor: default !important; }
-  .social-networks div {
-    display: inline-block;
-    position: relative;
-    z-index: 99; }
-    .social-networks div:hover .icon-social-networks {
-      color: #fff; }
-      .social-networks div:hover .icon-social-networks .back-icon {
-        top: 0; }
-    .social-networks div:hover .AvatarSocialNetworks {
-      display: block; }
-    .social-networks div .icon-social-networks {
-      cursor: pointer !important;
-      margin: 0px 5px;
-      width: 40px;
-      height: 40px;
-      font-size: 25PX;
-      border-radius: 100%;
-      color: #1d1d1d;
-      border: 3px solid #1d1d1d;
-      overflow: hidden;
-      display: inline-flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center; }
-      .social-networks div .icon-social-networks i {
-        position: relative;
-        z-index: 9; }
-      .social-networks div .icon-social-networks .back-icon {
-        transition: top .2s;
-        width: 100%;
-        height: 100%;
-        background-color: #1d1d1d;
-        top: -40px;
-        position: absolute;
-        z-index: 8; }
-    .social-networks div .AvatarSocialNetworks {
-      position: absolute;
-      top: 0px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: none;
-      width: auto;
-      margin-top: 35px;
-      padding-top: 20px; }
-      .social-networks div .AvatarSocialNetworks div {
-        display: flex;
-        padding: 10px;
-        width: 100%;
-        height: 100%;
-        background-color: #fff; }
-        .social-networks div .AvatarSocialNetworks div a {
-          height: auto;
-          width: auto; }
-          .social-networks div .AvatarSocialNetworks div a img {
-            margin: 0 5px; }
-            .social-networks div .AvatarSocialNetworks div a img:hover {
-              box-shadow: 0px 0px 10px 2px rgba(0, 19, 194, 0.637); }
-      .social-networks div .AvatarSocialNetworks::before {
-        content: "";
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-bottom: 12px solid white;
-        position: absolute;
-        top: 10px;
-        left: 50%;
-        transform: translateX(-50%); }
 
 .scroll-navbar {
   background-color: #fff; }
@@ -232,8 +161,8 @@ nav {
   box-shadow: 0 0 10px 2px #00ec14; }
 
 .img-sm {
-  width: 50px;
-  height: 50px; }
+  width: 45px;
+  height: 45px; }
 
 #lightSwitch {
   transform: scale(1.8); }

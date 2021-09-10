@@ -14,6 +14,10 @@
   .card .img-card {
     min-height: 300px; } }
 
+@media (max-width: 767px) {
+  .writer .description {
+    text-align: center; } }
+
 @media (max-width: 450px) {
   .img-card {
     min-height: 200px !important; } }

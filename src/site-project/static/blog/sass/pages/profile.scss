@@ -42,12 +42,10 @@ main{
         }
     }
     .icon-social-networks{
-        cursor: default;
         a{
             i{
-                font-size: 1.7rem;
+                font-size: 30px !important;
             }
-            color: $c-dark;
         }
     }
 }

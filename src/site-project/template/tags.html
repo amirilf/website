@@ -42,10 +42,10 @@
                     <div class="row gy-2 ">
                         {% for category in categories %}
                             <div class="col-12 col-sm-auto">
-                                <a href="{% url 'blog:tag' category.slug %}" class="text-decoration-none tag">
+                                <a href="{% url 'blog:tag' category.slug %}" class="text-decoration-none text-dark tag">
                                     <div class="m-1 d-flex nowrap rounded p-2 shadow align-items-center">
                                         <div class="img-tag rounded" data-src="{{ category.thumbnail.url }}"></div>
-                                        <div class="ps-2 text-dark">
+                                        <div class="ps-2">
                                             <h5 class="m-0">
                                                 {{ category.name_en }}
                                             </h5>

@@ -3,3 +3,22 @@ header nav {
 
 header form .form-row {
   max-width: 50rem; }
+
+main .tag .d-flex {
+  moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0) 70%, #6886ff5e 100%);
+  background-size: 200% 100%; }
+  main .tag .d-flex i {
+    font-size: 10px; }
+  main .tag .d-flex:hover {
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+    background-position: 100% 0; }
+
+main .tag .img-tag {
+  width: 70px;
+  height: 100%;
+  min-height: 50px;
+  background-size: cover !important; }
