@@ -1,7 +1,7 @@
 from django.urls import path
 
 # import views
-from .views import AlirezaView, AmirView, Home, ShortSlugView , TagView,TagsView ,ArticleView,ArticlesView,SearchView,logout_
+from .views import AlirezaView, AmirView, Home, ShortSlugView , TagView,TagsView ,ArticleView,ArticlesView,SearchView
 
 app_name = 'blog'
 urlpatterns = [
@@ -14,6 +14,5 @@ urlpatterns = [
     path('amir',AmirView),
     path('alireza',AlirezaView),
     path('<slug:short_slug_url>',ShortSlugView),
-    path('logout',logout_),
 ]
 

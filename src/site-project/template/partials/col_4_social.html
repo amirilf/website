@@ -1,9 +1,7 @@
-<div>
-    <a href="" class="text-decoration-none">
-        <img src="/media/creators/profile-img.jpg" class="img-sm rounded-pill me-3" alt="">
-    </a>
-
-    <a href="" class="">
-        <img src="/media/creators/me.jpeg" class="img-sm rounded-pill me-3" alt="">
-    </a>
+<div id='creators'>
+    {% for creator in creators %}
+        <a href="/{{ creator.user_page_url }}" class="text-decoration-none admin">
+            <img src="{{ creator.thumbnail.url }}" class="img-sm rounded-pill me-3" alt="">
+        </a>    
+    {% endfor %}
 </div>

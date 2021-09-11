@@ -37,7 +37,7 @@
                 <div class="py-2 d-inline-block">
                     <i class="fas fa-calendar"></i>
                     <span class="pe-2">
-                        {{ article.simple_created }}
+                        {{ article.created|date:'Y/m/d' }}
                     </span>
                 </div>
                 <div class="py-2 d-inline-block">
@@ -48,7 +48,7 @@
                 </div>
                 <div class="py-2 d-inline-block">
                     <i class="fas fa-user"></i>
-                    <a class="pe-2 text-dark text-decoration-none" href="/{{ article.author.username }}">
+                    <a class="pe-2 text-dark text-decoration-none" href="/{{ article.author.user_page_url }}">
                         {% author_first_name article.author %}
                     </a>
                 </div>
@@ -81,7 +81,7 @@
                                 {{ article.body_en|safe }}
                                 <div class=" pt-4 mt-4">
                                     <h5>
-                                        tags
+                                        Tags
                                     </h5>
                                     {% for tag in article.category.active %}
                                         <a href="{% url 'blog:tag' tag.slug %}" class="badge bg-dark text-light text-decoration-none">
@@ -89,29 +89,31 @@
                                         </a>                                    
                                     {% endfor %}
                                 </div>
-                                <div class=" pt-4 mt-4">
+                                <div class="pt-4 mt-4">
                                     <h5>
-                                        the writer 
+                                        Writer
                                     </h5>
                                     <div class="row writer align-items-center justify-content-center">
                                         <div class="col-md-3 col-lg-2 col-5">
-                                            <img src="/media/creators/me.jpeg" class="rounded-pill mb-4" alt="">
+                                            <img src="{{ article.author.thumbnail.url }}" class="rounded-pill mb-4" alt="">
                                         </div>
                                         <div class="col-12 col-lg-10 col-md-9 description">
-                                            <h1 class="h4 mx-2">Amir Khorasani</h1>
-                                            <p class="mb-0 mx-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus qui vero doloremque repellat in ipsam cupiditate fugiat corrupti illo? Earum?</p>
+                                            <h1 class="h4 mx-2">{% author_full_name article.author %}</h1>
+                                            {% if article.author.desc %}
+                                                <p class="mb-0 mx-2">{{ article.author.desc|truncatechars:100 }}</p>                                            
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="pt-4">
                                     <h5>
-                                        short link
+                                        Short link
                                     </h5>
                                     <div class="position-relative w-auto d-inline-block">
                                         <button class="position-absolute pe-3 end-0 align-center-position btn" onclick="copyTxtInput()">
                                             <i class="far fa-copy"></i>
                                         </button>
-                                        <input type="text" class="form-control w-auto pe-5" id="shortLink" value="{{site_setting.site_domain}}/{{article.short_slug}}" disabled>
+                                        <input type="text" class="form-control w-auto pe-5" id="shortLink" value="{% site_setting 'site_domain' %}/{{article.short_slug}}" disabled>
                                     </div>
                                 </div>
                             </div>
@@ -182,10 +184,10 @@
                                            
                                             <div class="ps-3">
                                                 <h6 class="my-1">
-                                                    {{ comment.admin.get_full_name }} (admin)
+                                                    {% author_full_name comment.admin %} (admin)
                                                 </h6>
                                                 <p class="my-1">
-                                                    {{ comment.created }}
+                                                    {{ comment.created|date:'Y/m/d H:i'}}
                                                 </p>
                                             </div>
 
@@ -201,7 +203,7 @@
                                                     {{ comment.name }}
                                                 </h6>
                                                 <p class="my-1">
-                                                    {{ comment.created }}
+                                                    {{ comment.created|date:'Y/m/d H:i'}}
                                                 </p>
                                             </div>
 
@@ -255,19 +257,7 @@
     <!-- end main -->
 
     <!-- Footer -->
-    <footer class="text-center bg-dark text-white" style='cursor: default;'>
-        <!-- add class curosr default in the future -->
-        <div class="text-center p-3">
-            Created with
-            <div class="position-relative d-inline-block w-auto h-auto" id="like_footer">
-                <i class="far fa-heart"></i>
-                <i class="fas fa-heart position-absolute"></i>
-            </div>
-            by
-            <a class=" px-1 text-white" href="/alireza">Alireza</a> and
-            <a class=" px-1 text-white" href="/amir">Amir</a>
-        </div>
-    </footer>
+        {% include 'partials/footer.html' %}
     <!-- Footer -->
 
     <!-- js refrences -->

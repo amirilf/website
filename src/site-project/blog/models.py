@@ -60,12 +60,23 @@ class ArticleManager(models.Manager):
 # models
 
 class User(AbstractUser):
-    thumbnail  = models.ImageField(upload_to='creators',default='creators/default.png')
-    telegram   = models.URLField(null=True,blank=True)
-    instagram  = models.URLField(null=True,blank=True)
-    github     = models.URLField(null=True,blank=True)
+    thumbnail     = models.ImageField(upload_to='creators',default='creators/default.png')
+    telegram      = models.URLField(null=True,blank=True)
+    instagram     = models.URLField(null=True,blank=True)
+    github        = models.URLField(null=True,blank=True)
+    user_page_url = models.CharField(max_length=200)
+    desc          = RichTextField(null=True)
+    skills        = models.CharField(max_length=500,null=True)
 
+    def get_skills(self):
+        skills_list = self.skills.split('-')
+        return skills_list
 
+    def full_capital_name(self):
+        if self.first_name:
+            return f'{self.first_name.capitalize()} {self.last_name.capitalize()}'
+        else:
+            return self.username.capitalize()
 
 class Category(models.Model):
     name_en = CharField(max_length=100) # English name

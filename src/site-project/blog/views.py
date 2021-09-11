@@ -1,8 +1,6 @@
 from django.http.response import Http404, HttpResponseRedirect
 from django.shortcuts import get_list_or_404, redirect, render,HttpResponse,get_object_or_404
 from django.db.models import Q
-# website dynamic data
-from . import contents
 
 # category model
 from .models import Article, Category, Comment,Avatar,User
@@ -21,7 +19,6 @@ def Home(request):
     context = {
         'latest_articles':articles_latest,
         'most_viewed_articles':articles_mostvisit,
-        'site_setting':contents,
     }
     return render(request,'home.html',context)
 
@@ -100,7 +97,6 @@ def ArticleView(request,article_slug):
     context = {
         'article':article_query,
         'comments':comments_query,
-        'site_setting':contents,
         'comment_form':comment_form,
         'avatars': avatars_query,
     }
@@ -110,7 +106,6 @@ def ArticlesView(request):
     articles_query = get_list_or_404(Article.objects.active())
     context = {
         'articles':articles_query,
-        'site_setting':contents,
     }
     return render(request,'articles.html',context)
 
@@ -142,14 +137,13 @@ def ShortSlugView(request,short_slug_url):
 
 #======== authors
 def AlirezaView(request):
-    return render(request,'alireza.html')
+    context = {
+        'data' : User.objects.get(username='alireza')
+    }
+    return render(request,'creator.html',context=context)
 
 def AmirView(request):
-    return render(request,'amir.html')
-
-
-#======== logout
-from django.contrib.auth import logout
-def logout_(request):
-    logout(request)
-    return HttpResponse(f'Hi {request.user}')
+    context = {
+        'data' : User.objects.get(username='amir')
+    }
+    return render(request,'creator.html',context=context)

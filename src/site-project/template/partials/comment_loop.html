@@ -1,3 +1,4 @@
+{% load template_tags %}
 <div class="message p-3 pb-2 mb-3 rounded position-relative">
     <div class="d-flex align-items-center">
         {% if comment.admin %}
@@ -5,10 +6,10 @@
            
             <div class="ps-3">
                 <h6 class="my-1">
-                    {{ comment.admin.get_full_name }} (admin)
+                    {% author_full_name comment.admin %} (admin)
                 </h6>
                 <p class="my-1">
-                    {{ comment.created }}
+                    {{ comment.created|date:'Y/m/d H:i'}}
                 </p>
             </div>
 
@@ -24,7 +25,7 @@
                     {{ comment.name }}
                 </h6>
                 <p class="my-1">
-                    {{ comment.created }}
+                    {{ comment.created|date:'Y/m/d H:i'}}
                 </p>
             </div>
         {% endif %}

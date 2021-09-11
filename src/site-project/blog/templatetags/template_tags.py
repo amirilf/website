@@ -1,7 +1,6 @@
 from django.template import Library
 from ..models import Category,User
-from ..contents import about,col_4_tags_count
-
+from .. import contents
 
 register = Library()
 
@@ -19,11 +18,17 @@ def author_first_name(author):
     else:
         return author.username.capitalize()
 
+@register.simple_tag
+def site_setting(value):
+    try:
+        return contents.data_set[value]
+    except:
+        pass
 
 @register.inclusion_tag('partials/col_4_about.html')
 def col_4_about():
     return {
-        'col_4_about': about
+        'col_4_about': contents.data_set['about']
     }
 
 
@@ -31,7 +36,7 @@ def col_4_about():
 def col_4_tags():
     categories_query   = Category.objects.active()   # get all active categories
     categories_query   = [category for category in categories_query if len(category.articles.active()) > 0] #check if length is bigger than 0 and tag already used before
-    if len(categories_query) <= col_4_tags_count:
+    if len(categories_query) <= contents.data_set['col_4_tags_count']:
         return {
             'fix' : True,
             'col_4_tags': categories_query,
@@ -39,7 +44,7 @@ def col_4_tags():
     else:
         return {
             'fix' : False,
-            'col_4_tags': categories_query[:col_4_tags_count],
+            'col_4_tags': categories_query[:contents.data_set['col_4_tags_count']],
         }
 
 @register.inclusion_tag('partials/col_4_social.html')

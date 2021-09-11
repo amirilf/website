@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/blog/fontawesome-free-5.15.3-web/css/all.css">
+    <link rel="stylesheet" href="/static/blog/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/blog/css/custom.css">
+    <link rel="stylesheet" href="/static/blog/css/responsiv.css">
+    <link rel="stylesheet" href="/static/blog/css/pages/profile.css">
+    <title>{{ data.full_capital_name }}</title>
+</head>
+<body>
+    <header class="thumbnail">
+
+        <!-- navbar -->
+        {% include 'partials/navbar.html' %}
+        <!-- navbar end -->
+
+    </header>
+    <main class="py-5">
+        <div class="container">
+            <div class="row gx-md-5">
+
+                <!-- col Left -->
+                <div class="col-12">
+                    <!-- last articles -->
+                    <div id="profile-master" data-rellax-speed="3" class="w-100 position-relative px-4 text-center rellax">
+                        <img src="{{ data.thumbnail.url }}" class="rounded-pill p-2 bg-white"  alt="">
+                    </div>
+                    <section class="pt-4">
+                        <h1 class="text-center pb-3">
+                            {{ data.full_capital_name }}
+                        </h1>
+                        <h5 class="text-center font-weight-normal">
+                            {% for skill in data.get_skills %}
+                                {% if not forloop.last %}
+                                    <span class="p-2 d-inline-block">{{ skill }}</span> |
+                                {% else %}
+                                    <span class="p-2 d-inline-block">{{ skill }}</span>
+                                {% endif %}
+                            {% endfor %}
+                        </h5>
+                        <div class="text-center icon-social-networks pt-5">
+                            {% if data.telegram  %}
+                                <a href="{{ data.telegram }}" class="px-2"><i class="fab fa-telegram-plane text-dark"></i></a>
+                            {% endif %}
+                            {% if data.instagram  %}
+                                <a href="{{ data.instagram }}" class="px-2"><i class="fab fa-instagram text-dark"></i></a>
+                            {% endif %}
+                            {% if data.github  %}
+                                <a href="{{ data.github }}" class="px-2"><i class="fab fa-github text-dark"></i></a>
+                            {% endif %}
+                        </div>
+                        <p class="pt-5">
+                        {{ data.desc|safe }}
+                        </p>
+                    </section>
+                    <!-- last articles end -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Footer -->
+        {% include 'partials/footer.html' %}
+    <!-- Footer -->
+
+
+    <script src="/static//blog/js/bootstrap.min.js"></script>
+    <script src="/static//blog/js/rellax.min.js"></script>
+    <script src="/static//blog/js/index.js"></script>
+    <script>
+        var rellax = new Rellax('.rellax');
+    </script>
+</body>
+</html>
