@@ -1,0 +1,85 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>article|{{ article.title_en }}</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pages/articel.css' %}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-12">
+            <div class="text-center mt-5">
+                <h1>Hello {{ request.user.username|title }}</h1>
+                <h5>
+                    Now : {% now "Y-m-d H:i" %} | Suspended comments : {{ comments|length }}
+                </h5>
+                <h6>
+                    These are the latest comments in website so confirm or delete them pls
+                </h6>
+            </div>
+
+            <section class="message-box shadow rounded mt-5 pt-2 pb-1 mb-5">
+
+
+                {% for comment in comments %}
+                <!-- messages -->
+                <div class="px-3 pt-2">
+                    <div class="message p-3 pb-0 mb-2 rounded ">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
+                            <div class="ps-3">
+                                <h6 class='my-1 px-1'>
+                                    {{ comment.name }}
+                                </h6>
+                                <p class="my-1">
+                                    {{ comment.desc|safe }}
+                                </p>
+                            </div>
+                        </div>
+                        <br> {% if comment.reply_to %}
+                        <h6>reply to:</h6>
+                        <div class="ps-3 pb-3">
+                            <p class="my-1">
+                                {{ comment.reply_to.desc|safe }}
+                            </p>
+                        </div>
+                        {% endif %}
+                        <div class="mb-2 float-end">
+                            <a href="{% url 'blog:confirm_comment' comment.id %}" class="btn btn-sm btn-success">Confirm</a>
+                            <a href="{% url 'blog:delete_comment' comment.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        </div>
+
+                        <div class="mb-2 float-start">
+                            <a href="{% url 'blog:article' comment.article.slug %}">
+                                <button class="btn btn-primary btn-sm" type="button">article link</button>
+                            </a>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h6>{{ comment.created|date:'Y/m/d H:i'}}</h6>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- end messages -->
+                {% endfor %}
+            </section>
+        </div>
+    </div>
+</body>
+
+
+<!-- js refrences -->
+<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+<!-- end js refrences -->
+</body>
+
+</html>

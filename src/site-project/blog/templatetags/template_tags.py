@@ -25,6 +25,10 @@ def site_setting(value):
     except:
         pass
 
+@register.simple_tag
+def calculate_latest_5_page_numbers(last_page_number):
+    return last_page_number - 5
+
 @register.inclusion_tag('partials/col_4_about.html')
 def col_4_about():
     return {

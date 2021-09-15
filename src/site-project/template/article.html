@@ -100,7 +100,7 @@
                                         <div class="col-12 col-lg-10 col-md-9 description">
                                             <h1 class="h4 mx-2">{% author_full_name article.author %}</h1>
                                             {% if article.author.desc %}
-                                                <p class="mb-0 mx-2">{{ article.author.desc|truncatechars:100 }}</p>                                            
+                                                <p class="mb-0 mx-2">{{ article.author.desc|truncatechars:100|striptags|safe }}</p>                                            
                                             {% endif %}
                                         </div>
                                     </div>

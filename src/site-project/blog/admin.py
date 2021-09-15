@@ -22,9 +22,16 @@ class ArticleAdmin(admin.ModelAdmin):
             obj.save()
         return super().save_model(request, obj, form, change)   	
 
+class CommentsAdmin(admin.ModelAdmin):
+
+    list_display = ('name','comment_desc','created','article_slug','status')
+    ordering = ['-created']
+
+
+
 # register models
 admin.site.register(User)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(Article,ArticleAdmin)
-admin.site.register(Comment)
+admin.site.register(Comment,CommentsAdmin)
 admin.site.register(Avatar)

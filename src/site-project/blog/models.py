@@ -8,7 +8,7 @@ from django.contrib.auth.models import AbstractUser
 # ckeditor field
 from ckeditor_uploader.fields import RichTextUploadingField
 
-
+from .contents import data_set
 
 # random str
 from django.utils.crypto import get_random_string
@@ -42,16 +42,18 @@ def auto_slug(obj,checker):
 
 # Managers
 
-class CategoryManager(models.Manager):
-	def active(self):
-		return self.filter(status=True)
-
-
 class ArticleManager(models.Manager):
 	def active(self):
 		return self.filter(status=True)
 
+# filter categories by 2 item => status and len articles with this tag
+class CategoryManager(models.Manager):
+    def active(self):
+        return [item for item in self.filter(status=True) if len(item.articles.active()) > 0]   
 
+class CommentsManager(models.Manager):
+    def active(self):
+        return self.filter(status=True)
 
 
 
@@ -160,7 +162,7 @@ class Comment(models.Model):
     desc     = RichTextField()
     created  = models.DateTimeField(auto_now_add=True)
     reply_to = models.ForeignKey('self',null=True,blank=True,on_delete=models.CASCADE,related_name='replies')
-    status   = models.BooleanField(default=True) # comment status => true:publish , false:draft
+    status   = models.BooleanField(default=False) # comment status => true:publish , false:draft
     avatar   = models.ForeignKey(Avatar,on_delete=models.SET_NULL,null=True)
   
     class Meta:
@@ -172,4 +174,14 @@ class Comment(models.Model):
         else:
             return f'Comment by {self.name}'
 
+    objects = CommentsManager()
 
+
+    def article_slug(self):
+        return f'{data_set["site_domain"]}/{self.article.short_slug}'
+    
+    def comment_desc(self):
+        if len(self.desc) > 53:
+            return f'{self.desc[:50]}...'
+        else:
+            return self.desc

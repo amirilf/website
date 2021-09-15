@@ -1,9 +1,11 @@
-from django.http.response import Http404, HttpResponseRedirect
-from django.shortcuts import get_list_or_404, redirect, render,HttpResponse,get_object_or_404
+from django.http.response import Http404, HttpResponse, HttpResponseRedirect
+from django.shortcuts import get_list_or_404, redirect, render,get_object_or_404
 from django.db.models import Q
-
 # category model
 from .models import Article, Category, Comment,Avatar,User
+
+#paginator
+from django.core.paginator import Paginator
 
 # forms
 from .forms import CommentForm
@@ -24,11 +26,12 @@ def Home(request):
 
 
 #======== tags
-def TagsView(request):
-    categories_query   = Category.objects.active()   # get all active categories
-    categories_query   = [category for category in categories_query if len(category.articles.active()) > 0] #check if length is bigger than 0 and tag already used before
+def TagsView(request,page_id=1):
+    categories_query = Category.objects.active()   # get all active categories
+    paginator        = Paginator(categories_query,10)
+    categories       = paginator.get_page(page_id)
     context = {
-        'categories':categories_query,
+        'categories':categories,
         'page':'tags'
     }
     return render(request,'tags.html',context)
@@ -47,11 +50,11 @@ def TagView(request,tag_slug):
 #======== articles
 def ArticleView(request,article_slug):
     article_query      = get_object_or_404(Article.objects,slug=article_slug,status=True)
-    comments_query     = article_query.comments.filter(status=True,reply_to=None)
+    comments_query     = article_query.comments.filter(reply_to=None,status=True)
     avatars_query      = Avatar.objects.all()
     
     # add 1 view to article
-    Article.objects.filter(slug=article_slug,status=True).update(views=article_query.views+1)
+    Article.objects.active().filter(slug=article_slug).update(views=article_query.views+1)
     
     if request.method == 'POST':
         comment_form = CommentForm(data=request.POST)
@@ -86,7 +89,8 @@ def ArticleView(request,article_slug):
                     new_comment_form.avatar = avatar_obj
 
             if request.user.is_authenticated: # if user was admin
-                new_comment_form.admin = User.objects.get(username=request.user.username)
+                new_comment_form.admin  = User.objects.get(username=request.user.username)
+                new_comment_form.status = True 
             
             new_comment_form.save()
             return HttpResponseRedirect(article_query.get_absolute_url())
@@ -102,11 +106,14 @@ def ArticleView(request,article_slug):
     }
     return render(request,'article.html',context)
 
-def ArticlesView(request):
+def ArticlesView(request,page_id=1):
     articles_query = get_list_or_404(Article.objects.active())
-    context = {
-        'articles':articles_query,
+    paginator      = Paginator(articles_query,5)
+    articles       = paginator.get_page(page_id)
+    context        = {
+        'articles':articles,
     }
+    
     return render(request,'articles.html',context)
 
 
@@ -147,3 +154,29 @@ def AmirView(request):
         'data' : User.objects.get(username='amir')
     }
     return render(request,'creator.html',context=context)
+
+#======== comments
+def comments_check(request):
+    if request.user.is_authenticated:
+        unspecified_comments = Comment.objects.filter(status=False)
+        context = {
+            'comments' : unspecified_comments
+        }
+        return render(request,'comments.html',context=context)
+    else:
+        raise Http404()
+
+def comment_delete(request,pk_id):
+    if request.user.is_authenticated:
+        comment = Comment.objects.get(pk=pk_id)
+        comment.delete()
+        return HttpResponse('deleted')
+    else:
+        raise Http404()
+
+def comment_confirm(request,pk_id):
+    if request.user.is_authenticated:
+        Comment.objects.filter(pk=pk_id).update(status=True)
+        return HttpResponse('confirmed')
+    else:
+        raise Http404()
