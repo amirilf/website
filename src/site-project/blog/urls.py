@@ -7,11 +7,9 @@ app_name = 'blog'
 urlpatterns = [
     path('',Home,name='home'),
     path('tags',TagsView,name='tags'),
-    path('tags/p/<int:page_id>',TagsView,name='tag_page'),
     path('tags/<slug:tag_slug>',TagView,name='tag'),
     path('articles',ArticlesView,name='articles'),
-    path('articles/p/<int:page_id>',ArticlesView,name='article_page'),
-    path('articles/<slug:article_slug>',ArticleView,name='article'),
+    path('articles/<slug:article_slug>',ArticleView,name='article_slug'),
     path('search',SearchView,name='search'),
     path('amir',AmirView),
     path('alireza',AlirezaView),

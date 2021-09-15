@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>article|{{ article.title_en }}</title>
+    <title>articles</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
@@ -88,7 +88,7 @@
                                                     </span>
                                             </div>
                                         </a>
-                                        <a href="{% url 'blog:article' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
+                                        <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
                                                 see more
                                         </a>
                                     </div>
@@ -98,88 +98,88 @@
                         {% endfor %}
                         
                     
-                        {% if articles.has_other_pages %}
-                            <!-- start pagination -->
-                            <div class='pt-3'>
-                                <nav aria-label="Page navigation example">
-                                    <ul class="pagination d-flex justify-content-center">
-                                        
-                                        <!-- start previous button -->
-                                        <li class="page-item shadow">
-                                            {% if articles.has_previous %}
-                                                <a class="page-link" href="{% url 'blog:article_page' articles.previous_page_number %}" aria-label="Previous">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            {% else %}
-                                                <a class="page-link" aria-label="Previous" style="cursor: not-allowed;">
-                                                    <span aria-hidden="true">&laquo;</span>
-                                                </a>
-                                            {% endif %}
-                                        </li>
-                                        <!-- end previous button -->
-                                        {% if articles.paginator.num_pages > 7 %}
-
-                                            {% if articles.number|add:"3" >= articles.paginator.num_pages %}
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' 1 %}">1</a></li>
-                                                <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                                {% calculate_latest_5_page_numbers articles.paginator.num_pages as range_number %}
-                                                {% for page_number in '12345'|make_list %}
-                                                    {% if forloop.counter|add:range_number == articles.number %}
-                                                        <li class="page-item shadow active"><a class="page-link" href="#">{{ articles.number }}</a></li>
-                                                    {% else %}
-                                                        <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' forloop.counter|add:range_number %}">{{ forloop.counter|add:range_number }}</a></li>
-                                                    {% endif %}
-                                                {% endfor %}
-                                            
-                                            {% elif articles.number|add:"-3" <= 1 %}
-                                                {% for page_number in '12345'|make_list %}
-                                                    {% if forloop.counter == articles.number %}
-                                                        <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:article_page' articles.number %}">{{ articles.number }}</a></li>
-                                                    {% else %}
-                                                        <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' forloop.counter %}">{{ forloop.counter }}</a></li>
-                                                    {% endif %}
-                                                {% endfor %}
-                                                <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' articles.paginator.num_pages %}">{{ articles.paginator.num_pages }}</a></li>
-                                            
-                                            {% else %}
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' 1 %}">1</a></li>
-                                                <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' articles.previous_page_number %}">{{ articles.previous_page_number }}</a></li>
-                                                <li class="page-item shadow active"><a class="page-link" href="#">{{ articles.number }}</a></li>
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' articles.next_page_number %}">{{ articles.next_page_number }}</a></li>
-                                                <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' articles.paginator.num_pages %}">{{ articles.paginator.num_pages }}</a></li>
-                                            {% endif %}
-
+                    {% if articles.has_other_pages %}
+                        <!-- start pagination -->
+                        <div class='pt-3'>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination d-flex justify-content-center">
+                                    
+                                    <!-- start previous button -->
+                                    <li class="page-item shadow">
+                                        {% if articles.has_previous %}
+                                            <a class="page-link" href="{% url 'blog:articles' %}?p={{articles.previous_page_number}}" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
                                         {% else %}
-                                            {% for page_number in articles.paginator.page_range %}
-                                                {% if articles.number == page_number %}
-                                                    <li class="page-item shadow active"><a class="page-link" href="#">{{ page_number }}</a></li>
+                                            <a class="page-link" aria-label="Previous" style="cursor: not-allowed;">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                    <!-- end previous button -->
+                                    {% if articles.paginator.num_pages > 7 %}
+
+                                        {% if articles.number|add:"3" >= articles.paginator.num_pages %}
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p=1">1</a></li>
+                                            <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
+                                            {% calculate_latest_5_page_numbers articles.paginator.num_pages as range_number %}
+                                            {% for page_number in '12345'|make_list %}
+                                                {% if forloop.counter|add:range_number == articles.number %}
+                                                    <li class="page-item shadow active"><a class="page-link" href="#">{{ articles.number }}</a></li>
                                                 {% else %}
-                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:article_page' page_number %}">{{ page_number }}</a></li>
+                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{forloop.counter|add:range_number}}">{{ forloop.counter|add:range_number }}</a></li>
                                                 {% endif %}
                                             {% endfor %}
+                                            
+                                        {% elif articles.number|add:"-3" <= 1 %}
+                                            {% for page_number in '12345'|make_list %}
+                                                {% if forloop.counter == articles.number %}
+                                                    <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.number}}">{{ articles.number }}</a></li>
+                                                {% else %}
+                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{forloop.counter}}">{{ forloop.counter }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                            <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.paginator.num_pages}}">{{ articles.paginator.num_pages }}</a></li>
+                                            
+                                        {% else %}
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p=1">1</a></li>
+                                            <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.previous_page_number}}">{{ articles.previous_page_number }}</a></li>
+                                            <li class="page-item shadow active"><a class="page-link" href="#">{{ articles.number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.next_page_number}}">{{ articles.next_page_number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.paginator.num_pages}}">{{ articles.paginator.num_pages }}</a></li>
                                         {% endif %}
 
-                                        <!-- start next button -->
-                                        <li class="page-item shadow">
-                                            {% if articles.has_next %}
-                                                <a class="page-link" href="{% url 'blog:article_page' articles.next_page_number %}" aria-label="Next">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
+                                    {% else %}
+                                        {% for page_number in articles.paginator.page_range %}
+                                            {% if articles.number == page_number %}
+                                                <li class="page-item shadow active"><a class="page-link" href="#">{{ page_number }}</a></li>
                                             {% else %}
-                                                <a class="page-link" aria-label="Next" style="cursor: not-allowed;">
-                                                    <span aria-hidden="true">&raquo;</span>
-                                                </a>
+                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{page_number}}">{{ page_number }}</a></li>
                                             {% endif %}
-                                        </li>
-                                        <!-- end next button -->
-                                    </ul>
-                                </nav>
-                            </div>
-                            <!-- end pagination -->
-                        {% endif %}
+                                        {% endfor %}
+                                    {% endif %}
+
+                                        <!-- start next button -->
+                                    <li class="page-item shadow">
+                                        {% if articles.has_next %}
+                                            <a class="page-link" href="{% url 'blog:articles' %}?p={{articles.next_page_number}}" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        {% else %}
+                                            <a class="page-link" aria-label="Next" style="cursor: not-allowed;">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        {% endif %}
+                                    </li>
+                                    <!-- end next button -->
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- end pagination -->
+                    {% endif %}
 
                     </section>
                     <!-- last articles end -->

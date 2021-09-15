@@ -1,7 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.db.models.fields import BooleanField, CharField, DateTimeField, SlugField
-
+from django.urls import reverse
 # user model , django default
 from django.contrib.auth.models import AbstractUser
 
@@ -135,7 +135,9 @@ class Article(models.Model):
         return self.title_en
 
     def get_absolute_url(self):
-        return f'/articles/{self.slug}'
+        return reverse("blog:article_slug",kwargs={'article_slug':self.slug})
+        # return f'/articles/{self.slug}' these are same but top is better
+
     
 
     objects = ArticleManager() # set managers for this class

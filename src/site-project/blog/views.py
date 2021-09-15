@@ -26,10 +26,11 @@ def Home(request):
 
 
 #======== tags
-def TagsView(request,page_id=1):
+def TagsView(request):
     categories_query = Category.objects.active()   # get all active categories
     paginator        = Paginator(categories_query,10)
-    categories       = paginator.get_page(page_id)
+    page             = request.GET.get('p')
+    categories       = paginator.get_page(page)
     context = {
         'categories':categories,
         'page':'tags'
@@ -106,10 +107,11 @@ def ArticleView(request,article_slug):
     }
     return render(request,'article.html',context)
 
-def ArticlesView(request,page_id=1):
+def ArticlesView(request):
     articles_query = get_list_or_404(Article.objects.active())
     paginator      = Paginator(articles_query,5)
-    articles       = paginator.get_page(page_id)
+    page           = request.GET.get('p')
+    articles       = paginator.get_page(page)
     context        = {
         'articles':articles,
     }

@@ -69,7 +69,7 @@
                                     <!-- start previous button -->
                                     <li class="page-item shadow">
                                         {% if categories.has_previous %}
-                                            <a class="page-link" href="{% url 'blog:tag_page' categories.previous_page_number %}" aria-label="Previous">
+                                            <a class="page-link" href="{% url 'blog:tags' %}?p={{categories.previous_page_number}}" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         {% else %}
@@ -82,36 +82,36 @@
                                     {% if categories.paginator.num_pages > 7 %}
 
                                         {% if categories.number|add:"3" >= categories.paginator.num_pages %}
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' 1 %}">1</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p=1">1</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
                                             {% calculate_latest_5_page_numbers categories.paginator.num_pages as range_number %}
                                             {% for page_number in '12345'|make_list %}
                                                 {% if forloop.counter|add:range_number == categories.number %}
                                                     <li class="page-item shadow active"><a class="page-link" href="#">{{ categories.number }}</a></li>
                                                 {% else %}
-                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' forloop.counter|add:range_number %}">{{ forloop.counter|add:range_number }}</a></li>
+                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p={{forloop.counter|add:range_number}}">{{ forloop.counter|add:range_number }}</a></li>
                                                 {% endif %}
                                             {% endfor %}
                                             
                                         {% elif categories.number|add:"-3" <= 1 %}
                                             {% for page_number in '12345'|make_list %}
                                                 {% if forloop.counter == categories.number %}
-                                                    <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:tag_page' categories.number %}">{{ categories.number }}</a></li>
+                                                    <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:tags' %}?p={{categories.number}}">{{ categories.number }}</a></li>
                                                 {% else %}
-                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' forloop.counter %}">{{ forloop.counter }}</a></li>
+                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p={{forloop.counter}}">{{ forloop.counter }}</a></li>
                                                 {% endif %}
                                             {% endfor %}
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' categories.paginator.num_pages %}">{{ categories.paginator.num_pages }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p={{categories.paginator.num_pages}}">{{ categories.paginator.num_pages }}</a></li>
                                             
                                         {% else %}
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' 1 %}">1</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p=1">1</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' categories.previous_page_number %}">{{ categories.previous_page_number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p={{categories.previous_page_number}}">{{ categories.previous_page_number }}</a></li>
                                             <li class="page-item shadow active"><a class="page-link" href="#">{{ categories.number }}</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' categories.next_page_number %}">{{ categories.next_page_number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p={{categories.next_page_number}}">{{ categories.next_page_number }}</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' categories.paginator.num_pages %}">{{ categories.paginator.num_pages }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p={{categories.paginator.num_pages}}">{{ categories.paginator.num_pages }}</a></li>
                                         {% endif %}
 
                                     {% else %}
@@ -119,7 +119,7 @@
                                             {% if categories.number == page_number %}
                                                 <li class="page-item shadow active"><a class="page-link" href="#">{{ page_number }}</a></li>
                                             {% else %}
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag_page' page_number %}">{{ page_number }}</a></li>
+                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tags' %}?p={{page_number}}">{{ page_number }}</a></li>
                                             {% endif %}
                                         {% endfor %}
                                     {% endif %}
@@ -127,7 +127,7 @@
                                         <!-- start next button -->
                                     <li class="page-item shadow">
                                         {% if categories.has_next %}
-                                            <a class="page-link" href="{% url 'blog:tag_page' categories.next_page_number %}" aria-label="Next">
+                                            <a class="page-link" href="{% url 'blog:tags' %}?p={{categories.next_page_number}}" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         {% else %}
