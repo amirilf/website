@@ -182,3 +182,19 @@ def comment_confirm(request,pk_id):
         return HttpResponse('confirmed')
     else:
         raise Http404()
+
+#======== send email
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+def send_email_(request):
+    msg_plain = render_to_string('email.txt', {'username': 'Amir Khorasani'})
+    msg_html = render_to_string('email.html', {'username': 'Amir Khorasani'})
+    
+    send_mail(
+        'Hi there',
+        msg_plain,
+        'amirctw@gmail.com',
+        ['amirilf@protonmail.com'],
+        html_message=msg_html,
+    )
+    return HttpResponse('message sented (:')

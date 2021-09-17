@@ -128,10 +128,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # sratic root for collect static files
-# STATIC_ROOT = BASE_DIR/'static'
+STATIC_ROOT = BASE_DIR/'static'
 
 # static files path in project
-STATICFILES_DIRS = [BASE_DIR / 'static']
+# STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # media urls path
 MEDIA_URL = '/media/'
@@ -215,3 +215,13 @@ CKEDITOR_CONFIGS = {
     }
 
 }
+
+#===== email
+EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL  = 'amirctw@gmail.com'
+SERVER_EMAIL        = 'amirctw@gmail.com'
+EMAIL_HOST          = 'smtp.gmail.com'
+EMAIL_HOST_USER     = 'amirctw@gmail.com'
+EMAIL_HOST_PASSWORD = 'qwbhofvmvyfvcbxg'
+EMAIL_PORT          = 587
+EMAIL_USE_TLS       = True
