@@ -128,10 +128,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # sratic root for collect static files
-STATIC_ROOT = BASE_DIR/'static'
+# STATIC_ROOT = BASE_DIR/'static'
 
 # static files path in project
-# STATICFILES_DIRS = [BASE_DIR / 'static']
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # media urls path
 MEDIA_URL = '/media/'

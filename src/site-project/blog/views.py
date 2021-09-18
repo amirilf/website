@@ -124,7 +124,8 @@ def SearchView(request):
     try:
         search_query = request.GET['q']
         article_results = Article.objects.active().filter( Q(title_en__icontains = search_query) | Q(desc_en__icontains = search_query) )
-        category_results = Category.objects.active().filter(name_en__icontains=search_query)
+        category_results = Category.objects.active_search().filter(name_en__icontains=search_query)
+        category_results = [item for item in category_results if len(item.articles.active()) > 0] 
     except:
         search_query = ''
         article_results = []

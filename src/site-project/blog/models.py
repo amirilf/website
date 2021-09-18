@@ -50,7 +50,9 @@ class ArticleManager(models.Manager):
 class CategoryManager(models.Manager):
     def active(self):
         return [item for item in self.filter(status=True) if len(item.articles.active()) > 0]   
-
+    def active_search(self):
+        return self.filter(status=True)
+        
 class CommentsManager(models.Manager):
     def active(self):
         return self.filter(status=True)
