@@ -10,6 +10,10 @@ from django.core.paginator import Paginator
 # forms
 from .forms import CommentForm
 
+# class base views dependent modules
+from django.views.generic import ListView
+
+
 # views
 
 
@@ -25,18 +29,37 @@ def Home(request):
     return render(request,'home.html',context)
 
 
-#======== tags
-def TagsView(request):
-    categories_query = Category.objects.active()   # get all active categories
-    paginator        = Paginator(categories_query,10)
-    page             = request.GET.get('p')
-    categories       = paginator.get_page(page)
-    context = {
-        'categories':categories,
-        'page':'tags'
-    }
-    return render(request,'tags.html',context)
 
+#======== Tags View
+
+# Custom :
+# def TagsView(request):
+#     categories_query = Category.objects.active()   # get all active categories
+#     paginator        = Paginator(categories_query,10)
+#     page             = request.GET.get('p')
+#     categories       = paginator.get_page(page)
+#     context = {
+#         'categories':categories,
+#         'page':'tags'
+#     }
+#     return render(request,'tags.html',context)
+
+# ClassBase :
+class TagsListView(ListView):
+    queryset      = Category.objects.active()
+    template_name = 'tags.html'
+    context_object_name = 'categories'
+    paginate_by   = 10
+    page_kwarg    = 'p'
+
+    def get_context_data(self, **kwargs):        
+        context = super().get_context_data(**kwargs)
+        context["page"] = 'tags'
+        return context
+    
+
+
+#======== Tag View
 def TagView(request,tag_slug):
     try:
         the_query = Category.objects.filter(slug=tag_slug,articles__isnull=False)[0]
@@ -46,9 +69,10 @@ def TagView(request,tag_slug):
         return render(request,'tag.html',context)
     except:
         raise Http404()
+    
 
 
-#======== articles
+#======== Article View
 def ArticleView(request,article_slug):
     article_query      = get_object_or_404(Article.objects,slug=article_slug,status=True)
     comments_query     = article_query.comments.filter(reply_to=None,status=True)
@@ -107,19 +131,33 @@ def ArticleView(request,article_slug):
     }
     return render(request,'article.html',context)
 
-def ArticlesView(request):
-    articles_query = get_list_or_404(Article.objects.active())
-    paginator      = Paginator(articles_query,5)
-    page           = request.GET.get('p')
-    articles       = paginator.get_page(page)
-    context        = {
-        'articles':articles,
-    }
-    
-    return render(request,'articles.html',context)
 
 
-#======== search
+
+#======== Articles View
+
+# Custom :
+# def ArticlesView(request):
+#     articles_query = get_list_or_404(Article.objects.active())
+#     paginator      = Paginator(articles_query,5)
+#     page           = request.GET.get('p')
+#     articles       = paginator.get_page(page)
+#     context        = {
+#         'articles':articles,
+#     }
+#     return render(request,'articles.html',context)
+
+# ClassBase :
+class ArticlesListView(ListView):
+    queryset      = get_list_or_404(Article.objects.active())
+    template_name = 'articles.html'
+    context_object_name = 'articles'
+    paginate_by   = 5
+    page_kwarg = 'p'
+
+
+
+#======== Search View
 def SearchView(request):
     try:
         search_query = request.GET['q']
@@ -138,14 +176,31 @@ def SearchView(request):
     }
     return render(request,'search.html',context)
 
+# class SearchListView(ListView):
+#     template_name = 'search.html'
 
-#======== short slugs
+#     def get_queryset(self):
+#         if self.kwargs.get('q'):
+#             search_query = self.kwargs.get('q')
+#             article_results = Article.objects.active().filter( Q(title_en__icontains = search_query) | Q(desc_en__icontains = search_query) )
+#             category_results = Category.objects.active_search().filter(name_en__icontains=search_query)
+#             category_results = [item for item in category_results if len(item.articles.active()) > 0] 
+#         else:
+#             search_query = ''
+#             article_results = []
+#             category_results = []
+        
+
+
+#======== ShortSlug View
 def ShortSlugView(request,short_slug_url):
     article_query = get_object_or_404(Article.objects,status=True,short_slug=short_slug_url)
     article_url   = article_query.slug
     return redirect(f'/articles/{article_url}')
 
-#======== authors
+
+
+#======== Authors View
 def AlirezaView(request):
     context = {
         'data' : User.objects.get(username='alireza')
@@ -158,7 +213,9 @@ def AmirView(request):
     }
     return render(request,'creator.html',context=context)
 
-#======== comments
+
+
+#======== CommentsValidation View
 def comments_check(request):
     if request.user.is_authenticated:
         unspecified_comments = Comment.objects.filter(status=False)
@@ -184,7 +241,9 @@ def comment_confirm(request,pk_id):
     else:
         raise Http404()
 
-#======== send email
+
+
+#======== SendEmail View
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 def send_email_(request):

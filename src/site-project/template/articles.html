@@ -52,7 +52,7 @@
                                 </div>
                                 <div class="col-lg-6 col-xl-7 p-3">
                                     <h5 class="pb-3">
-                                        {{ article.title_en }}
+                                        {{ article.title_en|truncatechars:50 }}
                                     </h5>
                                     <p class="mb-3">
                                         {{ article.desc_en|safe|truncatechars:100 }}
@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="d-inline-flex w-auto align-items-center flex-wrap">
                                             <i class="fas fa-comment"></i>
-                                            <p class="m-0 ps-1 pe-2">{{ article.comments.all|length }}</p>
+                                            <p class="m-0 ps-1 pe-2">{{ article.comments.active|length }}</p>
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between flex-wrap">
@@ -97,8 +97,7 @@
                         </div>
                         {% endfor %}
                         
-                    
-                    {% if articles.has_other_pages %}
+                    {% if is_paginated %}
                         <!-- start pagination -->
                         <div class='pt-3'>
                             <nav aria-label="Page navigation example">
@@ -106,8 +105,8 @@
                                     
                                     <!-- start previous button -->
                                     <li class="page-item shadow">
-                                        {% if articles.has_previous %}
-                                            <a class="page-link" href="{% url 'blog:articles' %}?p={{articles.previous_page_number}}" aria-label="Previous">
+                                        {% if page_obj.has_previous %}
+                                            <a class="page-link" href="{% url 'blog:articles' %}?p={{page_obj.previous_page_number}}" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         {% else %}
@@ -117,44 +116,44 @@
                                         {% endif %}
                                     </li>
                                     <!-- end previous button -->
-                                    {% if articles.paginator.num_pages > 7 %}
+                                    {% if page_obj.paginator.num_pages > 7 %}
 
-                                        {% if articles.number|add:"3" >= articles.paginator.num_pages %}
+                                        {% if page_obj.number|add:"3" >= page_obj.paginator.num_pages %}
                                             <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p=1">1</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            {% calculate_latest_5_page_numbers articles.paginator.num_pages as range_number %}
+                                            {% calculate_latest_5_page_numbers page_obj.paginator.num_pages as range_number %}
                                             {% for page_number in '12345'|make_list %}
-                                                {% if forloop.counter|add:range_number == articles.number %}
-                                                    <li class="page-item shadow active"><a class="page-link" href="#">{{ articles.number }}</a></li>
+                                                {% if forloop.counter|add:range_number == page_obj.number %}
+                                                    <li class="page-item shadow active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
                                                 {% else %}
                                                     <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{forloop.counter|add:range_number}}">{{ forloop.counter|add:range_number }}</a></li>
                                                 {% endif %}
                                             {% endfor %}
                                             
-                                        {% elif articles.number|add:"-3" <= 1 %}
+                                        {% elif page_obj.number|add:"-3" <= 1 %}
                                             {% for page_number in '12345'|make_list %}
-                                                {% if forloop.counter == articles.number %}
-                                                    <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.number}}">{{ articles.number }}</a></li>
+                                                {% if forloop.counter == page_obj.number %}
+                                                    <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:articles' %}?p={{page_obj.number}}">{{ page_obj.number }}</a></li>
                                                 {% else %}
                                                     <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{forloop.counter}}">{{ forloop.counter }}</a></li>
                                                 {% endif %}
                                             {% endfor %}
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.paginator.num_pages}}">{{ articles.paginator.num_pages }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages }}</a></li>
                                             
                                         {% else %}
                                             <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p=1">1</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.previous_page_number}}">{{ articles.previous_page_number }}</a></li>
-                                            <li class="page-item shadow active"><a class="page-link" href="#">{{ articles.number }}</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.next_page_number}}">{{ articles.next_page_number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{page_obj.previous_page_number}}">{{ page_obj.previous_page_number }}</a></li>
+                                            <li class="page-item shadow active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{page_obj.next_page_number}}">{{ page_obj.next_page_number }}</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{articles.paginator.num_pages}}">{{ articles.paginator.num_pages }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages }}</a></li>
                                         {% endif %}
 
                                     {% else %}
-                                        {% for page_number in articles.paginator.page_range %}
-                                            {% if articles.number == page_number %}
+                                        {% for page_number in page_obj.paginator.page_range %}
+                                            {% if page_obj.number == page_number %}
                                                 <li class="page-item shadow active"><a class="page-link" href="#">{{ page_number }}</a></li>
                                             {% else %}
                                                 <li class="page-item shadow"><a class="page-link" href="{% url 'blog:articles' %}?p={{page_number}}">{{ page_number }}</a></li>
@@ -164,8 +163,8 @@
 
                                         <!-- start next button -->
                                     <li class="page-item shadow">
-                                        {% if articles.has_next %}
-                                            <a class="page-link" href="{% url 'blog:articles' %}?p={{articles.next_page_number}}" aria-label="Next">
+                                        {% if page_obj.has_next %}
+                                            <a class="page-link" href="{% url 'blog:articles' %}?p={{page_obj.next_page_number}}" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         {% else %}
