@@ -1,24 +1,19 @@
 body #bg {
-    position: fixed;
-    z-index: -1;
-    filter: blur(50px);
-}
-
-body #bg #bgItem {
+  position: fixed;
+  z-index: -1;
+  filter: blur(50px); }
+  body #bg #bgItem {
     background: center no-repeat;
     background-size: cover;
     background-attachment: fixed;
     width: 100vw;
-    height: 100vh;
-}
+    height: 100vh; }
 
 header {
-    height: 70vh;
-    width: 100%;
-    overflow: hidden;
-}
-
-header .header-img {
+  height: 70vh;
+  width: 100%;
+  overflow: hidden; }
+  header .header-img {
     display: inline-flex;
     flex-wrap: wrap;
     align-content: center;
@@ -29,75 +24,57 @@ header .header-img {
     backdrop-filter: blur(0px) !important;
     -webkit-backdrop-filter: blur(0px) !important;
     -moz-backdrop-filter: blur(0px) !important;
-    box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.075);
-}
+    box-shadow: 0px 10px 11px 0px rgba(0, 0, 0, 0.075); }
 
 main .row .col-12 img {
-    display: block;
-    max-width: 100%;
-    height: auto;
-    margin: 40px 0;
-}
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 40px 0; }
 
 .articel-header-img {
-    position: relative;
-    margin-top: -130px;
-}
+  position: relative;
+  margin-top: -130px; }
 
 .message {
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.05);
-}
-
-.message button:focus {
-    box-shadow: none;
-}
-
-.message .Paragraph-cover {
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.05); }
+  .message button:focus {
+    box-shadow: none; }
+  .message .Paragraph-cover {
     width: 100%;
     height: 50px;
     background: linear-gradient(rgba(0, 0, 0, 0), rgba(209, 209, 209, 0.993) 70%);
     bottom: 0;
-    left: 0;
-}
-
-.message .Paragraph-cover span {
-    margin: 10px;
-    position: relative;
-    bottom: -10px;
-    cursor: pointer;
-}
+    left: 0; }
+    .message .Paragraph-cover span {
+      margin: 10px;
+      position: relative;
+      bottom: -10px;
+      cursor: pointer; }
 
 .avatars {
-    position: absolute;
-    top: 50px;
-    left: 50%;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-    transform: translateX(-50%);
-    width: 210px;
-    z-index: 999;
-    padding: 0 10px;
-}
-
-.avatars img {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+  transform: translateX(-50%);
+  width: 210px;
+  z-index: 999;
+  padding: 0 10px; }
+  .avatars img {
     margin: 7px 2px !important;
-    cursor: pointer;
-}
+    cursor: pointer; }
 
 #like button {
-    height: 40px;
-    width: 40px;
-    margin-right: 5px;
-}
-
-#like button i {
-    font-size: 19px;
-}
+  height: 40px;
+  width: 40px;
+  margin-right: 5px; }
+  #like button i {
+    font-size: 19px; }
 
 #form-comment .swiper-pagination {
-    bottom: -5px !important;
-}
+  bottom: -5px !important; }
 
 .img-avatar {
-    cursor: pointer !important;
-}
+  cursor: pointer !important; }

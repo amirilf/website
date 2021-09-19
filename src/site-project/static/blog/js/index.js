@@ -5,6 +5,7 @@ var queryS = (selector) => document.querySelector(selector);
 
 
 
+
 var nav = queryS("nav");
 var prevScrollpos = window.pageYOffset;
 var controlBtnNavbar = true;
@@ -128,8 +129,24 @@ const funcSocialNetworks = (e) => {
  *  Light Switch @version v0.1.2
  *  @author han109k
  */
+const submitComment = ()=>{
+    Swal.fire({
+        icon: 'success',
+        text: "Your comment was submit",
+        showConfirmButton: true,
+        timer: 1500
+    })
+}
+const submitSearch = ()=>{
+    if(getId("searchInput").value.length<2){
+        queryS("#inputErorr").classList.remove("d-none")
+        return false
+    }
+    queryS("#inputErorr").classList.add("d-none")
+    return true
+}
 
-(function () {
+var darkModeToggle = document.querySelector(".dark-mode-button");
     let lightSwitch = document.getElementById("lightSwitch");
     if (lightSwitch) {
         darkMode();
@@ -142,13 +159,18 @@ const funcSocialNetworks = (e) => {
         let isSelected =
             localStorage.getItem("lightSwitch") !== null &&
             localStorage.getItem("lightSwitch") === "dark";
-  
+          darkModeToggle.classList.replace("fa-moon" , "fa-sun");
+
         if (isSelected) {
+            darkModeToggle.classList.replace("fa-sun" , "fa-moon");
+
+
             // document.querySelectorAll(".bg-light").forEach((element) => {
             //     element.className = element.className.replace(/-light/g, "-dark");
             // });
             
           document.querySelector("main").classList.add("bg-dark");
+          document.querySelector("footer").classList.add("bg-glass-light");
           if(document.querySelector("#avatar-message")){
             document.querySelector("#avatar-message").classList.replace("bg-light", "bg-dark");
           }
@@ -163,6 +185,7 @@ const funcSocialNetworks = (e) => {
   
         if (document.querySelector("main").classList.contains("text-dark")) {
             document.querySelector("main").classList.replace("text-dark", "text-light");
+            document.querySelector("footer").classList.replace("text-light", "text-dark");
             for(i of document.getElementsByTagName("i")){
                 if(i.classList.contains("text-dark")){
                     i.classList.replace("text-dark","text-light");
@@ -226,9 +249,8 @@ const funcSocialNetworks = (e) => {
                 }
             }
             document.querySelector("main").classList.add("text-light");
-          }
-          
-          // set light switch input to true
+            document.querySelector("footer").classList.add("text-dark");
+          }          // set light switch input to true
           lightSwitch.checked = true;
         }
       }
@@ -272,6 +294,7 @@ const funcSocialNetworks = (e) => {
         //     element.className = element.className.replace(/-dark/g, "-light");
         //   });
             document.querySelector("main").classList.remove("bg-dark");
+            document.querySelector("footer").classList.remove("bg-glass-light");
             if(document.querySelector(".message-box")){
                 document.querySelector(".message-box").classList.remove("bg-gray");
             }
@@ -287,6 +310,7 @@ const funcSocialNetworks = (e) => {
                 }
             }
             document.querySelector("main").classList.replace("text-light", "text-dark");
+            document.querySelector("footer").classList.replace("text-dark", "text-light");
             if(document.querySelector("#avatar-message")){
                 document.querySelector("#avatar-message").classList.replace("bg-dark", "bg-light");
             }
@@ -294,7 +318,19 @@ const funcSocialNetworks = (e) => {
         }
       }
     }
-  })();
+
+    function toggleDarkMode() {
+        if (!lightSwitch.checked) {
+            lightSwitch.checked = true;
+        } else {
+            lightSwitch.checked = false;
+            darkModeToggle.classList.replace("fa-moon" , "fa-sun");
+            console.log(lightSwitch.checked);
+        }
+        console.log(lightSwitch.checked);
+            lightMode()
+    }
+
 
 
 var shortLinkInput = getId("shortLink")
@@ -302,7 +338,13 @@ const copyTxtInput =()=>{
     shortLinkInput.select();
     shortLinkInput.setSelectionRange(0,99999);
     navigator.clipboard.writeText(shortLinkInput.value);
-    alert("Copied the text: " + shortLinkInput.value);
+    
+    Swal.fire({
+        icon: 'success',
+        text: "Your link was copied to Clipboard",
+        showConfirmButton: true,
+        timer: 2000
+    })
 }
 
 if (getId("bgItem") != null) {
@@ -335,3 +377,4 @@ var swiper = new Swiper(".mySwiper2", {
         clickable: true,
     },
 });
+document.getElementById(idrow).insertBefore(cln , document.getElementById(idrow).firstChild);

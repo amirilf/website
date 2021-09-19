@@ -25,7 +25,7 @@
 
         <!-- search form -->
         <div class="bg-white pt-0 pt-sm-5">
-            <form name="search_form" class="pt-5" action="/search" method="GET">
+            <form name="search_form" class="pt-5" action="/search" method="GET" onsubmit="return submitSearch()">
                 <div class="py-5 form-row mx-auto px-3">
                     <div class="d-flex">
                         <input type="text" class="form-control" id="searchInput" name="q" placeholder="What are you looking for?" value='{{ search }}'>
@@ -33,6 +33,7 @@
                             search
                         </button>
                     </div>
+                    <span class="d-block text-center pt-3 text-danger small d-none" id="inputErorr">Please enter at least three characters</span>
                 </div>
             </form>
         </div>

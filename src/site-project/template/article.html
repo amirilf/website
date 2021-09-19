@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pages/articel.css' %}">
+
+    <!-- new ref -->
+    <link rel="stylesheet" href="/static//blog//css/sweetalert2.min.css">
 </head>
 
 <body>
@@ -89,10 +92,7 @@
                                         </a>                                    
                                     {% endfor %}
                                 </div>
-                                <div class="pt-4 mt-4">
-                                    <h5>
-                                        Writer
-                                    </h5>
+                                <div class="pt-4">
                                     <div class="row writer align-items-center justify-content-center">
                                         <div class="col-md-3 col-lg-2 col-5">
                                             <img src="{{ article.author.thumbnail.url }}" class="rounded-pill mb-4" alt="">
@@ -125,7 +125,7 @@
                     <section class="message-box shadow rounded mt-5 pb-1">
                         <div id="append-form">
                             <!-- form message -->
-                            <form id="form-comment" method="POST">
+                            <form id="form-comment" method="POST" onsubmit="return submitComment()">
                                 {% csrf_token %}
                                 <div class="form-row row justify-content-center p-3">
                                     <div class="col-12">
@@ -264,6 +264,7 @@
     <script src="{% static 'blog/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/js/rellax.min.js' %}"></script>
+    <script src="/static/blog/js/sweetalert2.all.min.js"></script>
     <script src="{% static 'blog/js/index.js' %}"></script>
     <script>
         var rellax = new Rellax('.rellax');

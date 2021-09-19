@@ -48,6 +48,9 @@
     width: 45px;
     height: 45px;
 }
+.shadow-none{
+    box-shadow: none !important;
+}
 #lightSwitch {
     transform: scale(1.8);
 }
@@ -58,18 +61,6 @@
         background: rgba(0, 0, 0, 0);
         top: -2px;
         right: 7px;
-    }
-}
-footer{
-    #like_footer{
-        i{
-            color: $c-red;
-            &:nth-child(2){
-                animation: likeFooter 2.5s infinite;
-                top: 2.5px;
-                left: 0;
-            }
-        }
     }
 }
 @keyframes likeFooter {
