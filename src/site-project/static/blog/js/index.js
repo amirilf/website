@@ -129,15 +129,17 @@ const funcSocialNetworks = (e) => {
  *  Light Switch @version v0.1.2
  *  @author han109k
  */
- let form = document.querySelector("#form-comment")// there are many easy ways to get this element
+if( document.querySelector("#form-comment")){
+    let form = document.querySelector("#form-comment")// there are many easy ways to get this element
 
- form.addEventListener("submit", evt => {
-   // don't actually submit this form to its associated URL:
-   submitComment();
-   evt.preventDefault();
-   // and schedule the timeout
-   setTimeout(()=>form.submit(), 4000);
- });
+    form.addEventListener("submit", evt => {
+      // don't actually submit this form to its associated URL:
+      submitComment();
+      evt.preventDefault();
+      // and schedule the timeout
+      setTimeout(()=>form.submit(), 4000);
+    });
+}
 const submitComment = ()=>{
     let timerInterval
     Swal.fire({
@@ -177,7 +179,7 @@ const submitSearch = ()=>{
 }
 
 var darkModeToggle = document.querySelector(".dark-mode-button");
-    let lightSwitch = document.getElementById("lightSwitch");
+    var lightSwitch = document.getElementById("lightSwitch");
     if (lightSwitch) {
         darkMode();
         lightSwitch.addEventListener("change", () => {
@@ -200,7 +202,7 @@ var darkModeToggle = document.querySelector(".dark-mode-button");
             // });
             
           document.querySelector("main").classList.add("bg-dark");
-          document.querySelector("footer").classList.add("bg-glass-light");
+          document.querySelector("footer").classList.replace("bg-dark","bg-glass-light");
           if(document.querySelector("#avatar-message")){
             document.querySelector("#avatar-message").classList.replace("bg-light", "bg-dark");
           }
@@ -324,7 +326,7 @@ var darkModeToggle = document.querySelector(".dark-mode-button");
         //     element.className = element.className.replace(/-dark/g, "-light");
         //   });
             document.querySelector("main").classList.remove("bg-dark");
-            document.querySelector("footer").classList.remove("bg-glass-light");
+            document.querySelector("footer").classList.replace("bg-glass-light","bg-dark");
             if(document.querySelector(".message-box")){
                 document.querySelector(".message-box").classList.remove("bg-gray");
             }
