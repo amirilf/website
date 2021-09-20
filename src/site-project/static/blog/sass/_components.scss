@@ -80,6 +80,9 @@ nav{
     @include shadow;
     background: $c-white;
 }
+.body-article{
+    line-height: 2rem !important;
+}
 
 footer{
     &.bg-dark{

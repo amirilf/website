@@ -139,6 +139,9 @@ nav {
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
   background: #fff; }
 
+.body-article {
+  line-height: 2rem !important; }
+
 footer.bg-dark {
   background: rgba(33, 37, 41, 0.92) !important;
   backdrop-filter: blur(15px) !important;
