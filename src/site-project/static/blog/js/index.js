@@ -129,12 +129,42 @@ const funcSocialNetworks = (e) => {
  *  Light Switch @version v0.1.2
  *  @author han109k
  */
+ let form = document.querySelector("#form-comment")// there are many easy ways to get this element
+
+ form.addEventListener("submit", evt => {
+   // don't actually submit this form to its associated URL:
+   submitComment();
+   evt.preventDefault();
+   // and schedule the timeout
+   setTimeout(()=>form.submit(), 4000);
+ });
 const submitComment = ()=>{
+    let timerInterval
     Swal.fire({
-        icon: 'success',
-        text: "Your comment was submit",
-        showConfirmButton: true,
-        timer: 1500
+    title: 'Trying to send',
+    html: 'I will close in <b></b> milliseconds.',
+    timer: 2000,
+    timerProgressBar: true,
+    didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+        b.textContent = Swal.getTimerLeft()
+        }, 100)
+    },
+    willClose: () => {
+        clearInterval(timerInterval)
+    }
+    }).then((result) => {
+    /* Read more about handling dismissals below */
+    if (result.dismiss === Swal.DismissReason.timer) {
+        Swal.fire({
+            icon: 'success',
+            text: "Your link was copied to Clipboard",
+            showConfirmButton: false,
+            timer: 2000,
+        })
+    }
     })
 }
 const submitSearch = ()=>{
@@ -159,10 +189,10 @@ var darkModeToggle = document.querySelector(".dark-mode-button");
         let isSelected =
             localStorage.getItem("lightSwitch") !== null &&
             localStorage.getItem("lightSwitch") === "dark";
-          darkModeToggle.classList.replace("fa-moon" , "fa-sun");
+          darkModeToggle.classList.replace("fa-sun" , "fa-moon");
 
         if (isSelected) {
-            darkModeToggle.classList.replace("fa-sun" , "fa-moon");
+            darkModeToggle.classList.replace("fa-moon" , "fa-sun");
 
 
             // document.querySelectorAll(".bg-light").forEach((element) => {
@@ -324,7 +354,7 @@ var darkModeToggle = document.querySelector(".dark-mode-button");
             lightSwitch.checked = true;
         } else {
             lightSwitch.checked = false;
-            darkModeToggle.classList.replace("fa-moon" , "fa-sun");
+            darkModeToggle.classList.replace("fa-sun" , "fa-moon");
             console.log(lightSwitch.checked);
         }
         console.log(lightSwitch.checked);
@@ -342,8 +372,8 @@ const copyTxtInput =()=>{
     Swal.fire({
         icon: 'success',
         text: "Your link was copied to Clipboard",
-        showConfirmButton: true,
-        timer: 2000
+        showConfirmButton: false,
+        timer: 2000,
     })
 }
 
