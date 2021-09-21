@@ -137,37 +137,26 @@ if( document.querySelector("#form-comment")){
       submitComment();
       evt.preventDefault();
       // and schedule the timeout
-      setTimeout(()=>form.submit(), 4000);
+      setTimeout(()=>form.submit(), 3000);
     });
 }
 const submitComment = ()=>{
-    let timerInterval
-    Swal.fire({
-    title: 'Trying to send',
-    html: 'I will close in <b></b> milliseconds.',
-    timer: 2000,
-    timerProgressBar: true,
-    didOpen: () => {
-        Swal.showLoading()
-        const b = Swal.getHtmlContainer().querySelector('b')
-        timerInterval = setInterval(() => {
-        b.textContent = Swal.getTimerLeft()
-        }, 100)
-    },
-    willClose: () => {
-        clearInterval(timerInterval)
-    }
-    }).then((result) => {
-    /* Read more about handling dismissals below */
-    if (result.dismiss === Swal.DismissReason.timer) {
-        Swal.fire({
-            icon: 'success',
-            text: "Your link was copied to Clipboard",
-            showConfirmButton: false,
-            timer: 2000,
-        })
-    }
-    })
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: "Your comment has been submit",
+      })
 }
 const submitSearch = ()=>{
     if(getId("searchInput").value.length<2){
@@ -371,12 +360,22 @@ const copyTxtInput =()=>{
     shortLinkInput.setSelectionRange(0,99999);
     navigator.clipboard.writeText(shortLinkInput.value);
     
-    Swal.fire({
-        icon: 'success',
-        text: "Your link was copied to Clipboard",
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'bottom-end',
         showConfirmButton: false,
-        timer: 2000,
-    })
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'info',
+        title: "The link was copied to Clipboard",
+      })
 }
 
 if (getId("bgItem") != null) {
