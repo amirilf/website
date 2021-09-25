@@ -49,7 +49,7 @@ class TagsListView(ListView):
     queryset      = Category.objects.active()
     template_name = 'tags.html'
     context_object_name = 'categories'
-    paginate_by   = 10
+    paginate_by   = 5
     page_kwarg    = 'p'
 
     def get_context_data(self, **kwargs):        
