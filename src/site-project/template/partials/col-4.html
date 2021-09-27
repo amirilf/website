@@ -15,29 +15,11 @@
 
         {% elif page == 'tags' %}
 
-            <div class="py-4 pt-md-0">
-                <h5 class=" pb-2">Search</h5>
-                <form class="position-relative d-inline-block" id="input_search" action="/search" onsubmit="return submitSearch(this)">
-                    <input id="searchInput" name="q" type="text" placeholder="Search in website..." class="form-control pe-5 form-control-sm bg-light rounded-pill">
-                    <span class="text-danger small d-none" id="inputErorr">Please enter at least three characters</span>
-                    <button type="submit" class="position-absolute border-0">
-                        <i class="fas text-dark fa-search py-2 px-0 text-dark"></i>
-                    </button>
-                </form>
-            </div>
+            {% include 'partials/col_4_search.html' %}
 
         {% else %}
 
-            <div class="py-4 pt-md-0">
-                <h5 class=" pb-2">Search</h5>
-                <form class="position-relative d-inline-block" id="input_search" action="/search" onsubmit="return submitSearch(this)">
-                    <input id="searchInput" name="q" type="text" placeholder="Search in website..." class="form-control pe-5 form-control-sm bg-light rounded-pill">
-                    <span class="text-danger small d-none" id="inputErorr">Please enter at least three characters</span>
-                    <button type="submit" class="position-absolute border-0">
-                        <i class="fas text-dark fa-search py-2 px-0 text-dark"></i>
-                    </button>
-                </form>
-            </div>
+            {% include 'partials/col_4_search.html' %}
 
             <div class="py-4">
                 <h5 class=" pb-2">Last Tags</h5>

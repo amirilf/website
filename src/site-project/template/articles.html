@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>articles</title>
+    <title>Articles</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
@@ -26,11 +26,8 @@
 
         <div class="text-center header-img">
             <h1 class="w-100">
-                articles
+                Articles
             </h1>
-            <h4>
-                you are see the all articles this page
-            </h4>
         </div>
     </header>
     <main class="py-5">
@@ -41,9 +38,6 @@
                 <div class="col-md-8 col-lg-9">
                     <!-- last articles -->
                     <section>
-                        <h5 class="text-center">
-                            all articles
-                        </h5>
                         {% for article in articles %}
                         <div class="card rounded my-4 overflow-hidden">
                             <div class="row g-0">
@@ -52,14 +46,14 @@
                                 </div>
                                 <div class="col-lg-6 col-xl-7 p-3">
                                     <h5 class="pb-3">
-                                        {{ article.title_en|truncatechars:50 }}
+                                        {{ article.title_en|capfirst }}
                                     </h5>
                                     <p class="mb-3">
-                                        {{ article.desc_en|safe|truncatechars:100 }}
+                                        {{ article.desc_en|capfirst|safe|truncatechars:100 }}
                                     </p>
                                     {% for category in article.category.active %}
                                     <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-                                            {{ category.name_en }}
+                                            {{ category.name_en|lower }}
                                         </a> {% endfor %}
                                     <div class="icons-card pt-2 mt-3">
                                         <div class="d-inline-flex w-auto align-items-center flex-wrap">
@@ -89,7 +83,7 @@
                                             </div>
                                         </a>
                                         <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
-                                                see more
+                                                more
                                         </a>
                                     </div>
                                 </div>

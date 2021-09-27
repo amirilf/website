@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>article|{{ article.title_en }}</title>
+    <title>Article | {{ article.title_en|title }}</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
@@ -24,7 +24,7 @@
 
     
     <!-- new ref -->
-    <link rel="stylesheet" href="/static//blog//css/sweetalert2.min.css">
+    <link rel="stylesheet" href="/static/blog/css/sweetalert2.min.css">
 </head>
 
 <body>
@@ -41,7 +41,7 @@
 
         <div class="text-center header-img">
             <h1 class="w-100">
-                {{ article.title_en }}
+                {{ article.title_en|capfirst }}
             </h1>
             <div class="w-auto px-0">
                 <div class="py-2 d-inline-block">
@@ -91,30 +91,17 @@
                                 <div class="body-article">
                                     {{ article.body_en|safe }}
                                 </div>
-                                <div class=" pt-4 mt-4">
+                                <div class="pt-4 mt-4">
                                     <h5>
                                         Tags
                                     </h5>
                                     {% for tag in article.category.active %}
                                         <a href="{% url 'blog:tag' tag.slug %}" class="badge bg-dark text-light text-decoration-none">
-                                            {{ tag.name_en }}
+                                            {{ tag.name_en|lower }}
                                         </a>                                    
                                     {% endfor %}
                                 </div>
-                                <div class="pt-4">
-                                    <div class="row writer align-items-center justify-content-center">
-                                        <div class="col-md-3 col-lg-2 col-5">
-                                            <img src="{{ article.author.thumbnail.url }}" class="rounded-pill mb-4" alt="">
-                                        </div>
-                                        <div class="col-12 col-lg-10 col-md-9 description">
-                                            <h1 class="h4 mx-2">{% author_full_name article.author %}</h1>
-                                            {% if article.author.desc %}
-                                                <p class="mb-0 mx-2">{{ article.author.desc|truncatechars:100|striptags|safe }}</p>                                            
-                                            {% endif %}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pt-4">
+                                <div class="pt-5">
                                     <h5>
                                         Short link
                                     </h5>
@@ -123,6 +110,21 @@
                                             <i class="far fa-copy"></i>
                                         </button>
                                         <input type="text" class="form-control w-auto pe-5" id="shortLink" value="{% site_setting 'site_domain' %}/{{article.short_slug}}" disabled>
+                                    </div>
+                                </div>
+                                <div class="pt-4">
+                                    <div class="row writer align-items-center justify-content-center">
+                                        <div class="col-md-3 col-lg-2 col-5">
+                                            <img src="{{ article.author.thumbnail.url }}" class="rounded-pill mb-4" alt="">
+                                        </div>
+                                        <div class="col-12 col-lg-10 col-md-9 description">
+                                            <a class='text-decoration-none text-dark' href="/{{ article.author.user_page_url }}">
+                                                <h1 class="h4 mx-2">{% author_full_name article.author %}</h1>
+                                            </a>
+                                            {% if article.author.desc %}
+                                                <p class="mb-0 mx-2">{{ article.author.desc|truncatechars:200|striptags|safe }}</p>                                            
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -245,7 +247,7 @@
                             {% empty %}
 
                             <div class="px-5 py-5 text-center">
-                                Be the first to comment
+                                be the first one to comment
                             </div>
                             {% endfor %}
 

@@ -1,11 +1,11 @@
 {% if fix %}
     {% for category in col_4_tags %}
         <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-            {{ category.name_en }}
+            {{ category.name_en|lower }}
         </a> {% endfor %} {% else %} {% for category in col_4_tags %}
         
         <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-            {{ category.name_en }}
+            {{ category.name_en|lower }}
         </a> 
     {% endfor %}
     

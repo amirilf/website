@@ -24,7 +24,7 @@ class CommentForm(forms.ModelForm):
                 'name':"text-message", 
                 'id':"text-message",
                 'cols':30,
-                'rows':5,
+                'rows':4,
                 'class':"form-control form-control-sm bg-light",
                 'placeholder': "Write your comment",
             }

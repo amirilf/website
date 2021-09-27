@@ -6,7 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
+    {% if search %}
+        <title>Search | {{ search }}</title>
+    {% else %}
+        <title>Search</title>
+    {% endif %}
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
@@ -33,7 +37,6 @@
                             search
                         </button>
                     </div>
-                    <span class="d-block text-center pt-3 text-danger small d-none" id="inputErorr">Please enter at least three characters</span>
                 </div>
             </form>
         </div>
@@ -62,14 +65,14 @@
                                         </div>
                                         <div class="col-lg-6 col-xl-7 p-3">
                                             <h5 class="pb-3">
-                                                {{ article.title_en }}
+                                                {{ article.title_en|capfirst }}
                                             </h5>
                                             <p class="mb-3">
-                                                {{ article.desc_en|safe|truncatechars:100 }}
+                                                {{ article.desc_en|capfirst|safe|truncatechars:100 }}
                                             </p>
                                             {% for category in article.category.active %}
                                             <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-                                                        {{ category.name_en }}
+                                                        {{ category.name_en|lower }}
                                                     </a> {% endfor %}
                                             <div class="icons-card pt-2 mt-3">
                                                 <div class="d-inline-flex w-auto align-items-center flex-wrap">
@@ -99,7 +102,7 @@
                                                     </div>
                                                 </a>
                                                 <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
-                                                    see more
+                                                    more
                                                 </a>
                                             </div>
                                         </div>
@@ -111,25 +114,35 @@
                                 <div class="container">
                                     <div class="row m-5">
                                         <div class="text-center">
-                                            There are no result <span class="h4">😩</span>
+                                            Nothing matched 😩
                                         </div>
                                     </div>
                                 </div>
                             {% endfor %}
                         {% else %}
-
-                        <!-- if user just opened search page -->
+                            {% if error %}
+                                <!-- if user there is error -->
                                 <div class="container">
                                     <div class="row">
-                                        <div class="text-center">
-                                            Please first search something <span class="h4">🧐</span>
+                                        <div class="text-center text-danger">
+                                            Enter at least two letters❗️
                                         </div>
                                     </div>
                                 </div>
+                            {% else %}
+                                <!-- if user just opened search page -->
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="text-center">
+                                            First search something 🔍
+                                        </div>
+                                    </div>
+                                </div>                            
+                            {% endif %}
                         {% endif %}
                     </section>
                     <!--  Articles found end -->
-                    <section>
+                    <section class='mt-5'>
                         {% if search %}
                             <h5 class="text-center">
                                 Tags Search Results
@@ -158,7 +171,7 @@
                                     <div class="container">
                                         <div class="row m-5">
                                             <div class="text-center">
-                                                There are no result <span class="h4">😩</span>
+                                                Nothing matched 😩
                                             </div>
                                         </div>
                                     </div>

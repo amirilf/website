@@ -6,7 +6,8 @@ from .views import (
     AmirView,
     Home,
     ShortSlugView,
-    TagView,
+    # TagView, ==> bottom class in used
+    TagListView,
     #TagsView, ==> bottom class is used
     TagsListView,
     ArticleView,
@@ -16,14 +17,13 @@ from .views import (
     comment_confirm,
     comment_delete,
     comments_check,
-    send_email_,
 )
 
 app_name = 'blog'
 urlpatterns = [
     path('',Home,name='home'),
     path('tags',TagsListView.as_view(),name='tags'),
-    path('tags/<slug:tag_slug>',TagView,name='tag'),
+    path('tags/<slug:tag_slug>',TagListView.as_view(),name='tag'),
     path('articles',ArticlesListView.as_view(),name='articles'),
     path('articles/<slug:article_slug>',ArticleView,name='article_slug'),
     path('search',SearchView,name='search'),
@@ -32,7 +32,6 @@ urlpatterns = [
     path('comments',comments_check),
     path('comments/delete/<int:pk_id>',comment_delete,name='delete_comment'),
     path('comments/confirm/<int:pk_id>',comment_confirm,name='confirm_comment'),
-    path('email',send_email_),
     
     # the last one for shortcuts
     path('<slug:short_slug_url>',ShortSlugView),

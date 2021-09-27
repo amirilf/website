@@ -50,7 +50,7 @@
                     <!-- last articles -->
                     <section>
                         <h5 class="text-center">
-                            last articles
+                            Last articles
                         </h5>
                         {% for article in latest_articles %}
                         <div class="card rounded my-4 overflow-hidden">
@@ -60,14 +60,14 @@
                                 </div>
                                 <div class="col-lg-6 col-xl-7 p-3">
                                     <h5 class="pb-3">
-                                        {{ article.title_en }}
+                                        {{ article.title_en|capfirst }}
                                     </h5>
                                     <p class="mb-3">
-                                        {{ article.desc_en|safe|truncatechars:100 }}
+                                        {{ article.desc_en|capfirst|safe|truncatechars:100 }}
                                     </p>
                                     {% for category in article.category.active %}
                                     <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-                                            {{ category.name_en }}
+                                            {{ category.name_en|lower }}
                                         </a> {% endfor %}
                                     <div class="icons-card pt-2 mt-3">
                                         <div class="d-inline-flex w-auto align-items-center flex-wrap">
@@ -97,7 +97,7 @@
                                             </div>
                                         </a>
                                         <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
-                                                see more
+                                                more
                                             </a>
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@
                     <!-- most visited articles -->
                     <section id="most_visited" class="position-relative mb-2">
                         <h5 class="text-center pt-4">
-                            most visited articles
+                            Most visited articles
                         </h5>
                         <div class="mySwiper">
                             <div class="swiper-wrapper">
@@ -121,23 +121,23 @@
                                             </div>
                                             <div class="col-lg-7 col-xl-8 p-3">
                                                 <h5 class="pb-3">
-                                                    {{ article.title_en }}
+                                                    {{ article.title_en|capfirst }}
                                                 </h5>
                                                 <p class="mb-0">
-                                                    {{ article.desc_en|safe|truncatechars:100 }}
+                                                    {{ article.desc_en|capfirst|safe|truncatechars:100 }}
                                                 </p>
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
                                                     <a href="/{{ article.author.user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
                                                         <img src="{{ article.author.thumbnail.url }}" class="img-sm rounded-pill" alt="">
                                                         <div class="px-2">
                                                             <span>
-                                                                    {% author_full_name article.author %}
-                                                                </span>
+                                                                {% author_full_name article.author %}
+                                                            </span>
                                                         </div>
                                                     </a>
                                                     <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
-                                                            see more
-                                                        </a>
+                                                        more
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>

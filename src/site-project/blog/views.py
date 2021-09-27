@@ -4,9 +4,6 @@ from django.db.models import Q
 # category model
 from .models import Article, Category, Comment,Avatar,User
 
-#paginator
-from django.core.paginator import Paginator
-
 # forms
 from .forms import CommentForm
 
@@ -47,9 +44,10 @@ def Home(request):
 # ClassBase :
 class TagsListView(ListView):
     queryset      = Category.objects.active()
+    queryset      = [category for category in queryset if len(category.articles.active()) > 0]
     template_name = 'tags.html'
     context_object_name = 'categories'
-    paginate_by   = 5
+    paginate_by   = 20
     page_kwarg    = 'p'
 
     def get_context_data(self, **kwargs):        
@@ -60,16 +58,33 @@ class TagsListView(ListView):
 
 
 #======== Tag View
-def TagView(request,tag_slug):
-    try:
-        the_query = Category.objects.filter(slug=tag_slug,articles__isnull=False)[0]
-        context = {
-            'tag':the_query
-            }
-        return render(request,'tag.html',context)
-    except:
-        raise Http404()
+# def TagView(request,tag_slug):
+#     try:
+#         the_query = Category.objects.filter(slug=tag_slug,articles__isnull=False)[0]
+#         context = {
+#             'tag':the_query
+#             }
+#         return render(request,'tag.html',context)
+#     except:
+#         raise Http404()
+
+class TagListView(ListView):
+    template_name = "tag.html"
+    context_object_name = 'articles'
+    paginate_by = 5
+    page_kwarg  = 'p'
+
+    def get_queryset(self):
+        global category_object
+        tag_slug = self.kwargs.get('tag_slug')
+        category_object = get_object_or_404(Category.objects.active(),slug=tag_slug)
+        return category_object.articles.active()
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["tag"] = category_object
+        return context
+
 
 
 #======== Article View
@@ -160,11 +175,19 @@ class ArticlesListView(ListView):
 #======== Search View
 def SearchView(request):
     try:
-        search_query = request.GET['q']
-        article_results = Article.objects.active().filter( Q(title_en__icontains = search_query) | Q(desc_en__icontains = search_query) )
-        category_results = Category.objects.active_search().filter(name_en__icontains=search_query)
-        category_results = [item for item in category_results if len(item.articles.active()) > 0] 
+        search_query = str(request.GET['q']).strip()
+        if len(search_query) < 2 or search_query.isspace():
+            error = True
+            search_query = ''
+            article_results = []
+            category_results = []
+        else:
+            error = False
+            article_results = Article.objects.active().filter( Q(title_en__icontains = search_query) | Q(desc_en__icontains = search_query) )
+            category_results = Category.objects.active().filter(name_en__icontains=search_query)
+            category_results = [item for item in category_results if len(item.articles.active()) > 0] 
     except:
+        error = False
         search_query = ''
         article_results = []
         category_results = []
@@ -172,7 +195,8 @@ def SearchView(request):
         'search':search_query,
         'page':'search',
         'articles':article_results,
-        'categories':category_results,               
+        'categories':category_results,
+        'error' : error           
     }
     return render(request,'search.html',context)
 
@@ -228,33 +252,43 @@ def comments_check(request):
 
 def comment_delete(request,pk_id):
     if request.user.is_authenticated:
-        comment = Comment.objects.get(pk=pk_id)
-        comment.delete()
-        return HttpResponse('deleted')
+        try:
+            comment = Comment.objects.get(pk=pk_id)
+            comment.delete()
+            return HttpResponse('deleted')
+        except:
+            raise Http404()
     else:
         raise Http404()
 
 def comment_confirm(request,pk_id):
     if request.user.is_authenticated:
-        Comment.objects.filter(pk=pk_id).update(status=True)
-        return HttpResponse('confirmed')
+        try:
+            comment = Comment.objects.filter(pk=pk_id)
+            if comment[0].status == False:
+                comment.update(status=True)
+                return HttpResponse('confirmed')
+            else:
+                raise Http404()
+        except:
+            raise Http404()
     else:
         raise Http404()
 
 
 
 #======== SendEmail View
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-def send_email_(request):
-    msg_plain = render_to_string('email.txt', {'username': 'Amir Khorasani'})
-    msg_html = render_to_string('email.html', {'username': 'Amir Khorasani'})
+# from django.core.mail import send_mail
+# from django.template.loader import render_to_string
+# def send_email_(request):
+#     msg_plain = render_to_string('email.txt', {'username': 'Amir Khorasani'})
+#     msg_html = render_to_string('email.html', {'username': 'Amir Khorasani'})
     
-    send_mail(
-        'Hi there',
-        msg_plain,
-        'amirctw@gmail.com',
-        ['amirilf@protonmail.com'],
-        html_message=msg_html,
-    )
-    return HttpResponse('message sented (:')
+#     send_mail(
+#         'Hi there',
+#         msg_plain,
+#         'amirctw@gmail.com',
+#         ['amirilf@protonmail.com'],
+#         html_message=msg_html,
+#     )
+#     return HttpResponse('message sented (:')

@@ -49,8 +49,6 @@ class ArticleManager(models.Manager):
 # filter categories by 2 item => status and len articles with this tag
 class CategoryManager(models.Manager):
     def active(self):
-        return [item for item in self.filter(status=True) if len(item.articles.active()) > 0]   
-    def active_search(self):
         return self.filter(status=True)
         
 class CommentsManager(models.Manager):

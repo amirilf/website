@@ -26,7 +26,6 @@
 
                 <!-- col Left -->
                 <div class="col-12">
-                    <!-- last articles -->
                     <div id="profile-master" data-rellax-speed="3" class="w-100 position-relative px-4 text-center rellax">
                         <img src="{{ data.thumbnail.url }}" class="rounded-pill p-2 bg-white"  alt="">
                     </div>
@@ -37,9 +36,9 @@
                         <h5 class="text-center font-weight-normal">
                             {% for skill in data.get_skills %}
                                 {% if not forloop.last %}
-                                    <span class="p-2 d-inline-block">{{ skill }}</span> |
+                                    <span class="p-2 d-inline-block">{{ skill|title }}</span> |
                                 {% else %}
-                                    <span class="p-2 d-inline-block">{{ skill }}</span>
+                                    <span class="p-2 d-inline-block">{{ skill|title }}</span>
                                 {% endif %}
                             {% endfor %}
                         </h5>
@@ -58,7 +57,6 @@
                         {{ data.desc|safe }}
                         </p>
                     </section>
-                    <!-- last articles end -->
                 </div>
             </div>
         </div>
