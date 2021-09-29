@@ -17,12 +17,15 @@
     <link rel="stylesheet" href="{% static 'blog/css/pages/articel.css' %}">
 
 
-    <!-- code snippet dependents -->    
-    <link rel="stylesheet" href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css' %}">
+    <!-- code snippet dependents -->
+    <link rel="stylesheet"
+        href="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css' %}">
     <script src="{% static 'ckeditor/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js' %}"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        hljs.initHighlightingOnLoad();
+    </script>
 
-    
+
     <!-- new ref -->
     <link rel="stylesheet" href="/static/blog/css/sweetalert2.min.css">
 </head>
@@ -34,7 +37,7 @@
         </div>
     </div>
     <header class="thumbnail">
-    
+
         <!-- navbar -->
         {% include 'partials/navbar.html' %}
         <!-- navbar end -->
@@ -81,11 +84,12 @@
                     <section>
                         <div class="row justify-content-center articel-header-img">
                             <div class="col-9 col-sm-7 text-center">
-                                <img src="{{ article.thumbnail.url }}" class="img-fluid rounded shadow-lg rellax" data-rellax-speed="2" alt="">
+                                <img src="{{ article.thumbnail.url }}" class="img-fluid rounded shadow-lg rellax"
+                                    data-rellax-speed="2" alt="">
                             </div>
                         </div>
                         <div class="row pt-5">
-                            
+
                             <!-- body Article -->
                             <div class="col-12">
                                 <div class="body-article">
@@ -96,9 +100,10 @@
                                         Tags
                                     </h5>
                                     {% for tag in article.category.active %}
-                                        <a href="{% url 'blog:tag' tag.slug %}" class="badge bg-dark text-light text-decoration-none">
-                                            {{ tag.name_en|lower }}
-                                        </a>                                    
+                                    <a href="{% url 'blog:tag' tag.slug %}"
+                                        class="badge bg-dark text-light text-decoration-none">
+                                        {{ tag.name_en|lower }}
+                                    </a>
                                     {% endfor %}
                                 </div>
                                 <div class="pt-5">
@@ -106,23 +111,27 @@
                                         Short link
                                     </h5>
                                     <div class="position-relative w-auto d-inline-block">
-                                        <button class="position-absolute pe-3 end-0 align-center-position btn" onclick="copyTxtInput()">
-                                            <i class="far fa-copy"></i>
+                                        <button class="position-absolute pe-3 end-0 align-center-position btn"
+                                            onclick="copyTxtInput()">
+                                            <i class="far fa-copy text-dark"></i>
                                         </button>
-                                        <input type="text" class="form-control w-auto pe-5" id="shortLink" value="{% site_setting 'site_domain' %}/{{article.short_slug}}" disabled>
+                                        <input type="text" class="form-control w-auto pe-5 bg-light" id="shortLink"
+                                            value="{% site_setting 'site_domain' %}/{{article.short_slug}}" disabled>
                                     </div>
                                 </div>
                                 <div class="pt-4">
-                                    <div class="row writer align-items-center justify-content-center">
-                                        <div class="col-md-3 col-lg-2 col-5">
-                                            <img src="{{ article.author.thumbnail.url }}" class="rounded-pill mb-4" alt="">
+                                    <div class="row writer align-items-center">
+                                        <div class="col-md-3 col-5 col-lg-2">
+                                            <img src="{{ article.author.thumbnail.url }}" class="rounded-pill my-3" alt="">
                                         </div>
-                                        <div class="col-12 col-lg-10 col-md-9 description">
-                                            <a class='text-decoration-none text-dark' href="/{{ article.author.user_page_url }}">
+                                        <div class=" col-lg-10 col-md-9 col-12 description">
+                                            <a class='text-decoration-none text-dark'
+                                                href="/{{ article.author.user_page_url }}">
                                                 <h1 class="h4 mx-2">{% author_full_name article.author %}</h1>
                                             </a>
                                             {% if article.author.desc %}
-                                                <p class="mb-0 mx-2">{{ article.author.desc|truncatechars:200|striptags|safe }}</p>                                            
+                                            <p class="mb-0 mx-2">
+                                                {{ article.author.desc|truncatechars:200|striptags|safe }}</p>
                                             {% endif %}
                                         </div>
                                     </div>
@@ -143,19 +152,24 @@
 
                                         <!-- name section in form -->
                                         <div class="my-2 align-items-end justify-content-between gy-3">
-                                            <label for="title-message" class="form-label">Name</label> {{ comment_form.name }}
+                                            <label for="title-message" class="form-label">Name</label>
+                                            {{ comment_form.name }}
                                         </div>
                                         <!-- end name section -->
 
                                         <!-- avatar section in form -->
                                         <div class="my-2">
                                             <label for="avatar-message" class="form-label pt-2">Avatar*</label>
-                                            <div id="avatar-message" class="w-100 px-3 form-control bg-light form-control-sm">
+                                            <div id="avatar-message"
+                                                class="w-100 px-3 form-control bg-light form-control-sm">
                                                 <div class="mySwiper2 row overflow-hidden position-relative">
                                                     <div class="swiper-wrapper pt-2 pb-4">
                                                         {% for avatar in avatars %}
                                                         <div class="col-2 col-xl-1 swiper-slide">
-                                                            <img src="{{ avatar.thumbnail.url }}" alt="avatar" data-avatar="{{ avatar.id }}" class="rounded-pill border border-secondary img-sm d-inline-block my-0 img-avatar" onclick="avatarSelect(this)">
+                                                            <img src="{{ avatar.thumbnail.url }}" alt="avatar"
+                                                                data-avatar="{{ avatar.id }}"
+                                                                class="rounded-pill border border-secondary img-sm d-inline-block my-0 img-avatar"
+                                                                onclick="avatarSelect(this)">
                                                         </div>
                                                         {% endfor %}
                                                     </div>
@@ -167,13 +181,15 @@
 
                                             <!-- massage section in form -->
                                             <div class="my-2">
-                                                <label for="text-message" class="form-label pt-2">Comment</label> {{ comment_form.desc }}
+                                                <label for="text-message" class="form-label pt-2">Comment</label>
+                                                {{ comment_form.desc }}
                                             </div>
                                             <!-- end message section -->
 
 
                                             <!-- submit section in form -->
-                                            <button name="submit-message" type="submit" class="btn btn-outline-dark btn-sm d-block mt-3 ms-auto">
+                                            <button name="submit-message" type="submit"
+                                                class="btn btn-outline-dark btn-sm d-block mt-3 ms-auto">
                                                 submit
                                             </button>
                                             <!-- end submit section -->
@@ -189,34 +205,37 @@
                             <div class="px-3 py-1">
                                 <div class="message p-3 pb-0 mb-2 rounded ">
                                     <div class="d-flex align-items-center">
-                                        
+
                                         {% if comment.admin %}
-                                            <img src="{{ comment.admin.thumbnail.url }}" class="rounded-pill img-sm border border-3 border-secondary" alt="avatar">
-                                           
-                                            <div class="ps-3">
-                                                <h6 class="my-1">
-                                                    {% author_full_name comment.admin %} (admin)
-                                                </h6>
-                                                <p class="my-1">
-                                                    {{ comment.created|date:'Y/m/d H:i'}}
-                                                </p>
-                                            </div>
+                                        <img src="{{ comment.admin.thumbnail.url }}"
+                                            class="rounded-pill img-sm border border-3 border-secondary" alt="avatar">
+
+                                        <div class="ps-3">
+                                            <h6 class="my-1">
+                                                {% author_full_name comment.admin %} (admin)
+                                            </h6>
+                                            <p class="my-1">
+                                                {{ comment.created|date:'Y/m/d H:i'}}
+                                            </p>
+                                        </div>
 
                                         {% else %}
-                                            {% if comment.avatar %}
-                                                <img src="{{ comment.avatar.thumbnail.url }}" class="rounded-pill img-sm border border-secondary" alt="avatar">
-                                            {% else %}
-                                                <img src="../media/avatars/default.png" class="rounded-pill img-sm border border-secondary" alt="avatar">
-                                            {% endif %}
+                                        {% if comment.avatar %}
+                                        <img src="{{ comment.avatar.thumbnail.url }}"
+                                            class="rounded-pill img-sm border border-secondary" alt="avatar">
+                                        {% else %}
+                                        <img src="../media/avatars/default.png"
+                                            class="rounded-pill img-sm border border-secondary" alt="avatar">
+                                        {% endif %}
 
-                                            <div class="ps-3">
-                                                <h6 class="my-1">
-                                                    {{ comment.name }}
-                                                </h6>
-                                                <p class="my-1">
-                                                    {{ comment.created|date:'Y/m/d H:i'}}
-                                                </p>
-                                            </div>
+                                        <div class="ps-3">
+                                            <h6 class="my-1">
+                                                {{ comment.name }}
+                                            </h6>
+                                            <p class="my-1">
+                                                {{ comment.created|date:'Y/m/d H:i'}}
+                                            </p>
+                                        </div>
 
                                         {% endif %}
 
@@ -227,20 +246,22 @@
                                         </p>
                                         <div class="Paragraph-cover d-none rounded-bottom position-absolute">
                                             <span class="badge bg-info float-end" onclick="showMoreMessage(this)">
-                                                    show more
+                                                show more
                                             </span>
                                         </div>
                                     </div>
                                     <div>
                                         <input type="hidden" name="parent_id" value="{{ comment.id }}">
                                     </div>
-                                    <button class="pb-2 d-block btn ms-auto btn-sm text-decoration-none text-info" onclick="appendForm(this)">
-                                            <i class="fas fa-reply text-info"></i>
-                                            replay
-                                        </button>
+                                    <button class="pb-2 d-block btn ms-auto btn-sm text-decoration-none text-info"
+                                        onclick="appendForm(this)">
+                                        <i class="fas fa-reply text-info"></i>
+                                        replay
+                                    </button>
                                     <div></div>
 
-                                    {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %} {% endfor %}
+                                    {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %}
+                                    {% endfor %}
 
                                 </div>
                             </div>
@@ -268,7 +289,7 @@
     <!-- end main -->
 
     <!-- Footer -->
-        {% include 'partials/footer.html' %}
+    {% include 'partials/footer.html' %}
     <!-- Footer -->
 
     <!-- js refrences -->

@@ -18,7 +18,6 @@ window.onscroll = () => {
                 s.classList.add("text-dark")
             }
             nav.classList.add('shadow');
-            console.log(4);
         } else {
             nav.style.top = "-60px";
             nav.classList.remove('shadow');
@@ -78,7 +77,6 @@ const btnNavbar = () => {
 
 
 const avatarSelect = (e) => {
-    console.log(e);
     getId("articel_input").value = e.dataset.avatar;
     for (avatar of getClass("img-avatar")) {
         avatar.classList.remove("avatar-selected");
@@ -90,7 +88,6 @@ const avatarSelect = (e) => {
 
 var SocialNetworks = false;
 const funcSocialNetworks = (e) => {
-    console.log(SocialNetworks);
     if (SocialNetworks) {
         SocialNetworks = !SocialNetworks;
     } else {
@@ -159,7 +156,7 @@ const submitComment = () => {
     })
 }
 const submitSearch = () => {
-    if (getId("searchInput").value.length < 2) {
+    if (getId("searchInput").value.trim().length < 3) {
         queryS("#inputErorr").classList.remove("d-none")
         return false
     }
@@ -167,6 +164,7 @@ const submitSearch = () => {
     return true
 }
 
+var btnDarkMode = document.querySelector(".btn-dark-mode")
 var darkModeToggle = document.querySelector(".dark-mode-button");
 var lightSwitch = document.getElementById("lightSwitch");
 if (lightSwitch) {
@@ -181,15 +179,19 @@ if (lightSwitch) {
             localStorage.getItem("lightSwitch") !== null &&
             localStorage.getItem("lightSwitch") === "dark";
         darkModeToggle.classList.replace("fa-sun", "fa-moon");
+        btnDarkMode.classList.replace("bg-white", "bg-dark")
+        btnDarkMode.children[0].classList.replace("text-dark", "text-white")
 
         if (isSelected) {
             darkModeToggle.classList.replace("fa-moon", "fa-sun");
+            btnDarkMode.classList.replace("bg-dark", "bg-white")
+            btnDarkMode.children[0].classList.replace("text-white", "text-dark")
 
 
             // document.querySelectorAll(".bg-light").forEach((element) => {
             //     element.className = element.className.replace(/-light/g, "-dark");
             // });
-
+            document.querySelectorAll(".page-link").forEach((e) => e.classList.add("bg-opacity"))
             document.querySelector("main").classList.add("bg-dark");
             document.querySelector("footer").classList.replace("bg-dark", "bg-glass-light");
             if (document.querySelector("#avatar-message")) {
@@ -203,8 +205,15 @@ if (lightSwitch) {
                     element.classList.add("bg-gray");
                 });
             }
+            for (input of document.getElementsByTagName("input")) {
+                if (input.classList.contains("bg-light")) {
+                    input.classList.add("bg-light");
+                    input.classList.add("text-dark");
+                }
+            }
 
             if (document.querySelector("main").classList.contains("text-dark")) {
+                // document.querySelectorAll(".page-link").forEach((e) => e.classList.add("bg-opacity"))
                 document.querySelector("main").classList.replace("text-dark", "text-light");
                 document.querySelector("footer").classList.replace("text-light", "text-dark");
                 for (i of document.getElementsByTagName("i")) {
@@ -214,14 +223,14 @@ if (lightSwitch) {
                 }
                 for (input of document.getElementsByTagName("input")) {
                     if (input.classList.contains("bg-light")) {
-                        input.classList.add("bg-dark");
-                        input.classList.add("text-white");
+                        input.classList.replace("bg-light", "bg-dark");
+                        input.classList.replace("text-dark", "text-light");
                     }
                 }
                 for (textarea of document.getElementsByTagName("textarea")) {
                     if (textarea.classList.contains("bg-light")) {
                         textarea.classList.add("bg-dark");
-                        textarea.classList.add("text-white");
+                        textarea.classList.add("text-light");
                     }
                 }
                 for (a of document.getElementsByTagName("a")) {
@@ -250,13 +259,13 @@ if (lightSwitch) {
                 for (textarea of document.getElementsByTagName("textarea")) {
                     if (textarea.classList.contains("bg-light")) {
                         textarea.classList.add("bg-dark");
-                        textarea.classList.add("text-light");
+                        textarea.classList.replace("text-dark", "text-light");
                     }
                 }
                 for (input of document.getElementsByTagName("input")) {
                     if (input.classList.contains("bg-light")) {
                         input.classList.replace("bg-light", "bg-dark");
-                        input.classList.add("text-light");
+                        input.classList.replace("text-dark", "text-light");
                     }
                 }
                 for (i of document.getElementsByTagName("i")) {
@@ -270,6 +279,7 @@ if (lightSwitch) {
                     }
                 }
                 document.querySelector("main").classList.add("text-light");
+                // document.querySelectorAll(".page-link").forEach((e) => e.classList.remove("bg-opacity"))
                 document.querySelector("footer").classList.add("text-dark");
             } // set light switch input to true
             lightSwitch.checked = true;
@@ -314,6 +324,7 @@ if (lightSwitch) {
             //   document.querySelectorAll(".bg-dark").forEach((element) => {
             //     element.className = element.className.replace(/-dark/g, "-light");
             //   });
+            document.querySelectorAll(".page-link").forEach((e) => e.classList.remove("bg-opacity"))
             document.querySelector("main").classList.remove("bg-dark");
             document.querySelector("footer").classList.replace("bg-glass-light", "bg-dark");
             if (document.querySelector(".message-box")) {
@@ -345,10 +356,11 @@ function toggleDarkMode() {
         lightSwitch.checked = true;
     } else {
         lightSwitch.checked = false;
+
         darkModeToggle.classList.replace("fa-sun", "fa-moon");
-        console.log(lightSwitch.checked);
+        btnDarkMode.classList.replace("bg-white", "bg-dark")
+        btnDarkMode.children[0].classList.replace("text-dark", "text-white")
     }
-    console.log(lightSwitch.checked);
     lightMode()
 }
 
@@ -408,4 +420,6 @@ var swiper = new Swiper(".mySwiper2", {
         clickable: true,
     },
 });
-document.getElementById(idrow).insertBefore(cln, document.getElementById(idrow).firstChild);
+if (document.getElementById(idrow)) {
+    document.getElementById(idrow).insertBefore(cln, document.getElementById(idrow).firstChild);
+}

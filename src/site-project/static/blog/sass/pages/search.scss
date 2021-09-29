@@ -1,33 +1,42 @@
 @import "../Variables";
 @import "../mixin";
-header{
-    nav{
+
+header {
+    nav {
         @include shadow("md");
     }
-    form{
-        .form-row{
+
+    form {
+        .form-row {
             max-width: 50rem;
         }
     }
 }
+
 main {
-    .tag{
-        .d-flex{
-            i{
+    height: 100%;
+    min-height: calc(100vh - 286px);
+
+    .tag {
+        .d-flex {
+            i {
                 font-size: 10px;
             }
+
             moz-transition: all .3s ease-in-out;
             -o-transition: all .3s ease-in-out;
             -webkit-transition: all .3s ease-in-out;
             transition: all .3s ease-in-out;
-            background: linear-gradient(45deg ,  rgba(255, 255, 255, 0) 70% , #6886ff5e 100%);
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0) 70%, #6886ff5e 100%);
             background-size: 200% 100%;
-            &:hover{
+
+            &:hover {
                 @include shadow("lg");
                 background-position: 100% 0;
             }
         }
-        .img-tag{
+
+        .img-tag {
             width: 70px;
             height: 100%;
             min-height: 50px;

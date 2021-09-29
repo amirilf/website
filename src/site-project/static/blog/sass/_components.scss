@@ -1,15 +1,18 @@
-nav{
+nav {
     top: 0;
-    transition: top 0.3s ,box-shadow 0.3s;
+    transition: top 0.3s, box-shadow 0.3s;
     background-color: rgba(221, 221, 221, 0);
     z-index: 9999;
-    .navbar-nav{
-        .nav-link{
+
+    .navbar-nav {
+        .nav-link {
             position: relative;
-            &:hover{
+
+            &:hover {
                 color: $c-dark;
             }
-            &::after{
+
+            &::after {
                 position: absolute;
                 bottom: 0;
                 left: 0;
@@ -21,55 +24,92 @@ nav{
                 height: 3px;
                 transition: all 0.5s;
             }
-            &:hover{
-                &::after{
+
+            &:hover {
+                &::after {
                     width: 10%;
                 }
             }
         }
     }
-    .navbar-brand{
+
+    .navbar-brand {
         padding: 0 !important;
     }
 }
-.card{
+
+.card {
     @include shadow("md");
-    .icons-card{
+
+    .icons-card {
         font-size: 13px;
-        color: rgb(92, 92, 92);
+        color: rgb(136, 136, 136);
     }
-    .img-sm{
+    &:hover .img-card-creator{
+        transform: scale(1.2,1.2);
+        transition: all .3s;
+    }
+
+    .img-sm {
         width: 40px;
         height: 40px;
     }
+
     border: none;
-    .img-card{
+    transition: all .3s;
+
+    .img-card {
         min-height: 100px;
         background-size: cover !important;
+        transition: all .3s;
+
     }
-    a{
+
+    .img-card-creator {
+        min-height: 250px !important;
+        // margin-top: -100px;
+        transition: all .3s;
+
+    }
+
+    a {
         vertical-align: text-top !important;
         display: inline-block;
     }
 }
 
 .admin {
-    img{
+    img {
         animation: shadow 4s infinite;
     }
 }
+
 @keyframes shadow {
-    0%{ box-shadow:#ee7752 0px 0px 10px 0px;}
-    25%{ box-shadow: #e73c7e 0px 0px 10px 0px;}
-    50%{ box-shadow: #23a6d5 0px 0px 10px 0px;}
-    75%{ box-shadow: #23d5ab 0px 0px 10px 0px;}
-    100%{ box-shadow: #ee7752 0px 0px 10px 0px;}
+    0% {
+        box-shadow: #ee7752 0px 0px 10px 0px;
+    }
+
+    25% {
+        box-shadow: #e73c7e 0px 0px 10px 0px;
+    }
+
+    50% {
+        box-shadow: #23a6d5 0px 0px 10px 0px;
+    }
+
+    75% {
+        box-shadow: #23d5ab 0px 0px 10px 0px;
+    }
+
+    100% {
+        box-shadow: #ee7752 0px 0px 10px 0px;
+    }
 }
 
-.btn-dark-mode{
+.btn-dark-mode {
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    bottom: 10px;
+    left: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -78,37 +118,46 @@ nav{
     height: 50px;
     border-radius: 100%;
     @include shadow;
-    background: $c-white;
 }
-.body-article{
+
+.body-article {
     line-height: 2rem !important;
 }
 
-footer{
-    &.bg-dark{
+footer {
+    &.bg-dark {
         @include c-glass-dark(.92);
     }
-    &.bg-glass-light{
+
+    &.bg-glass-light {
         @include c-glass(.90);
     }
-    &.text-light{
-        a{
+
+    &.text-light {
+        a {
             color: $c-white !important;
         }
     }
-    &.text-dark{
-        a{
+
+    &.text-dark {
+        a {
             color: $c-dark !important;
         }
     }
-    #like_footer{
-        i{
+
+    #like_footer {
+        i {
             color: $c-red;
-            &:nth-child(2){
+
+            &:nth-child(2) {
                 animation: likeFooter 2.5s infinite;
                 top: 2.5px;
                 left: 0;
             }
         }
     }
+}
+
+.page-item.active {
+    background-color: #0d6efd !important;
 }
