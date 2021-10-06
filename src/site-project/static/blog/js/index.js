@@ -397,29 +397,36 @@ if (getId("bgItem") != null) {
 if (queryS("body").hasAttribute("data-src")) {
     queryS("body").style.backgroundImage = `url(${queryS("body").getAttribute("data-src")})`;
 }
+try{
+    var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        spaceBetween: 45,
+        centeredSlides: true,
+        autoplay: {
+            delay: 4500,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+    var swiper = new Swiper(".mySwiper2", {
+        slidesPerView: "auto",
+        centeredSlides: false,
+        spaceBetween: 5,
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+}catch(err){
 
-var swiper = new Swiper(".mySwiper", {
-    loop: true,
-    spaceBetween: 45,
-    centeredSlides: true,
-    autoplay: {
-        delay: 4500,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-});
-var swiper = new Swiper(".mySwiper2", {
-    slidesPerView: "auto",
-    centeredSlides: false,
-    spaceBetween: 5,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-});
-if (document.getElementById(idrow)) {
-    document.getElementById(idrow).insertBefore(cln, document.getElementById(idrow).firstChild);
+}
+try{
+
+}catch(err){
+    if (document.getElementById(idrow)) {
+        document.getElementById(idrow).insertBefore(cln, document.getElementById(idrow).firstChild);
+    }
 }
