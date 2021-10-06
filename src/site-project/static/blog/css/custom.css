@@ -182,6 +182,9 @@ footer #like_footer i {
 .scroll-navbar {
   background-color: #fff; }
 
+.hljs {
+  padding: 2rem !important; }
+
 .sidebar {
   position: -webkit-sticky;
   position: sticky !important;
