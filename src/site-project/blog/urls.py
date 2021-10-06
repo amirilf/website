@@ -1,37 +1,46 @@
-from django.urls import path
+from django.urls import path,re_path
 
 # import views
 from .views import (
-    AlirezaView,
-    AmirView,
     Home,
-    ShortSlugView,
-    # TagView, ==> bottom class in used
-    TagListView,
-    #TagsView, ==> bottom class is used
     TagsListView,
-    ArticleView,
-    #ArticlesView, ==> bottom class is used
+    TagListView,
     ArticlesListView,
+    ArticleView,
+    AmirView,
+    AlirezaView,
+    AuthorArticlesView,
     SearchView,
-    comment_confirm,
-    comment_delete,
-    comments_check,
+    Comment_confirm,
+    Comment_delete,
+    Comments_check,
+    ShortSlugView,
 )
 
 app_name = 'blog'
 urlpatterns = [
     path('',Home,name='home'),
+
+    # tags section
     path('tags',TagsListView.as_view(),name='tags'),
     path('tags/<slug:tag_slug>',TagListView.as_view(),name='tag'),
+    
+    # articles section
     path('articles',ArticlesListView.as_view(),name='articles'),
     path('articles/<slug:article_slug>',ArticleView,name='article_slug'),
+    
+    # search section
     path('search',SearchView,name='search'),
+    
+    # authors section
     path('amir',AmirView),
     path('alireza',AlirezaView),
-    path('comments',comments_check),
-    path('comments/delete/<int:pk_id>',comment_delete,name='delete_comment'),
-    path('comments/confirm/<int:pk_id>',comment_confirm,name='confirm_comment'),
+    re_path('(?P<author>(amir|alireza))/articles',AuthorArticlesView.as_view(),name='author-articles'),
+    
+    # check comments section
+    path('comments',Comments_check),
+    path('comments/delete/<int:pk_id>',Comment_delete,name='delete_comment'),
+    path('comments/confirm/<int:pk_id>',Comment_confirm,name='confirm_comment'),
     
     # the last one for shortcuts
     path('<slug:short_slug_url>',ShortSlugView),

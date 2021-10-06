@@ -25,14 +25,12 @@
     <main class="pt-5">
         <div class="container">
             <div class="row gx-md-5">
-
-
                 <div class="col-12">
                     <div id="profile-master" data-rellax-speed="3"
                         class="w-100 position-relative px-4 text-center rellax">
                         <img src="{{ data.thumbnail.url }}" class="rounded-pill p-2 bg-white" alt="">
                     </div>
-                    <section class="pt-4">
+                    <section class="py-3">
                         <h1 class="text-center pb-3">
                             {{ data.full_capital_name }}
                         </h1>
@@ -57,149 +55,63 @@
                             <a href="{{ data.github }}" class="px-2"><i class="fab fa-github text-dark"></i></a>
                             {% endif %}
                         </div>
-                        <p class="pt-5">
+                        <p class="pt-4">
                             {{ data.desc|safe }}
                         </p>
                     </section>
-                    <section>
-                        <h1 class="text-center my-3 pt-4">
-                            my articles
-                        </h1>
-                        <div class="row g-0 gx-md-4">
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card my-4">
-                                    <div class="row g-0">
-                                        <div class="position-relative overflow-hidden">
-                                            <div class="img-card img-card-creator h-100"
-                                                data-src="../media/img/card.jpg">
+                    {% if data.articles.active %}
+                        <section>
+                            <h4 class="text-center pt-3">
+                                Last article by me (<a href="{% url 'blog:author-articles' data.username %}" class="text-info text-decoration-none fw-bold" >see all</a>)
+                            </h4>
+                            <div class="row justify-content-center g-0 gx-md-4">
+                                {% for article in data.articles.active|slice:"0:1" %}
+                                    <div class="col-11 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+                                        <div class="card my-4">
+                                            <div class="row g-0">
+                                                <div class="position-relative overflow-hidden">
+                                                    <div class="img-card img-card-creator h-100"
+                                                        data-src="{{ article.thumbnail.url }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="p-3">
+                                                <h5 class="">
+                                                    {{ article.title_en|capfirst|truncatechars:50 }}
+                                                </h5>
+                                                <p class="mb-0 pt-3">
+                                                    {{ article.desc_en|capfirst|safe|truncatechars:100 }}
+                                                </p>
+                                                <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                                    <div class="icons-card pt-2 mt-3">
+                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                            <i class="fas fa-calendar"></i>
+                                                            <p class="m-0 ps-1 pe-2">{{ article.created|date:'Y/m/d' }}</p>
+                                                        </div>
+                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                            <i class="fas fa-eye"></i>
+                                                            <p class="m-0 ps-1 pe-2">{{ article.views }}</p>
+                                                        </div>
+                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                            <i class="fas fa-clock"></i>
+                                                            <p class="m-0 ps-1 pe-2">{{ article.readtime }}</p>
+                                                        </div>
+                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                            <i class="fas fa-comment"></i>
+                                                            <p class="m-0 ps-1 pe-2">{{ article.comments.active|length }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark ms-auto mt-4 w-auto">
+                                                        more
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="p-3">
-                                        <h5 class="">
-                                            Lorem ipsum dolor, sit amet consectetur
-                                        </h5>
-                                        <p class="mb-0 pt-3">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum,
-                                            at?
-                                        </p>
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                            <div class="icons-card pt-2 mt-3">
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-calendar"></i>
-                                                    <p class="m-0 ps-1 pe-2">22/8/5485</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-eye"></i>
-                                                    <p class="m-0 ps-1 pe-2">45</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-clock"></i>
-                                                    <p class="m-0 ps-1 pe-2">2m</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-comment"></i>
-                                                    <p class="m-0 ps-1 pe-2">54</p>
-                                                </div>
-                                            </div>
-                                            <a href="" class="btn btn-outline-dark ms-auto mt-4 w-auto">
-                                                more
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                {% endfor %}
                             </div>
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card my-4">
-                                    <div class="row g-0">
-                                        <div class="position-relative overflow-hidden">
-                                            <div class="img-card img-card-creator h-100"
-                                                data-src="../media/img/card2.jpg">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-3">
-                                        <h5 class="">
-                                            Lorem ipsum dolor, sit amet consectetur
-                                        </h5>
-                                        <p class="mb-0 pt-3">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum,
-                                            at?
-                                        </p>
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                            <div class="icons-card pt-2 mt-3">
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-calendar"></i>
-                                                    <p class="m-0 ps-1 pe-2">22/8/5485</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-eye"></i>
-                                                    <p class="m-0 ps-1 pe-2">45</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-clock"></i>
-                                                    <p class="m-0 ps-1 pe-2">2m</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-comment"></i>
-                                                    <p class="m-0 ps-1 pe-2">54</p>
-                                                </div>
-                                            </div>
-                                            <a href="" class="btn btn-outline-dark ms-auto mt-4 w-auto">
-                                                more
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 col-md-6 col-lg-4">
-                                <div class="card my-4">
-                                    <div class="row g-0">
-                                        <div class="position-relative overflow-hidden">
-                                            <div class="img-card img-card-creator h-100"
-                                                data-src="../media/img/card3.jpeg">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="p-3">
-                                        <h5 class="">
-                                            Lorem ipsum dolor, sit amet consectetur
-                                        </h5>
-                                        <p class="mb-0 pt-3">
-                                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum,
-                                            at?
-                                        </p>
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                            <div class="icons-card pt-2 mt-3">
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-calendar"></i>
-                                                    <p class="m-0 ps-1 pe-2">22/8/5485</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-eye"></i>
-                                                    <p class="m-0 ps-1 pe-2">45</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-clock"></i>
-                                                    <p class="m-0 ps-1 pe-2">2m</p>
-                                                </div>
-                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                    <i class="fas fa-comment"></i>
-                                                    <p class="m-0 ps-1 pe-2">54</p>
-                                                </div>
-                                            </div>
-                                            <a href="" class="btn btn-outline-dark ms-auto mt-4 w-auto">
-                                                more
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-center py-3">
-                            These are my articles that have been most active. I hope you enjoy reading them ... <a href="">Click</a> to see my articles
-                        </p>
-                    </section>
+                        </section>
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -148,9 +148,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-
 CKEDITOR_CONFIGS = {
-
 'default': {
         'skin': 'moono',
         'toolbar_YourCustomToolbarConfig':  
@@ -181,9 +179,9 @@ CKEDITOR_CONFIGS = {
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
                                     
         ],
-        'toolbar': 'YourCustomToolbarConfig',  # put selected toolbar config here
-        'width': 'auto',
-        'tabSpaces': 4,
+        'toolbar'     : 'YourCustomToolbarConfig',  # put selected toolbar config here
+        'width'       : 'auto',
+        'tabSpaces'   : 4,
         'extraPlugins': ','.join([
             'codesnippet'
             ,'blockquote'
@@ -192,11 +190,11 @@ CKEDITOR_CONFIGS = {
 }
 
 #===== email
-EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL  = 'amirctw@gmail.com'
-SERVER_EMAIL        = 'amirctw@gmail.com'
-EMAIL_HOST          = 'smtp.gmail.com'
-EMAIL_HOST_USER     = 'amirctw@gmail.com'
-EMAIL_HOST_PASSWORD = 'qwbhofvmvyfvcbxg'
-EMAIL_PORT          = 587
-EMAIL_USE_TLS       = True
+# EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
+# DEFAULT_FROM_EMAIL  = 'amirctw@gmail.com'
+# SERVER_EMAIL        = 'amirctw@gmail.com'
+# EMAIL_HOST          = 'smtp.gmail.com'
+# EMAIL_HOST_USER     = 'amirctw@gmail.com'
+# EMAIL_HOST_PASSWORD = 'qwbhofvmvyfvcbxg'
+# EMAIL_PORT          = 587
+# EMAIL_USE_TLS       = True

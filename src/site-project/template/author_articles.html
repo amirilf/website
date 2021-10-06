@@ -7,8 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tags|{{ tag.name_en|title }}</title>
+    <title>Articles by {{ author|title }}</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
@@ -25,11 +26,8 @@
 
         <div class="text-center header-img">
             <h1 class="w-100">
-                {{ tag.name_en|title }}
+                Articles by {{ author|title }}
             </h1>
-            <h4>
-                All articles with {{ tag.name_en|title }} tag
-            </h4>
         </div>
     </header>
     <main class="py-5">
@@ -41,69 +39,68 @@
                     <!-- last articles -->
                     <section>
                         {% for article in articles %}
-                            <div class="card rounded my-4 overflow-hidden">
-                                <div class="row g-0">
-                                    <div class="col-lg-6 col-xl-5 p-3">
-                                        <div class="img-card h-100 rounded" data-src="'{{ article.thumbnail.url }}'"></div>
-                                    </div>
-                                    <div class="col-lg-6 col-xl-7 p-3">
-                                        <h5 class="pb-3">
-                                            {{ article.title_en|capfirst }}
-                                        </h5>
-                                        <p class="mb-3">
-                                            {{ article.desc_en|capfirst|safe|truncatechars:100 }}
-                                        </p>
-                                        {% for category in article.category.active %}
-                                        <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
-                                                {{ category.name_en|lower }}
-                                            </a> {% endfor %}
-                                        <div class="icons-card pt-2 mt-3">
-                                            <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                <i class="fas fa-calendar"></i>
-                                                <p class="m-0 ps-1 pe-2">{{ article.created|date:'Y/m/d' }}</p>
-                                            </div>
-                                            <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                <i class="fas fa-eye"></i>
-                                                <p class="m-0 ps-1 pe-2">{{ article.views }}</p>
-                                            </div>
-                                            <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                <i class="fas fa-clock"></i>
-                                                <p class="m-0 ps-1 pe-2">{{ article.readtime }}</p>
-                                            </div>
-                                            <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                <i class="fas fa-comment"></i>
-                                                <p class="m-0 ps-1 pe-2">{{ article.comments.active|length }}</p>
-                                            </div>
+                        <div class="card rounded my-4 overflow-hidden">
+                            <div class="row g-0">
+                                <div class="col-lg-6 col-xl-5 p-3">
+                                    <div class="img-card h-100 rounded" data-src="'{{ article.thumbnail.url }}'"></div>
+                                </div>
+                                <div class="col-lg-6 col-xl-7 p-3">
+                                    <h5 class="pb-3">
+                                        {{ article.title_en|capfirst }}
+                                    </h5>
+                                    <p class="mb-3">
+                                        {{ article.desc_en|capfirst|safe|truncatechars:100 }}
+                                    </p>
+                                    {% for category in article.category.active %}
+                                    <a href="{% url 'blog:tag' category.slug %}" class="badge bg-info text-light text-decoration-none">
+                                            {{ category.name_en|lower }}
+                                        </a> {% endfor %}
+                                    <div class="icons-card pt-2 mt-3">
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-calendar"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.created|date:'Y/m/d' }}</p>
                                         </div>
-                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                            <a href="/{{ article.author.user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
-                                                <img src="{{ article.author.thumbnail.url }}" class="img-sm rounded-pill" alt="">
-                                                <div class="px-2">
-                                                    <span>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-eye"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.views }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-clock"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.readtime }}</p>
+                                        </div>
+                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                            <i class="fas fa-comment"></i>
+                                            <p class="m-0 ps-1 pe-2">{{ article.comments.active|length }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                        <a href="/{{ article.author.user_page_url }}" class="pe-3 text-decoration-none mt-4 dark-on text-dark d-inline-flex align-items-center">
+                                            <img src="{{ article.author.thumbnail.url }}" class="img-sm rounded-pill " alt="">
+                                            <div class="px-2">
+                                                <span>
                                                         {{ article.author.full_capital_name }}
                                                     </span>
-                                                </div>
-                                            </a>
-                                            <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
-                                                    more
-                                                </a>
-                                        </div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark d-block ms-auto mt-4">
+                                                more
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            
+                        </div>
                         {% endfor %}
-
+                        
                     {% if is_paginated %}
                         <!-- start pagination -->
-                        <div class='pt-3'>
+                        <div class="pt-3">
                             <nav aria-label="Page navigation example" class="bg-opacity">
                                 <ul class="pagination d-flex justify-content-center">
                                     
                                     <!-- start previous button -->
                                     <li class="page-item shadow">
                                         {% if page_obj.has_previous %}
-                                            <a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_obj.previous_page_number}}" aria-label="Previous">
+                                            <a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_obj.previous_page_number}}" aria-label="Previous">
                                                 <span aria-hidden="true">&laquo;</span>
                                             </a>
                                         {% else %}
@@ -116,36 +113,36 @@
                                     {% if page_obj.paginator.num_pages > 7 %}
 
                                         {% if page_obj.number|add:"3" >= page_obj.paginator.num_pages %}
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p=1">1</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p=1">1</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
                                             {% calculate_latest_5_page_numbers page_obj.paginator.num_pages as range_number %}
                                             {% for page_number in '12345'|make_list %}
                                                 {% if forloop.counter|add:range_number == page_obj.number %}
                                                     <li class="page-item shadow active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
                                                 {% else %}
-                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{forloop.counter|add:range_number}}">{{ forloop.counter|add:range_number }}</a></li>
+                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{forloop.counter|add:range_number}}">{{ forloop.counter|add:range_number }}</a></li>
                                                 {% endif %}
                                             {% endfor %}
                                             
                                         {% elif page_obj.number|add:"-3" <= 1 %}
                                             {% for page_number in '12345'|make_list %}
                                                 {% if forloop.counter == page_obj.number %}
-                                                    <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_obj.number}}">{{ page_obj.number }}</a></li>
+                                                    <li class="page-item shadow active"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_obj.number}}">{{ page_obj.number }}</a></li>
                                                 {% else %}
-                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{forloop.counter}}">{{ forloop.counter }}</a></li>
+                                                    <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{forloop.counter}}">{{ forloop.counter }}</a></li>
                                                 {% endif %}
                                             {% endfor %}
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages }}</a></li>
                                             
                                         {% else %}
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p=1">1</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p=1">1</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_obj.previous_page_number}}">{{ page_obj.previous_page_number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_obj.previous_page_number}}">{{ page_obj.previous_page_number }}</a></li>
                                             <li class="page-item shadow active"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_obj.next_page_number}}">{{ page_obj.next_page_number }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_obj.next_page_number}}">{{ page_obj.next_page_number }}</a></li>
                                             <li class="page-item shadow"><a class="page-link" style="pointer-events: none;">...</a></li>
-                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages }}</a></li>
+                                            <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_obj.paginator.num_pages}}">{{ page_obj.paginator.num_pages }}</a></li>
                                         {% endif %}
 
                                     {% else %}
@@ -153,7 +150,7 @@
                                             {% if page_obj.number == page_number %}
                                                 <li class="page-item shadow active"><a class="page-link" href="#">{{ page_number }}</a></li>
                                             {% else %}
-                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_number}}">{{ page_number }}</a></li>
+                                                <li class="page-item shadow"><a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_number}}">{{ page_number }}</a></li>
                                             {% endif %}
                                         {% endfor %}
                                     {% endif %}
@@ -161,7 +158,7 @@
                                         <!-- start next button -->
                                     <li class="page-item shadow">
                                         {% if page_obj.has_next %}
-                                            <a class="page-link" href="{% url 'blog:tag' tag.slug %}?p={{page_obj.next_page_number}}" aria-label="Next">
+                                            <a class="page-link" href="{% url 'blog:author-articles' author %}?p={{page_obj.next_page_number}}" aria-label="Next">
                                                 <span aria-hidden="true">&raquo;</span>
                                             </a>
                                         {% else %}
@@ -191,7 +188,7 @@
     <!-- end main -->
 
     <!-- Footer -->
-        {% include 'partials/footer.html' %}
+    {% include 'partials/footer.html' %}
     <!-- Footer -->
 
     <!-- js refrences -->

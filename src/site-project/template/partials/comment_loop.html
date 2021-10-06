@@ -6,7 +6,7 @@
            
             <div class="ps-3">
                 <h6 class="my-1">
-                    {% author_full_name comment.admin %} (admin)
+                    {{ comment.admin.full_capital_name }} (admin)
                 </h6>
                 <p class="my-1">
                     {{ comment.created|date:'Y/m/d H:i'}}

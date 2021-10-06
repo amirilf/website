@@ -62,7 +62,7 @@
                 <div class="py-2 d-inline-block">
                     <i class="fas fa-user"></i>
                     <a class="pe-2 text-dark-all text-decoration-none" href="/{{ article.author.user_page_url }}">
-                        {% author_first_name article.author %}
+                        {{ article.author.get_first_name }}
                     </a>
                 </div>
                 <div class="py-2 d-inline-block">
@@ -127,7 +127,7 @@
                                         <div class=" col-lg-10 col-md-9 col-12 description">
                                             <a class='text-decoration-none text-dark'
                                                 href="/{{ article.author.user_page_url }}">
-                                                <h1 class="h4 mx-2">{% author_full_name article.author %}</h1>
+                                                <h1 class="h4 mx-2">{{ article.author.full_capital_name }}</h1>
                                             </a>
                                             {% if article.author.desc %}
                                             <p class="mb-0 mx-2">
@@ -212,7 +212,7 @@
 
                                         <div class="ps-3">
                                             <h6 class="my-1">
-                                                {% author_full_name comment.admin %} (admin)
+                                                {{ comment.admin.full_capital_name }} (admin)
                                             </h6>
                                             <p class="my-1">
                                                 {{ comment.created|date:'Y/m/d H:i'}}
