@@ -133,7 +133,7 @@ class Article(models.Model):
     updated    = models.DateTimeField(auto_now=True) # auto compelete last update
     author     = models.ForeignKey(User,editable=False,null=True,on_delete=models.SET_NULL,related_name='articles') # auto delete article on delete author
     category   = models.ManyToManyField(Category,blank=True,related_name='articles') # article categories
-    thumbnail  = models.ImageField(upload_to='thumbnails') # article thumbnail in post card and main page
+    thumbnail  = models.ImageField(upload_to='articles') # article thumbnail in post card and main page
     readtime   = models.IntegerField(default=0) # suggested time for readnig the article
 
     class Meta:
