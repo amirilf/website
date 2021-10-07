@@ -7,7 +7,7 @@ data_set = {
     'about'            : 'Hello <b>werthtgrfe</b> and weclome to our site we\'ll write about technology and python, hope enjoy it and they\'re helpful for u',
  
     #these are header title and description in home.html
-    'header_h'         : 'WEBSITE',
+    'header_h'         : 'SHALGHAM',
     'header_p'         : 'Know more about technology and specially Python and Js',
     
     #this is to limit the number of display tags in col-4:

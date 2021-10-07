@@ -25,9 +25,6 @@
         hljs.initHighlightingOnLoad();
     </script>
 
-
-    <!-- new ref -->
-    <link rel="stylesheet" href="/static/blog/css/sweetalert2.min.css">
 </head>
 
 <body>
@@ -215,7 +212,7 @@
                                                 {{ comment.admin.full_capital_name }} (admin)
                                             </h6>
                                             <p class="my-1">
-                                                {{ comment.created|date:'Y/m/d H:i'}}
+                                                {{ comment.created|date:'Y/m/d H:i'}} UTC
                                             </p>
                                         </div>
 
@@ -233,7 +230,7 @@
                                                 {{ comment.name }}
                                             </h6>
                                             <p class="my-1">
-                                                {{ comment.created|date:'Y/m/d H:i'}}
+                                                {{ comment.created|date:'Y/m/d H:i'}} UTC
                                             </p>
                                         </div>
 
