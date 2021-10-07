@@ -95,7 +95,6 @@ class User(AbstractUser):
 
 class Category(models.Model):
     name_en    = CharField(max_length=100) # English name
-    name_fa    = CharField(max_length=100) # Persian name
     slug       = SlugField(editable=False) # auto created in auto_slug_category function
     created    = DateTimeField(auto_now_add=True) # auto complete created time
     status     = BooleanField(default=True) # category status => true:publish , false:draft
@@ -124,11 +123,8 @@ class Category(models.Model):
 
 class Article(models.Model):
     title_en   = models.CharField(max_length=200) # english title
-    title_fa   = models.CharField(max_length=200) # persian title
     desc_en    = models.TextField() # english description for article in home
-    desc_fa    = models.TextField() # persian description for article in home
     body_en    = RichTextUploadingField() # english body
-    body_fa    = RichTextUploadingField() # persian body
     slug       = models.SlugField(max_length=100,unique=True) # slug of the article
     short_slug = models.SlugField(editable=False) # auto created in auto_slug_article function
     views      = models.IntegerField(default=0) # number of views this article
