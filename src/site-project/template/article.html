@@ -80,10 +80,10 @@
                 <div class="col-md-8 col-lg-9">
                     <section>
                         <div class="row justify-content-center articel-header-img">
-                            <div class="col-9 col-sm-7 text-center">
+                            <a href="{{ article.thumbnail.url }}" target="_blank" class="col-9 col-sm-7 text-center">
                                 <img src="{{ article.thumbnail.url }}" class="img-fluid rounded shadow-lg rellax"
                                     data-rellax-speed="2" alt="">
-                            </div>
+                            </a>
                         </div>
                         <div class="row pt-5">
 
@@ -211,7 +211,7 @@
                                             <h6 class="my-1">
                                                 {{ comment.admin.full_capital_name }} (admin)
                                             </h6>
-                                            <p class="my-1">
+                                            <p class="my-1 small">
                                                 {{ comment.created|date:'Y/m/d H:i'}} UTC
                                             </p>
                                         </div>
@@ -229,7 +229,7 @@
                                             <h6 class="my-1">
                                                 {{ comment.name }}
                                             </h6>
-                                            <p class="my-1">
+                                            <p class="my-1 small">
                                                 {{ comment.created|date:'Y/m/d H:i'}} UTC
                                             </p>
                                         </div>
