@@ -4,3 +4,8 @@
 تنظیم کردن مقادیر موردنیاز داخل content file
 تنظیم کردن مقادیر اواتار با ۱۲ تا ابجکت عکسایی که هست توی مدیا باید پوشه جدا از سایت باشه و اپلودش کنیم که خودش مرتب اونا رو ایجاد کنه
 عکس بک گراوند سایت
+
+
+----- دیپلوی
+change allowed hosts in setting
+remove the avatars folder and add it to the project after running
