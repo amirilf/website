@@ -55,13 +55,13 @@
                         {% for article in latest_articles %}
                         <div class="card rounded my-4 overflow-hidden">
                             <div class="row g-0">
-                                <div class="col-lg-6 col-xl-5 p-3">
+                                <a class="col-lg-6 col-xl-5 p-3" href="{% url 'blog:article_slug' article.slug %}">
                                     <div class="img-card h-100 rounded" data-src="'{{ article.thumbnail.url }}'"></div>
-                                </div>
+                                </a>
                                 <div class="col-lg-6 col-xl-7 p-3">
-                                    <h5 class="pb-3">
+                                    <a class="pb-3 text-dark text-decoration-none h5" href="{% url 'blog:article_slug' article.slug %}">
                                         {{ article.title_en|capfirst }}
-                                    </h5>
+                                    </a>
                                     <p class="mb-3">
                                         {{ article.desc_en|capfirst|safe|truncatechars:100 }}
                                     </p>
@@ -116,13 +116,13 @@
                                 {% for article in most_viewed_articles %}
                                     <div class="card bg-opacity rounded swiper-slide w-100 my-4 overflow-hidden border shadow-none">
                                         <div class="row g-0">
-                                            <div class="col-lg-5 col-xl-4 p-3">
+                                            <a class="col-lg-5 col-xl-4 p-3" href="{% url 'blog:article_slug' article.slug %}">
                                                 <div class="img-card h-100 rounded" data-src="'{{ article.thumbnail.url }}'"></div>
-                                            </div>
+                                            </a>
                                             <div class="col-lg-7 col-xl-8 p-3">
-                                                <h5 class="pb-3">
+                                                <a class="pb-3 text-dark h5 text-decoration-none" href="{% url 'blog:article_slug' article.slug %}">
                                                     {{ article.title_en|capfirst }}
-                                                </h5>
+                                                </a>
                                                 <p class="mb-0">
                                                     {{ article.desc_en|capfirst|safe|truncatechars:100 }}
                                                 </p>

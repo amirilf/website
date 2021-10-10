@@ -60,57 +60,61 @@
                         </p>
                     </section>
                     {% if data.articles.active %}
-                        <section>
-                            <h4 class="text-center pt-3">
-                                Last article by me (<a href="{% url 'blog:author-articles' data.username %}" class="text-info text-decoration-none fw-bold" >see all</a>)
-                            </h4>
-                            <div class="row justify-content-center g-0 gx-md-4">
-                                {% for article in data.articles.active|slice:"0:1" %}
-                                    <div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xxl-3">
-                                        <div class="card my-4 rounded overflow-hidden">
-                                            <div class="row g-0 p-3">
-                                                <div class="position-relative rounded overflow-hidden">
-                                                    <div class="img-card img-card-creator h-100"
-                                                        data-src="{{ article.thumbnail.url }}">
-                                                    </div>
+                    <section>
+                        <h4 class="text-center pt-3">
+                            Last article by me (<a href="{% url 'blog:author-articles' data.username %}"
+                                class="text-info text-decoration-none fw-bold">see all</a>)
+                        </h4>
+                        <div class="row justify-content-center g-0 gx-md-4">
+                            {% for article in data.articles.active|slice:"0:1" %}
+                            <div class="col-11 col-sm-10 col-md-6 col-lg-4 col-xxl-3">
+                                <div class="card my-4 rounded overflow-hidden">
+                                    <div class="row g-0 p-3">
+                                        <a class="position-relative rounded overflow-hidden"
+                                            href="{% url 'blog:article_slug' article.slug %}">
+                                            <div class="img-card img-card-creator h-100"
+                                                data-src="{{ article.thumbnail.url }}">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="p-3">
+                                        <a class="text-dark text-decoration-none h5"
+                                            href="{% url 'blog:article_slug' article.slug %}">
+                                            {{ article.title_en|capfirst|truncatechars:50 }}
+                                        </a>
+                                        <p class="mb-0">
+                                            {{ article.desc_en|capfirst|safe|truncatechars:100 }}
+                                        </p>
+                                        <div class="d-flex align-items-center justify-content-between flex-wrap">
+                                            <div class="icons-card pt-2 mt-3">
+                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                    <i class="fas fa-calendar"></i>
+                                                    <p class="m-0 ps-1 pe-2">{{ article.created|date:'Y/m/d' }}</p>
+                                                </div>
+                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                    <i class="fas fa-eye"></i>
+                                                    <p class="m-0 ps-1 pe-2">{{ article.views }}</p>
+                                                </div>
+                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                    <i class="fas fa-clock"></i>
+                                                    <p class="m-0 ps-1 pe-2">{{ article.readtime }}</p>
+                                                </div>
+                                                <div class="d-inline-flex w-auto align-items-center flex-wrap">
+                                                    <i class="fas fa-comment"></i>
+                                                    <p class="m-0 ps-1 pe-2">{{ article.comments.active|length }}</p>
                                                 </div>
                                             </div>
-                                            <div class="p-3">
-                                                <h5 class="">
-                                                    {{ article.title_en|capfirst|truncatechars:50 }}
-                                                </h5>
-                                                <p class="mb-0">
-                                                    {{ article.desc_en|capfirst|safe|truncatechars:100 }}
-                                                </p>
-                                                <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                    <div class="icons-card pt-2 mt-3">
-                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                            <i class="fas fa-calendar"></i>
-                                                            <p class="m-0 ps-1 pe-2">{{ article.created|date:'Y/m/d' }}</p>
-                                                        </div>
-                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                            <i class="fas fa-eye"></i>
-                                                            <p class="m-0 ps-1 pe-2">{{ article.views }}</p>
-                                                        </div>
-                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                            <i class="fas fa-clock"></i>
-                                                            <p class="m-0 ps-1 pe-2">{{ article.readtime }}</p>
-                                                        </div>
-                                                        <div class="d-inline-flex w-auto align-items-center flex-wrap">
-                                                            <i class="fas fa-comment"></i>
-                                                            <p class="m-0 ps-1 pe-2">{{ article.comments.active|length }}</p>
-                                                        </div>
-                                                    </div>
-                                                    <a href="{% url 'blog:article_slug' article.slug %}" class="btn btn-outline-dark ms-auto mt-4 w-auto">
-                                                        more
-                                                    </a>
-                                                </div>
-                                            </div>
+                                            <a href="{% url 'blog:article_slug' article.slug %}"
+                                                class="btn btn-outline-dark ms-auto mt-4 w-auto">
+                                                more
+                                            </a>
                                         </div>
                                     </div>
-                                {% endfor %}
+                                </div>
                             </div>
-                        </section>
+                            {% endfor %}
+                        </div>
+                    </section>
                     {% endif %}
                 </div>
             </div>
@@ -126,7 +130,7 @@
     <script src="/static//blog/js/bootstrap.min.js"></script>
     <script src="/static//blog/js/rellax.min.js"></script>
     <script src="/static//blog/js/index.js"></script>
-    
+
     <script>
         var rellax = new Rellax('.rellax');
     </script>
