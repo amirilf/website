@@ -211,6 +211,12 @@ if (lightSwitch) {
                     input.classList.add("text-dark");
                 }
             }
+            for (textarea of document.getElementsByTagName("textarea")) {
+                if (textarea.classList.contains("bg-light")) {
+                    textarea.classList.add("bg-light");
+                    textarea.classList.add("text-dark");
+                }
+            }
 
             if (document.querySelector("main").classList.contains("text-dark")) {
                 // document.querySelectorAll(".page-link").forEach((e) => e.classList.add("bg-opacity"))
@@ -229,8 +235,8 @@ if (lightSwitch) {
                 }
                 for (textarea of document.getElementsByTagName("textarea")) {
                     if (textarea.classList.contains("bg-light")) {
-                        textarea.classList.add("bg-dark");
-                        textarea.classList.add("text-light");
+                        textarea.classList.replace("bg-light", "bg-dark");
+                        textarea.classList.replace("text-dark", "text-light");
                     }
                 }
                 for (a of document.getElementsByTagName("a")) {
@@ -258,7 +264,7 @@ if (lightSwitch) {
                 }
                 for (textarea of document.getElementsByTagName("textarea")) {
                     if (textarea.classList.contains("bg-light")) {
-                        textarea.classList.add("bg-dark");
+                        textarea.classList.replace("bg-light", "bg-dark");
                         textarea.classList.replace("text-dark", "text-light");
                     }
                 }
@@ -397,7 +403,7 @@ if (getId("bgItem") != null) {
 if (queryS("body").hasAttribute("data-src")) {
     queryS("body").style.backgroundImage = `url(${queryS("body").getAttribute("data-src")})`;
 }
-try{
+try {
     var swiper = new Swiper(".mySwiper", {
         loop: true,
         spaceBetween: 45,
@@ -420,12 +426,12 @@ try{
             clickable: true,
         },
     });
-}catch(err){
+} catch (err) {
 
 }
-try{
+try {
 
-}catch(err){
+} catch (err) {
     if (document.getElementById(idrow)) {
         document.getElementById(idrow).insertBefore(cln, document.getElementById(idrow).firstChild);
     }
