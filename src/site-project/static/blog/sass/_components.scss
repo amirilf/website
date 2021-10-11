@@ -118,6 +118,7 @@ nav {
     height: 50px;
     border-radius: 100%;
     @include shadow;
+    border: 3px solid $c-white;
 }
 
 .body-article {

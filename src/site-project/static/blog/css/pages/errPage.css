@@ -1,0 +1,6 @@
+section {
+  height: 100vh; }
+  section img {
+    max-width: 10rem; }
+  section p {
+    max-width: 50rem; }

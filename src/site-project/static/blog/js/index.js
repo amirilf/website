@@ -179,14 +179,15 @@ if (lightSwitch) {
             localStorage.getItem("lightSwitch") !== null &&
             localStorage.getItem("lightSwitch") === "dark";
         darkModeToggle.classList.replace("fa-sun", "fa-moon");
-        btnDarkMode.classList.replace("bg-white", "bg-dark")
+        btnDarkMode.classList.replace("bg-white", "bg-dark");
+        btnDarkMode.style.borderColor = '#fff';
         btnDarkMode.children[0].classList.replace("text-dark", "text-white")
-
         if (isSelected) {
             darkModeToggle.classList.replace("fa-moon", "fa-sun");
             btnDarkMode.classList.replace("bg-dark", "bg-white")
             btnDarkMode.children[0].classList.replace("text-white", "text-dark")
 
+            btnDarkMode.style.borderColor = '#222';
 
             // document.querySelectorAll(".bg-light").forEach((element) => {
             //     element.className = element.className.replace(/-light/g, "-dark");
@@ -252,6 +253,8 @@ if (lightSwitch) {
                         btn.classList.replace("btn-outline-dark", "btn-outline-light");
                     }
                 }
+                btnDarkMode.style.borderColor = '#222';
+
             } else {
 
                 for (a of document.getElementsByTagName("a")) {
@@ -279,6 +282,8 @@ if (lightSwitch) {
                         i.classList.replace("text-dark", "text-light");
                     }
                 }
+                btnDarkMode.style.borderColor = '#222';
+
                 for (btn of document.getElementsByClassName("btn")) {
                     if (btn.classList.contains("btn-outline-dark")) {
                         btn.classList.replace("btn-outline-dark", "btn-outline-light");
@@ -304,6 +309,8 @@ if (lightSwitch) {
             localStorage.setItem("lightSwitch", "dark");
             darkMode();
         } else {
+            btnDarkMode.style.borderColor = '#fff';
+
             for (btn of document.getElementsByClassName("btn")) {
                 if (btn.classList.contains("btn-outline-light")) {
                     btn.classList.replace("btn-outline-light", "btn-outline-dark");
