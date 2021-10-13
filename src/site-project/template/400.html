@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>400 BadRequest</title>
+    <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/pages/errPage.css' %}">
+    <!--============= meta Tags ================ -->
+    <meta property="og:locale" content="en_IR" />
+    <meta property="og:type" content="error" />
+    <meta property="og:site_name" content="shalgham" />
+    <meta property="article:section" content="errors" />
+    <meta property="og:title" content="error - shalgham" />
+    <meta name="twitter:title" content="error - shalgham" />
+    <!-- custom -->
+    <meta property="og:description" content="erorr edescription" />
+    <meta name="twitter:description" content="error description" />
+    <meta property="og:url" content="error url" />
+    <!--============= meta Tags end ================ -->
+</head>
+
+<body>
+    <section class="d-flex align-items-center flex-wrap justify-content-center">
+        <div class="w-100 text-center">
+            <img src="../media/img/favicon.png" alt="">
+            <h1 class="pt-4 mt-1">
+                400 Bad Request
+            </h1>
+            <p class="px-5 mx-auto pt-2 fw-bold">
+                Your browser sent a request that this server could not understand.            </p>
+            <p class="px-3 mx-auto">
+                <a href="{% url 'blog:home' %}" class='btn btn-sm rounded-pill btn-outline-dark'>Home Page</a>
+                <a href="" class='btn btn-sm rounded-pill btn-outline-dark'>Resend Request</a>
+            </p>
+        </div>
+    </section>
+</body>
+
+</html>
