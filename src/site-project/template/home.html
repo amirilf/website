@@ -1,44 +1,40 @@
-{% load static %}
-{% load template_tags %}
+{% load static %} {% load template_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-    <!-- references css -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% site_setting 'home_title' %}</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+
+    <!-- css refrences -->
     <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pages/index.css' %}">
-    <!-- references css end-->
-        <!--============= meta Tags ================ -->
-        <meta property="og:locale" content="en_IR" />
-        <meta property="og:type" content="home" />
-        <meta property="og:site_name" content="shalgham" />
-        <meta property="article:section" content="home" />
-        <meta property="og:image:width" content="700" />
-        <meta property="og:image:height" content="345" />
-        <meta property="og:title" content="home - shalgham" />
-        <meta name="twitter:title" content="home - shalgham" />
-        <meta property="og:image:alt" content="home - shalgham" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:description" content="{% site_setting 'header_p' %}" />
-        <meta name="twitter:description" content="{% site_setting 'header_p' %}" />
-        <!-- custom -->
-            <meta property="og:url" content="page url" />
-            <meta property="og:image" content="page url" />
-            <meta name="twitter:image" content="page url" />
-            <meta property="og:image:secure_url" content="page url" />
-        <!-- custom end -->
-        <!--============= meta Tags end ================ -->
+    <!-- css refrences -->
 
+    <!-- meta tags -->
+    <meta property="og:locale" content="en_IR" />
+    <meta property="og:type" content="home" />
+    <meta property="og:site_name" content="Shalgham" />
+    <meta property="article:section" content="home" />
+    <meta property="og:image:width" content="700" />
+    <meta property="og:image:height" content="345" />
+    <meta property="og:title" content="Home - shalgham" />
+    <meta name="twitter:title" content="Home - shalgham" />
+    <meta property="og:image:alt" content="Home - shalgham" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:description" content="{% site_setting 'header_p' %}" />
+    <meta name="twitter:description" content="{% site_setting 'header_p' %}" />
+    <meta property="og:url" content="https://{{ request.get_host }}" />
+    <meta property="og:image" content="https://{{ request.get_host }}/media/img/333.jpg" />
+    <meta name="twitter:image" content="https://{{ request.get_host }}/media/img/333.jpg" />
+    <!-- end meta tags -->
 </head>
 <body data-src="/media/img/333.jpg">
     <!-- header -->
@@ -109,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                        <a href="/{{ article.author.user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
+                                        <a href="{{ article.author.get_user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
                                             <img src="{{ article.author.thumbnail.url }}" class="img-sm rounded-pill" alt="">
                                             <div class="px-2">
                                                 <span>
@@ -148,7 +144,7 @@
                                                     {{ article.desc_en|capfirst|safe|truncatechars:100 }}
                                                 </p>
                                                 <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                    <a href="/{{ article.author.user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
+                                                    <a href="{{ article.author.get_user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
                                                         <img src="{{ article.author.thumbnail.url }}" class="img-sm rounded-pill" alt="">
                                                         <div class="px-2">
                                                             <span>

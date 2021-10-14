@@ -14,7 +14,4 @@ data_set = {
 
     #this is to limit the number of display tags in col-4:
     'col_4_tags_count' : 10,
-    
-    #for short links we have to determine:
-    'site_domain'      : 'http://127.0.0.1:8000',
 }

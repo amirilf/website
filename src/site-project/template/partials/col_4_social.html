@@ -1,6 +1,6 @@
 <div id='creators'>
     {% for creator in creators %}
-        <a href="/{{ creator.user_page_url }}" class="text-decoration-none admin">
+        <a href="{{ creator.get_user_page_url }}" class="text-decoration-none admin">
             <img src="{{ creator.thumbnail.url }}" class="img-sm rounded-pill me-3" alt="">
         </a>    
     {% endfor %}

@@ -12,23 +12,26 @@
         <title>Search</title>
     {% endif %}
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+
+    <!-- css refrences -->
     <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pages/search.css' %}">
-        <!--============= meta Tags ================ -->
-        <meta property="og:locale" content="en_IR" />
-        <meta property="og:type" content="search" />
-        <meta property="og:site_name" content="shalgham" />
-        <meta property="article:section" content="search" />
-        <meta property="og:title" content="search - shalgham" />
-        <meta name="twitter:title" content="search - shalgham" />
-        <!-- custom -->
-            <meta property="og:url" content="page url" />
-        <!-- custom end -->
-        <!--============= meta Tags end ================ -->
+    <!-- end css refrences -->
+
+    <!-- meta tags -->
+    <meta property="og:locale" content="en_IR" />
+    <meta property="og:type" content="search" />
+    <meta property="og:site_name" content="Shalgham" />
+    <meta property="article:section" content="search" />
+    <meta property="og:title" content="Search in shalgham" />
+    <meta name="twitter:title" content="Search in shalgham" />
+    <meta property="og:url" content="https://{{ request.get_host }}{% url 'blog:search' %}" />
+    <!-- end meta tags -->
+
 </head>
 
 <body data-src="../media/img/333.jpg">
@@ -104,7 +107,7 @@
                                                 </div>
                                             </div>
                                             <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                                <a href="/{{ article.author.user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
+                                                <a href="{{ article.author.get_user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
                                                     <img src="{{ article.author.thumbnail.url }}" class="img-sm rounded-pill" alt="">
                                                     <div class="px-2">
                                                         <span>

@@ -92,6 +92,9 @@ class User(AbstractUser):
             else:
                 return self.username.capitalize()
 
+    # get user page url with / at first
+    def get_user_page_url(self):
+        return f'/{self.user_page_url}'
 
 class Category(models.Model):
     name_en    = CharField(max_length=100) # English name

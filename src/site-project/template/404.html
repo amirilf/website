@@ -8,21 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 NotFound</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+
+    <!-- css refrences -->
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pages/errPage.css' %}">
-    <!--============= meta Tags ================ -->
+    <!-- css refrences -->
+
+    <!-- meta tags -->
     <meta property="og:locale" content="en_IR" />
     <meta property="og:type" content="error" />
-    <meta property="og:site_name" content="shalgham" />
+    <meta property="og:site_name" content="Shalgham" />
     <meta property="article:section" content="errors" />
-    <meta property="og:title" content="error - shalgham" />
-    <meta name="twitter:title" content="error - shalgham" />
-    <!-- custom -->
-    <meta property="og:description" content="erorr edescription" />
-    <meta name="twitter:description" content="error description" />
+    <meta property="og:title" content="404 NotFound - shalgham" />
+    <meta name="twitter:title" content="404 NotFound - shalgham" />
+    <meta property="og:description" content="The page you are looking for, not exists." />
+    <meta name="twitter:description" content="The page you are looking for, not exists." />
     <meta property="og:url" content="error url" />
-    <!--============= meta Tags end ================ -->
+    <!-- end meta tags -->
+
 </head>
 
 <body>
@@ -30,10 +34,10 @@
         <div class="w-100 text-center">
             <img src="../media/img/favicon.png" alt="">
             <h1 class="pt-4 mt-1">
-                404 Not Found
+                404 NotFound
             </h1>
             <p class="px-5 mx-auto pt-2 fw-bold">
-                The page you are looking for no longer exists. Perhaps you can return back to the homepage and find what you want.
+                The page you are looking for, not exists. Perhaps you can return back to the homepage and find what you want.
             </p>
             <p class="px-3 mx-auto">
                 <a href="{% url 'blog:home' %}" class='btn btn-sm rounded-pill btn-outline-dark'>Home Page</a>

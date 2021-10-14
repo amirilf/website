@@ -9,31 +9,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tags|{{ tag.name_en|title }}</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    
+    <!-- css refrences -->
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pages/tags.css' %}">
-        <!--============= meta Tags ================ -->
-        <meta property="og:locale" content="en_IR" />
-        <meta property="og:type" content="teg" />
-        <meta property="og:site_name" content="shalgham" />
-        <meta property="article:section" content="teg" />
-        <meta property="og:image:width" content="700" />
-        <meta property="og:image:height" content="345" />
-        <meta property="og:image:type" content="image/jpeg" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <!-- custom -->
-            <meta property="og:title" content="tag name" />
-            <meta name="twitter:title" content="tag name" />
-            <meta property="og:image:alt" content="tag name" />
-            <meta property="og:url" content="page url" />
-            <!-- دا اگه اشتباه نکنم این ایمیجی هست که موقع لینک دهی برا یارو میره ... مثل ریپو های گیت هاب -->
-            <meta property="og:image" content="tag img url" />
-            <meta name="twitter:image" content="tag img url" />
-            <meta property="og:image:secure_url" content="tag img url" />
-        <!-- custom end -->
-        <!--============= meta Tags end ================ -->
+    <!-- end css refrences -->
+    
+    <!-- meta tags -->
+    <meta property="og:locale" content="en_IR" />
+    <meta property="og:type" content="tag" />
+    <meta property="og:site_name" content="Shalgham" />
+    <meta property="article:section" content="tag" />
+    <meta property="og:image:width" content="700" />
+    <meta property="og:image:height" content="345" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:title" content="{{ tag.name_en|title }}" />
+    <meta name="twitter:title" content="{{ tag.name_en|title }}" />
+    <meta property="og:image:alt" content="{{ tag.name_en|title }}" />
+    <meta property="og:url" content="https://{{ request.get_host }}{% url 'blog:tag' tag.slug %}" />
+    <meta property="og:image" content="https://{{ request.get_host }}{{ tag.thumbnail.url }}" />
+    <meta name="twitter:image" content="https://{{ request.get_host }}{{ tag.thumbnail.url }}" />
+    <!-- end meta tags -->
+
 </head>
 
 <body data-src="../media/img/333.jpg">
@@ -96,7 +97,7 @@
                                             </div>
                                         </div>
                                         <div class="d-flex align-items-center justify-content-between flex-wrap">
-                                            <a href="/{{ article.author.user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
+                                            <a href="{{ article.author.get_user_page_url }}" class="pe-3 text-decoration-none mt-4 text-dark d-inline-flex align-items-center">
                                                 <img src="{{ article.author.thumbnail.url }}" class="img-sm rounded-pill" alt="">
                                                 <div class="px-2">
                                                     <span>

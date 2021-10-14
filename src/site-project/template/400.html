@@ -8,21 +8,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>400 BadRequest</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+    <!-- css refrences -->
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pages/errPage.css' %}">
-    <!--============= meta Tags ================ -->
+    <!-- css refrences -->
+
+    <!-- meta tags -->
     <meta property="og:locale" content="en_IR" />
     <meta property="og:type" content="error" />
-    <meta property="og:site_name" content="shalgham" />
+    <meta property="og:site_name" content="Shalgham" />
     <meta property="article:section" content="errors" />
-    <meta property="og:title" content="error - shalgham" />
-    <meta name="twitter:title" content="error - shalgham" />
-    <!-- custom -->
-    <meta property="og:description" content="erorr edescription" />
-    <meta name="twitter:description" content="error description" />
-    <meta property="og:url" content="error url" />
-    <!--============= meta Tags end ================ -->
+    <meta property="og:title" content="400 BadRequest - shalgham" />
+    <meta name="twitter:title" content="400 BadRequest - shalgham" />
+    <meta property="og:description" content="Your browser sent a request that this server could not understand." />
+    <meta name="twitter:description" content="Your browser sent a request that this server could not understand." />
+    <!-- end meta tags -->
+
 </head>
 
 <body>
@@ -33,7 +35,8 @@
                 400 Bad Request
             </h1>
             <p class="px-5 mx-auto pt-2 fw-bold">
-                Your browser sent a request that this server could not understand.            </p>
+                Your browser sent a request that this server could not understand.            
+            </p>
             <p class="px-3 mx-auto">
                 <a href="{% url 'blog:home' %}" class='btn btn-sm rounded-pill btn-outline-dark'>Home Page</a>
                 <a href="" class='btn btn-sm rounded-pill btn-outline-dark'>Resend Request</a>

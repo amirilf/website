@@ -1,5 +1,4 @@
 {% load static %} {% load template_tags %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,35 +8,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Article | {{ article.title_en|title }}</title>
     <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon">
+
+    <!-- css refrences -->
     <link rel="stylesheet" href="{% static 'blog/css/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'blog/fontawesome-free-5.15.3-web/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/custom.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/responsiv.css' %}">
     <link rel="stylesheet" href="{% static 'blog/css/pages/articel.css' %}">
-    <!--============= meta Tags ================ -->
+    <!-- end css refrences -->
+
+    <!-- meta tags -->
     <meta property="og:locale" content="en_IR" />
     <meta property="og:type" content="article" />
-    <meta property="og:site_name" content="shalgham" />
+    <meta property="og:site_name" content="Shalgham" />
     <meta property="article:section" content="article" />
     <meta property="og:image:width" content="700" />
     <meta property="og:image:height" content="345" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <!-- custom -->
-        <meta property="og:title" content="article name" />
-        <meta name="twitter:title" content="article name" />
-        <meta property="og:image:alt" content="article name" />
-        <meta property="og:description" content="articl edescription" />
-        <meta name="twitter:description" content="article description" />
-        <meta property="og:url" content="article url" />
-        <!-- دا اگه اشتباه نکنم این ایمیجی هست که موقع لینک دهی برا یارو میره ... مثل ریپو های گیت هاب -->
-        <meta property="og:image" content="article img url" />
-        <meta name="twitter:image" content="article img url" />
-        <meta property="og:image:secure_url" content="article img url" />
-    <!-- custom end -->
-    <!--============= meta Tags end ================ -->
-
+    <meta name="twitter:title" content="{{ article.title_en|capfirst }}" />
+    <meta property="og:title" content="{{ article.title_en|capfirst }}" />
+    <meta property="og:image:alt" content="{{ article.title_en|capfirst }}" />
+    <meta property="og:description" content="{{ article.desc_en|capfirst|striptags }}" />
+    <meta name="twitter:description" content="{{ article.desc_en|capfirst|striptags }}" />
+    <meta property="og:url" content="https://{{ request.get_host }}{% url 'blog:article_slug' article.slug %}" />
+    <meta property="og:image" content="https://{{ request.get_host }}{{ article.thumbnail.url }}" />
+    <meta name="twitter:image" content="https://{{ request.get_host }}{{ article.thumbnail.url }}" />
+    <!-- end meta tags -->
 
     <!-- code snippet dependents -->
     <link rel="stylesheet"
@@ -46,6 +44,7 @@
     <script>
         hljs.initHighlightingOnLoad();
     </script>
+    <!-- end code snippet dependents -->
 
 </head>
 
@@ -135,7 +134,7 @@
                                             <i class="far fa-copy text-dark"></i>
                                         </button>
                                         <input type="text" class="form-control w-auto pe-5 bg-light" id="shortLink"
-                                            value="{% site_setting 'site_domain' %}/{{article.short_slug}}" disabled>
+                                            value="{{ request.get_host }}/{{article.short_slug}}" disabled>
                                     </div>
                                 </div>
                                 <div class="pt-4">
@@ -145,7 +144,7 @@
                                         </div>
                                         <div class=" col-lg-10 col-md-9 col-12 description">
                                             <a class='text-decoration-none text-dark'
-                                                href="/{{ article.author.user_page_url }}">
+                                                href="{{ article.author.get_user_page_url }}">
                                                 <h1 class="h4 mx-2">{{ article.author.full_capital_name }}</h1>
                                             </a>
                                             {% if article.author.desc %}
@@ -315,7 +314,7 @@
     <script src="{% static 'blog/js/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'blog/js/rellax.min.js' %}"></script>
-    <script src="/static/blog/js/sweetalert2.all.min.js"></script>
+    <script src="{% static 'blog/js/sweetalert2.all.min.js' %}"></script>
     <script src="{% static 'blog/js/index.js' %}"></script>
     <script>
         var rellax = new Rellax('.rellax');
