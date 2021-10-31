@@ -188,10 +188,6 @@ class Comment(models.Model):
             return f'Comment by {self.name}'
 
     objects = CommentsManager() # set managers for this class
-
-    # for copy article link in article page
-    def article_slug(self):
-        return f'{data_set["site_domain"]}/{self.article.short_slug}'
     
     # short-show comments in admin panel
     def comment_desc(self):

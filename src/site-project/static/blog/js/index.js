@@ -156,7 +156,7 @@ const submitComment = () => {
     })
 }
 const submitSearch = () => {
-    if (getId("searchInput").value.trim().length < 3) {
+    if (getId("searchInput").value.trim().length < 2) {
         queryS("#inputErorr").classList.remove("d-none")
         return false
     }

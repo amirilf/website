@@ -8,8 +8,8 @@ data_set = {
  
     #these are header title and description in home.html
     'header_h'         : 'SHALGHAM',
-    'header_p'         : 'What does shalgham lack from Apple? We make it famous',
-    
+    'header_p'         : 'Shalgham<small>(Turnip)</small> may not look good, but it\'s extremely efficient & useful',
+
     'navbar_h'         : 'Shalgham.org',
 
     #this is to limit the number of display tags in col-4:

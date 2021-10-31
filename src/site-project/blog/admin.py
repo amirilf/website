@@ -23,7 +23,7 @@ class ArticleAdmin(admin.ModelAdmin):
         return super().save_model(request, obj, form, change)   	
 
 class CommentsAdmin(admin.ModelAdmin):
-    list_display = ('name','comment_desc','created','article_slug','status')
+    list_display = ('name','comment_desc','created','status')
     ordering     = ['-created']
 
 

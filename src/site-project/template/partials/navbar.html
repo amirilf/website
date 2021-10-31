@@ -16,9 +16,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/search">Search</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#creators">Creators</a>
-                </li>
+                {% if request.path != '/amir' and request.path != '/alireza' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#creators">Creators</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>
