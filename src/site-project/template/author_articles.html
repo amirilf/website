@@ -21,12 +21,14 @@
 
     <!-- meta tags -->
     <meta property="og:locale" content="en_IR" />
-    <meta property="og:type" content="author articles" />
+    <meta property="og:type" content="Articles author" />
     <meta property="og:site_name" content="Shalgham" />
     <meta property="article:section" content="{{ author|title }}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:title" content="{{ author|title }} articles - shalgham" />
-    <meta name="twitter:title" content="{{ author|title }} articles - shalgham" />
+    <meta property="og:title" content="Shalgham - {{ author|title }} articles" />
+    <meta property="twitter:title" content="Shalgham - {{ author|title }} articles" />
+    <meta property="og:description" content="See all articles by {{ author|title }} in Shalgham" />
+    <meta property="twitter:description" content="See all articles by {{ author|title }} in Shalgham" />
     <meta property="og:url" content="https://{{ request.get_host }}{% url 'blog:author-articles' author %}" />
     <!-- end meta tags -->
 

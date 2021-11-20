@@ -1,4 +1,6 @@
 {% load static %} {% load template_tags %}
+{% site_setting "header_p" as header_p %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,21 +21,21 @@
 
     <!-- meta tags -->
     <meta property="og:locale" content="en_IR" />
-    <meta property="og:type" content="home" />
+    <meta property="og:type" content="Home" />
     <meta property="og:site_name" content="Shalgham" />
-    <meta property="article:section" content="home" />
+    <meta property="article:section" content="Home" />
     <meta property="og:image:width" content="700" />
     <meta property="og:image:height" content="345" />
-    <meta property="og:title" content="Home - shalgham" />
-    <meta name="twitter:title" content="Home - shalgham" />
-    <meta property="og:image:alt" content="Home - shalgham" />
+    <meta property="og:title" content="Shalgham - Home" />
+    <meta name="twitter:title" content="Shalgham - Home" />
+    <meta property="og:image:alt" content="Shalgham - Home" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:description" content="{% site_setting 'header_p' %}" />
-    <meta name="twitter:description" content="{% site_setting 'header_p' %}" />
+    <meta property="og:description" content="{{ header_p|striptags }}" />
+    <meta name="twitter:description" content="{{ header_p|striptags }}" />
     <meta property="og:url" content="https://{{ request.get_host }}" />
-    <meta property="og:image" content="https://{{ request.get_host }}/media/img/333.jpg" />
-    <meta name="twitter:image" content="https://{{ request.get_host }}/media/img/333.jpg" />
+    <meta property="og:image" content="https://{{ request.get_host }}/media/favicon.png" />
+    <meta name="twitter:image" content="https://{{ request.get_host }}/media/favicon.png" />
     <!-- end meta tags -->
 </head>
 <body data-src="/media/bg.jpg">
@@ -49,7 +51,6 @@
                 {% site_setting 'header_h' %}
             </h1>
             <p class="h2 fw-bold pb-5 text-secondary ">
-            {% site_setting "header_p" as header_p %}
             {{ header_p|safe }}
             </p>
         </div>
