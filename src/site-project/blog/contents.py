@@ -3,10 +3,10 @@
 data_set = {
     'home_title'       : 'Shalgham',
 
-    #it's about text in col-4
+    #it's text of col-4
     'about'            : 'Hello <b>werthtgrfe</b> and weclome to our site we\'ll write about technology and python, hope enjoy it and they\'re helpful for u',
  
-    #these are header title and description in home.html
+    #these are header titles and description in home.html
     'header_h'         : 'SHALGHAM',
     'header_p'         : 'Shalgham<small>(Turnip)</small> may not look good, but it\'s extremely efficient & useful',
 

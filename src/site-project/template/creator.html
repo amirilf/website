@@ -75,6 +75,10 @@
                             {% if data.github  %}
                                 <a href="{{ data.github }}" class="px-2"><i class="fab fa-github text-dark"></i></a>
                             {% endif %}
+                            {% if data.linkedin %}
+                                <a href="{{ data.linkedin }}" class="px-2"><i class="fab fa-linkedin text-dark"></i></a>
+                            {% endif %}
+
                         </div>
                         <p class="pt-4">
                             {{ data.desc|safe }}

@@ -68,6 +68,7 @@ class User(AbstractUser):
     thumbnail     = models.ImageField(upload_to='creators',default='creators/default.png')
     telegram      = models.URLField(null=True,blank=True)
     instagram     = models.URLField(null=True,blank=True)
+    linkedin     = models.URLField(null=True,blank=True)
     github        = models.URLField(null=True,blank=True)
     user_page_url = models.CharField(max_length=200)
     desc          = RichTextField(null=True)
