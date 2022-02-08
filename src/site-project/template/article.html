@@ -278,7 +278,7 @@
                                     </button>
                                     <div></div>
 
-                                    {% for comment in comment.replies.all %} {% include 'partials/comment_loop.html' %}
+                                    {% for comment in comment.replies.active %} {% include 'partials/comment_loop.html' %}
                                     {% endfor %}
 
                                 </div>
